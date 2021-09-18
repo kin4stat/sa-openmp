@@ -1,47 +1,50 @@
 #include "HttpClient.hpp"
 
-MAKE_RET(bool) HttpClient::GetHeaderValue(const char* szHeaderName, char* szBuffer, int nBufferLen) {
+HttpClient::HttpClient() {
 
-    return kthook::return_value<bool>::make_true();
+}
+bool HttpClient::GetHeaderValue(const char* szHeaderName, char* szBuffer, int nBufferLen) {
+
+    return bool{};
 }
 
-MAKE_RET(void) HttpClient::InitializeRequest(int nType, const char* szUrl, const char* szPostData, const char* szReferer) {
+void HttpClient::InitializeRequest(int nType, const char* szUrl, const char* szPostData, const char* szReferer) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) HttpClient::HandleEntity() {
+void HttpClient::HandleEntity() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(bool) HttpClient::Connect(const char* szHost, int nPort) {
+bool HttpClient::Connect(const char* szHost, int nPort) {
 
-    return kthook::return_value<bool>::make_true();
+    return bool{};
 }
 
-MAKE_RET(void) HttpClient::Process() {
+void HttpClient::Process() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) HttpClient::Disconnect() {
+void HttpClient::Disconnect() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(ErrorCode) HttpClient::ProcessUrl(int nType, const char* szUrl, const char* szPostData, const char* szReferer) {
+ErrorCode HttpClient::ProcessUrl(int nType, const char* szUrl, const char* szPostData, const char* szReferer) {
 
-    return kthook::return_value<ErrorCode>::make_true();
+    return ErrorCode{};
 }
 
-MAKE_RET(bool) HttpClient::Send(const char* szBuffer) {
+bool HttpClient::Send(const char* szBuffer) {
 
-    return kthook::return_value<bool>::make_true();
+    return bool{};
 }
 
-MAKE_RET(int) HttpClient::Receive(char* szBuffer, int nBufferLen) {
+int HttpClient::Receive(char* szBuffer, int nBufferLen) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 

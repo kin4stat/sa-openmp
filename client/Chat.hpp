@@ -2,30 +2,32 @@
 #define CHAT_HPP_
 
 #include "common.hpp"
+#include "Rect.hpp"
+#include "Fonts.hpp"
 
 BEGIN_PACK
 
 class Chat {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&GetMode)> GetMode_hook{ GetAddress(0x60B40) }; GetMode_hook.before.connect(GetMode);
-        static kthook::kthook_t<decltype(&SwitchMode)> SwitchMode_hook{ GetAddress(0x60B50) }; SwitchMode_hook.before.connect(SwitchMode);
-        static kthook::kthook_t<decltype(&RecalcFontSize)> RecalcFontSize_hook{ GetAddress(0x669A0) }; RecalcFontSize_hook.before.connect(RecalcFontSize);
-        static kthook::kthook_t<decltype(&OnLostDevice)> OnLostDevice_hook{ GetAddress(0x66A20) }; OnLostDevice_hook.before.connect(OnLostDevice);
-        static kthook::kthook_t<decltype(&UpdateScrollbar)> UpdateScrollbar_hook{ GetAddress(0x66A80) }; UpdateScrollbar_hook.before.connect(UpdateScrollbar);
-        static kthook::kthook_t<decltype(&SetPageSize)> SetPageSize_hook{ GetAddress(0x66B20) }; SetPageSize_hook.before.connect(SetPageSize);
-        static kthook::kthook_t<decltype(&PageUp)> PageUp_hook{ GetAddress(0x66B50) }; PageUp_hook.before.connect(PageUp);
-        static kthook::kthook_t<decltype(&PageDown)> PageDown_hook{ GetAddress(0x66BB0) }; PageDown_hook.before.connect(PageDown);
-        static kthook::kthook_t<decltype(&ScrollToBottom)> ScrollToBottom_hook{ GetAddress(0x66C10) }; ScrollToBottom_hook.before.connect(ScrollToBottom);
-        static kthook::kthook_t<decltype(&Scroll)> Scroll_hook{ GetAddress(0x66C40) }; Scroll_hook.before.connect(Scroll);
-        static kthook::kthook_t<decltype(&FilterOutInvalidChars)> FilterOutInvalidChars_hook{ GetAddress(0x66CA0) }; FilterOutInvalidChars_hook.before.connect(FilterOutInvalidChars);
-        static kthook::kthook_t<decltype(&PushBack)> PushBack_hook{ GetAddress(0x66CD0) }; PushBack_hook.before.connect(PushBack);
-        static kthook::kthook_t<decltype(&Log)> Log_hook{ GetAddress(0x67050) }; Log_hook.before.connect(Log);
-        static kthook::kthook_t<decltype(&ResetDialogControls)> ResetDialogControls_hook{ GetAddress(0x67120) }; ResetDialogControls_hook.before.connect(ResetDialogControls);
-        static kthook::kthook_t<decltype(&Render)> Render_hook{ GetAddress(0x671C0) }; Render_hook.before.connect(Render);
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0x67680) }; Draw_hook.before.connect(Draw);
-        static kthook::kthook_t<decltype(&RenderToSurface)> RenderToSurface_hook{ GetAddress(0x67750) }; RenderToSurface_hook.before.connect(RenderToSurface);
-        static kthook::kthook_t<decltype(&OnResetDevice)> OnResetDevice_hook{ GetAddress(0x67A50) }; OnResetDevice_hook.before.connect(OnResetDevice);
+        ReversibleHooks::Install("Chat", "GetMode", GetAddress(0x60B40), &Chat::GetMode);
+        ReversibleHooks::Install("Chat", "SwitchMode", GetAddress(0x60B50), &Chat::SwitchMode);
+        ReversibleHooks::Install("Chat", "RecalcFontSize", GetAddress(0x669A0), &Chat::RecalcFontSize);
+        ReversibleHooks::Install("Chat", "OnLostDevice", GetAddress(0x66A20), &Chat::OnLostDevice);
+        ReversibleHooks::Install("Chat", "UpdateScrollbar", GetAddress(0x66A80), &Chat::UpdateScrollbar);
+        ReversibleHooks::Install("Chat", "SetPageSize", GetAddress(0x66B20), &Chat::SetPageSize);
+        ReversibleHooks::Install("Chat", "PageUp", GetAddress(0x66B50), &Chat::PageUp);
+        ReversibleHooks::Install("Chat", "PageDown", GetAddress(0x66BB0), &Chat::PageDown);
+        ReversibleHooks::Install("Chat", "ScrollToBottom", GetAddress(0x66C10), &Chat::ScrollToBottom);
+        ReversibleHooks::Install("Chat", "Scroll", GetAddress(0x66C40), &Chat::Scroll);
+        ReversibleHooks::Install("Chat", "FilterOutInvalidChars", GetAddress(0x66CA0), &Chat::FilterOutInvalidChars);
+        ReversibleHooks::Install("Chat", "PushBack", GetAddress(0x66CD0), &Chat::PushBack);
+        ReversibleHooks::Install("Chat", "Log", GetAddress(0x67050), &Chat::Log);
+        ReversibleHooks::Install("Chat", "ResetDialogControls", GetAddress(0x67120), &Chat::ResetDialogControls);
+        ReversibleHooks::Install("Chat", "Render", GetAddress(0x671C0), &Chat::Render);
+        ReversibleHooks::Install("Chat", "Draw", GetAddress(0x67680), &Chat::Draw);
+        ReversibleHooks::Install("Chat", "RenderToSurface", GetAddress(0x67750), &Chat::RenderToSurface);
+        ReversibleHooks::Install("Chat", "OnResetDevice", GetAddress(0x67A50), &Chat::OnResetDevice);
     }
 
 
@@ -67,7 +69,7 @@ public:
     };
     ChatEntry m_entry[MAX_MESSAGES];
 
-    CFonts*               m_pFontRenderer;
+    Fonts*               m_pFontRenderer;
     ID3DXSprite*          m_pTextSprite;
     ID3DXSprite*          m_pSprite;
     IDirect3DDevice9*     m_pDevice;
@@ -87,27 +89,27 @@ public:
     long m_nTimestampWidth;
 
     
-    Chat(IDirect3DDevice9* pDevice, CFonts* pFontRenderer, const char* szLogPath);
+    Chat(IDirect3DDevice9* pDevice, Fonts* pFontRenderer, const char* szLogPath);
     ~Chat();
 
-    MAKE_RET(int) GetMode();
-    MAKE_RET(void) SwitchMode();
-    MAKE_RET(void) RecalcFontSize();
-    MAKE_RET(void) OnLostDevice();
-    MAKE_RET(void) UpdateScrollbar();
-    MAKE_RET(void) SetPageSize(int nValue);
-    MAKE_RET(void) PageUp();
-    MAKE_RET(void) PageDown();
-    MAKE_RET(void) ScrollToBottom();
-    MAKE_RET(void) Scroll(int nDelta);
-    MAKE_RET(void) FilterOutInvalidChars(char* szString);
-    MAKE_RET(void) PushBack();
-    MAKE_RET(void) Log(int nType, const char* szText, const char* szPrefix);
-    MAKE_RET(void) ResetDialogControls(CDXUTDialog* pGameUi);
-    MAKE_RET(void) Render();
-    MAKE_RET(void) Draw();
-    MAKE_RET(void) RenderToSurface();
-    MAKE_RET(void) OnResetDevice();
+    int GetMode();
+    void SwitchMode();
+    void RecalcFontSize();
+    void OnLostDevice();
+    void UpdateScrollbar();
+    void SetPageSize(int nValue);
+    void PageUp();
+    void PageDown();
+    void ScrollToBottom();
+    void Scroll(int nDelta);
+    void FilterOutInvalidChars(char* szString);
+    void PushBack();
+    void Log(int nType, const char* szText, const char* szPrefix);
+    void ResetDialogControls(CDXUTDialog* pGameUi);
+    void Render();
+    void Draw();
+    void RenderToSurface();
+    void OnResetDevice();
 };
 
 END_PACK

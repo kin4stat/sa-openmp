@@ -3,33 +3,33 @@
 Actor::Actor(int nModel, CVector position, float fRotation) {
 
 }
-MAKE_RET(void) Actor::Destroy() {
+void Actor::Destroy() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Actor::PerformAnimation(const char* szAnim, const char* szIFP, float fFramedelta, int bLockA, int bLockX, int bLockY, int bLockF, int nTime) {
+void Actor::PerformAnimation(const char* szAnim, const char* szIFP, float fFramedelta, int bLockA, int bLockX, int bLockY, int bLockF, int nTime) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Actor::SetRotation(float fAngle) {
+void Actor::SetRotation(float fAngle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Actor::GetHealth() {
+float Actor::GetHealth() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Actor::SetHealth(float fAngle) {
+void Actor::SetHealth(float fAngle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Actor::SetInvulnerable(bool bEnable) {
+void Actor::SetInvulnerable(bool bEnable) {
 
-    return true;
+    return;
 }
 

@@ -2,14 +2,15 @@
 #define TEXTDRAW_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
 
 BEGIN_PACK
 
 class TextDraw {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&SetText)> SetText_hook{ GetAddress(0xB26D0) }; SetText_hook.before.connect(SetText);
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0xB2BF0) }; Draw_hook.before.connect(Draw);
+        ReversibleHooks::Install("TextDraw", "SetText", GetAddress(0xB26D0), &TextDraw::SetText);
+        ReversibleHooks::Install("TextDraw", "Draw", GetAddress(0xB2BF0), &TextDraw::Draw);
     }
 
 
@@ -38,7 +39,7 @@ public:
         float          m_fX;
         float          m_fY;
         unsigned short m_nModel;
-        CVector        m_rotation;
+        Vector        m_rotation;
         float          m_fZoom;
         unsigned short m_aColor[2];
     };
@@ -68,7 +69,7 @@ public:
         unsigned long  m_nIndex;
         unsigned char  field_9A7;
         unsigned short m_nModel;
-        CVector        m_rotation;
+        Vector        m_rotation;
         float          m_fZoom;
         unsigned short m_aColor[2];
         unsigned char  field_9BE;
@@ -90,8 +91,8 @@ public:
     TextDraw(Transmit* pData, const char* szText);
     ~TextDraw();
 
-    MAKE_RET(void) SetText(const char* szText);
-    MAKE_RET(void) Draw();
+    void SetText(const char* szText);
+    void Draw();
 };
 
 END_PACK

@@ -1,17 +1,20 @@
 #include "GangZonePool.hpp"
 
-MAKE_RET(void) GangZonePool::StopFlashing(ID nId) {
+GangZonePool::GangZonePool() {
 
-    return true;
+}
+void GangZonePool::StopFlashing(ID nId) {
+
+    return;
 }
 
-MAKE_RET(void) GangZonePool::Delete(ID nId) {
+void GangZonePool::Delete(ID nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) GangZonePool::Draw() {
+void GangZonePool::Draw() {
 
-    return true;
+    return;
 }
 

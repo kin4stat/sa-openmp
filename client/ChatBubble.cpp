@@ -1,7 +1,10 @@
 #include "ChatBubble.hpp"
 
-MAKE_RET(void) ChatBubble::Draw() {
+ChatBubble::ChatBubble() {
 
-    return true;
+}
+void ChatBubble::Draw() {
+
+    return;
 }
 

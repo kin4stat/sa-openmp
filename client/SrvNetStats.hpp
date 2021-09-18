@@ -8,7 +8,7 @@ BEGIN_PACK
 class SrvNetStats {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0x70B70) }; Draw_hook.before.connect(Draw);
+        ReversibleHooks::Install("SrvNetStats", "Draw", GetAddress(0x70B70), &SrvNetStats::Draw);
     }
 
 
@@ -23,7 +23,7 @@ public:
     SrvNetStats(IDirect3DDevice9* pDevice);
     ~SrvNetStats();
 
-    MAKE_RET(void) Draw();
+    void Draw();
 };
 
 END_PACK

@@ -1,262 +1,265 @@
 #include "LocalPlayer.hpp"
 
-MAKE_RET(CPed*) LocalPlayer::GetPed() {
+LocalPlayer::LocalPlayer() {
 
-    return kthook::return_value<CPed*>::make_true();
+}
+CPed* LocalPlayer::GetPed() {
+
+    return CPed*{};
 }
 
-MAKE_RET(void) LocalPlayer::ResetData() {
+void LocalPlayer::ResetData() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ProcessHead() {
+void LocalPlayer::ProcessHead() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SetSpecialAction(char nId) {
+void LocalPlayer::SetSpecialAction(char nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(char) LocalPlayer::GetSpecialAction() {
+char LocalPlayer::GetSpecialAction() {
 
-    return kthook::return_value<char>::make_true();
+    return char{};
 }
 
-MAKE_RET(void) LocalPlayer::UpdateSurfing() {
+void LocalPlayer::UpdateSurfing() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SetSurfing(CVehicle* pVehicle, BOOL bStuck) {
+void LocalPlayer::SetSurfing(CVehicle* pVehicle, BOOL bStuck) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ProcessSurfing() {
+void LocalPlayer::ProcessSurfing() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) LocalPlayer::NeedsToUpdate(const void* pOld, const void* pNew, unsigned int nLen) {
+BOOL LocalPlayer::NeedsToUpdate(const void* pOld, const void* pNew, unsigned int nLen) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(int) LocalPlayer::GetIncarSendRate() {
+int LocalPlayer::GetIncarSendRate() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(int) LocalPlayer::GetOnfootSendRate() {
+int LocalPlayer::GetOnfootSendRate() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(int) LocalPlayer::GetUnoccupiedSendRate() {
+int LocalPlayer::GetUnoccupiedSendRate() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) LocalPlayer::SetSpawnInfo(const SpawnInfo* pInfo) {
+void LocalPlayer::SetSpawnInfo(const SpawnInfo* pInfo) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) LocalPlayer::Spawn() {
+BOOL LocalPlayer::Spawn() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(D3DCOLOR) LocalPlayer::GetColorAsRGBA() {
+D3DCOLOR LocalPlayer::GetColorAsRGBA() {
 
-    return kthook::return_value<D3DCOLOR>::make_true();
+    return D3DCOLOR{};
 }
 
-MAKE_RET(D3DCOLOR) LocalPlayer::GetColorAsARGB() {
+D3DCOLOR LocalPlayer::GetColorAsARGB() {
 
-    return kthook::return_value<D3DCOLOR>::make_true();
+    return D3DCOLOR{};
 }
 
-MAKE_RET(void) LocalPlayer::ProcessOnfootWorldBounds() {
+void LocalPlayer::ProcessOnfootWorldBounds() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ProcessIncarWorldBounds() {
+void LocalPlayer::ProcessIncarWorldBounds() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::RequestSpawn() {
+void LocalPlayer::RequestSpawn() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::PrepareForClassSelection() {
+void LocalPlayer::PrepareForClassSelection() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::PrepareForClassSelection_Outcome(BOOL bOutcome) {
+void LocalPlayer::PrepareForClassSelection_Outcome(BOOL bOutcome) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::EnableSpectating(BOOL bEnable) {
+void LocalPlayer::EnableSpectating(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SpectateForVehicle(ID nId) {
+void LocalPlayer::SpectateForVehicle(ID nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SpectateForPlayer(ID nId) {
+void LocalPlayer::SpectateForPlayer(ID nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) LocalPlayer::NeedsToSendOnfootData(short controllerState, short sLeftStickX, short sLeftStickY) {
+BOOL LocalPlayer::NeedsToSendOnfootData(short controllerState, short sLeftStickX, short sLeftStickY) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) LocalPlayer::NeedsToSendIncarData(short controllerState, short sLeftStickX, short sLeftStickY) {
+BOOL LocalPlayer::NeedsToSendIncarData(short controllerState, short sLeftStickX, short sLeftStickY) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(bool) LocalPlayer::DefineCameraTarget(CameraTarget* pInfo) {
+bool LocalPlayer::DefineCameraTarget(CameraTarget* pInfo) {
 
-    return kthook::return_value<bool>::make_true();
+    return bool{};
 }
 
-MAKE_RET(void) LocalPlayer::UpdateCameraTarget() {
+void LocalPlayer::UpdateCameraTarget() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::DrawCameraTargetLabel() {
+void LocalPlayer::DrawCameraTargetLabel() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendOnfootData() {
+void LocalPlayer::SendOnfootData() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendAimData() {
+void LocalPlayer::SendAimData() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendTrailerData(ID nTrailer) {
+void LocalPlayer::SendTrailerData(ID nTrailer) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendPassengerData() {
+void LocalPlayer::SendPassengerData() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::WastedNotification() {
+void LocalPlayer::WastedNotification() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::RequestClass(int nId) {
+void LocalPlayer::RequestClass(int nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ChangeInterior(char nId) {
+void LocalPlayer::ChangeInterior(char nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::Chat(const char* szText) {
+void LocalPlayer::Chat(const char* szText) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::EnterVehicle(int nVehicle, BOOL bPassenger) {
+void LocalPlayer::EnterVehicle(int nVehicle, BOOL bPassenger) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ExitVehicle(int nVehicle) {
+void LocalPlayer::ExitVehicle(int nVehicle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendStats() {
+void LocalPlayer::SendStats() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::UpdateVehicleDamage(ID nVehicle) {
+void LocalPlayer::UpdateVehicleDamage(ID nVehicle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::NextClass() {
+void LocalPlayer::NextClass() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::PrevClass() {
+void LocalPlayer::PrevClass() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ProcessClassSelection() {
+void LocalPlayer::ProcessClassSelection() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::UpdateWeapons() {
+void LocalPlayer::UpdateWeapons() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::ProcessSpectating() {
+void LocalPlayer::ProcessSpectating() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendTakeDamage(int nId, float fDamage, int nWeapon, int nBodyPart) {
+void LocalPlayer::SendTakeDamage(int nId, float fDamage, int nWeapon, int nBodyPart) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendGiveDamage(int nId, float fDamage, int nWeapon, int nBodyPart) {
+void LocalPlayer::SendGiveDamage(int nId, float fDamage, int nWeapon, int nBodyPart) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(bool) LocalPlayer::ProcessUnoccupiedSync(ID nVehicle, CVehicle* pVehicle) {
+bool LocalPlayer::ProcessUnoccupiedSync(ID nVehicle, CVehicle* pVehicle) {
 
-    return kthook::return_value<bool>::make_true();
+    return bool{};
 }
 
-MAKE_RET(void) LocalPlayer::EnterVehicleAsPassenger() {
+void LocalPlayer::EnterVehicleAsPassenger() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::SendIncarData() {
+void LocalPlayer::SendIncarData() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) LocalPlayer::Process() {
+void LocalPlayer::Process() {
 
-    return true;
+    return;
 }
 

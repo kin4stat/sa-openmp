@@ -2,122 +2,235 @@
 #define LOCALPLAYER_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
+#include "Ped.hpp"
+#include "Vehicle.hpp"
+#include "Synchronization.hpp"
 
 BEGIN_PACK
 
 class LocalPlayer {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&GetPed)> GetPed_hook{ GetAddress(0x2D50) }; GetPed_hook.before.connect(GetPed);
-        static kthook::kthook_t<decltype(&ResetData)> ResetData_hook{ GetAddress(0x2E70) }; ResetData_hook.before.connect(ResetData);
-        static kthook::kthook_t<decltype(&ProcessHead)> ProcessHead_hook{ GetAddress(0x2F80) }; ProcessHead_hook.before.connect(ProcessHead);
-        static kthook::kthook_t<decltype(&SetSpecialAction)> SetSpecialAction_hook{ GetAddress(0x30C0) }; SetSpecialAction_hook.before.connect(SetSpecialAction);
-        static kthook::kthook_t<decltype(&GetSpecialAction)> GetSpecialAction_hook{ GetAddress(0x3340) }; GetSpecialAction_hook.before.connect(GetSpecialAction);
-        static kthook::kthook_t<decltype(&UpdateSurfing)> UpdateSurfing_hook{ GetAddress(0x3460) }; UpdateSurfing_hook.before.connect(UpdateSurfing);
-        static kthook::kthook_t<decltype(&SetSurfing)> SetSurfing_hook{ GetAddress(0x35E0) }; SetSurfing_hook.before.connect(SetSurfing);
-        static kthook::kthook_t<decltype(&ProcessSurfing)> ProcessSurfing_hook{ GetAddress(0x3600) }; ProcessSurfing_hook.before.connect(ProcessSurfing);
-        static kthook::kthook_t<decltype(&NeedsToUpdate)> NeedsToUpdate_hook{ GetAddress(0x3920) }; NeedsToUpdate_hook.before.connect(NeedsToUpdate);
-        static kthook::kthook_t<decltype(&GetIncarSendRate)> GetIncarSendRate_hook{ GetAddress(0x3970) }; GetIncarSendRate_hook.before.connect(GetIncarSendRate);
-        static kthook::kthook_t<decltype(&GetOnfootSendRate)> GetOnfootSendRate_hook{ GetAddress(0x39B0) }; GetOnfootSendRate_hook.before.connect(GetOnfootSendRate);
-        static kthook::kthook_t<decltype(&GetUnoccupiedSendRate)> GetUnoccupiedSendRate_hook{ GetAddress(0x39F0) }; GetUnoccupiedSendRate_hook.before.connect(GetUnoccupiedSendRate);
-        static kthook::kthook_t<decltype(&SetSpawnInfo)> SetSpawnInfo_hook{ GetAddress(0x3AA0) }; SetSpawnInfo_hook.before.connect(SetSpawnInfo);
-        static kthook::kthook_t<decltype(&Spawn)> Spawn_hook{ GetAddress(0x3AD0) }; Spawn_hook.before.connect(Spawn);
-        static kthook::kthook_t<decltype(&GetColorAsRGBA)> GetColorAsRGBA_hook{ GetAddress(0x3D80) }; GetColorAsRGBA_hook.before.connect(GetColorAsRGBA);
-        static kthook::kthook_t<decltype(&GetColorAsARGB)> GetColorAsARGB_hook{ GetAddress(0x3DA0) }; GetColorAsARGB_hook.before.connect(GetColorAsARGB);
-        static kthook::kthook_t<decltype(&ProcessOnfootWorldBounds)> ProcessOnfootWorldBounds_hook{ GetAddress(0x3DD0) }; ProcessOnfootWorldBounds_hook.before.connect(ProcessOnfootWorldBounds);
-        static kthook::kthook_t<decltype(&ProcessIncarWorldBounds)> ProcessIncarWorldBounds_hook{ GetAddress(0x3E30) }; ProcessIncarWorldBounds_hook.before.connect(ProcessIncarWorldBounds);
-        static kthook::kthook_t<decltype(&RequestSpawn)> RequestSpawn_hook{ GetAddress(0x3ED0) }; RequestSpawn_hook.before.connect(RequestSpawn);
-        static kthook::kthook_t<decltype(&PrepareForClassSelection)> PrepareForClassSelection_hook{ GetAddress(0x3EF0) }; PrepareForClassSelection_hook.before.connect(PrepareForClassSelection);
-        static kthook::kthook_t<decltype(&PrepareForClassSelection_Outcome)> PrepareForClassSelection_Outcome_hook{ GetAddress(0x3F40) }; PrepareForClassSelection_Outcome_hook.before.connect(PrepareForClassSelection_Outcome);
-        static kthook::kthook_t<decltype(&EnableSpectating)> EnableSpectating_hook{ GetAddress(0x4010) }; EnableSpectating_hook.before.connect(EnableSpectating);
-        static kthook::kthook_t<decltype(&SpectateForVehicle)> SpectateForVehicle_hook{ GetAddress(0x4080) }; SpectateForVehicle_hook.before.connect(SpectateForVehicle);
-        static kthook::kthook_t<decltype(&SpectateForPlayer)> SpectateForPlayer_hook{ GetAddress(0x40D0) }; SpectateForPlayer_hook.before.connect(SpectateForPlayer);
-        static kthook::kthook_t<decltype(&NeedsToSendOnfootData)> NeedsToSendOnfootData_hook{ GetAddress(0x4150) }; NeedsToSendOnfootData_hook.before.connect(NeedsToSendOnfootData);
-        static kthook::kthook_t<decltype(&NeedsToSendIncarData)> NeedsToSendIncarData_hook{ GetAddress(0x4190) }; NeedsToSendIncarData_hook.before.connect(NeedsToSendIncarData);
-        static kthook::kthook_t<decltype(&DefineCameraTarget)> DefineCameraTarget_hook{ GetAddress(0x4290) }; DefineCameraTarget_hook.before.connect(DefineCameraTarget);
-        static kthook::kthook_t<decltype(&UpdateCameraTarget)> UpdateCameraTarget_hook{ GetAddress(0x4550) }; UpdateCameraTarget_hook.before.connect(UpdateCameraTarget);
-        static kthook::kthook_t<decltype(&DrawCameraTargetLabel)> DrawCameraTargetLabel_hook{ GetAddress(0x46A0) }; DrawCameraTargetLabel_hook.before.connect(DrawCameraTargetLabel);
-        static kthook::kthook_t<decltype(&SendOnfootData)> SendOnfootData_hook{ GetAddress(0x4D40) }; SendOnfootData_hook.before.connect(SendOnfootData);
-        static kthook::kthook_t<decltype(&SendAimData)> SendAimData_hook{ GetAddress(0x5040) }; SendAimData_hook.before.connect(SendAimData);
-        static kthook::kthook_t<decltype(&SendTrailerData)> SendTrailerData_hook{ GetAddress(0x51F0) }; SendTrailerData_hook.before.connect(SendTrailerData);
-        static kthook::kthook_t<decltype(&SendPassengerData)> SendPassengerData_hook{ GetAddress(0x53B0) }; SendPassengerData_hook.before.connect(SendPassengerData);
-        static kthook::kthook_t<decltype(&WastedNotification)> WastedNotification_hook{ GetAddress(0x5620) }; WastedNotification_hook.before.connect(WastedNotification);
-        static kthook::kthook_t<decltype(&RequestClass)> RequestClass_hook{ GetAddress(0x56E0) }; RequestClass_hook.before.connect(RequestClass);
-        static kthook::kthook_t<decltype(&ChangeInterior)> ChangeInterior_hook{ GetAddress(0x5780) }; ChangeInterior_hook.before.connect(ChangeInterior);
-        static kthook::kthook_t<decltype(&Chat)> Chat_hook{ GetAddress(0x5820) }; Chat_hook.before.connect(Chat);
-        static kthook::kthook_t<decltype(&EnterVehicle)> EnterVehicle_hook{ GetAddress(0x58E0) }; EnterVehicle_hook.before.connect(EnterVehicle);
-        static kthook::kthook_t<decltype(&ExitVehicle)> ExitVehicle_hook{ GetAddress(0x5A00) }; ExitVehicle_hook.before.connect(ExitVehicle);
-        static kthook::kthook_t<decltype(&SendStats)> SendStats_hook{ GetAddress(0x5B10) }; SendStats_hook.before.connect(SendStats);
-        static kthook::kthook_t<decltype(&UpdateVehicleDamage)> UpdateVehicleDamage_hook{ GetAddress(0x5BE0) }; UpdateVehicleDamage_hook.before.connect(UpdateVehicleDamage);
-        static kthook::kthook_t<decltype(&NextClass)> NextClass_hook{ GetAddress(0x5DF0) }; NextClass_hook.before.connect(NextClass);
-        static kthook::kthook_t<decltype(&PrevClass)> PrevClass_hook{ GetAddress(0x5E80) }; PrevClass_hook.before.connect(PrevClass);
-        static kthook::kthook_t<decltype(&ProcessClassSelection)> ProcessClassSelection_hook{ GetAddress(0x5F00) }; ProcessClassSelection_hook.before.connect(ProcessClassSelection);
-        static kthook::kthook_t<decltype(&UpdateWeapons)> UpdateWeapons_hook{ GetAddress(0x6090) }; UpdateWeapons_hook.before.connect(UpdateWeapons);
-        static kthook::kthook_t<decltype(&ProcessSpectating)> ProcessSpectating_hook{ GetAddress(0x6320) }; ProcessSpectating_hook.before.connect(ProcessSpectating);
-        static kthook::kthook_t<decltype(&SendTakeDamage)> SendTakeDamage_hook{ GetAddress(0x6670) }; SendTakeDamage_hook.before.connect(SendTakeDamage);
-        static kthook::kthook_t<decltype(&SendGiveDamage)> SendGiveDamage_hook{ GetAddress(0x6780) }; SendGiveDamage_hook.before.connect(SendGiveDamage);
-        static kthook::kthook_t<decltype(&ProcessUnoccupiedSync)> ProcessUnoccupiedSync_hook{ GetAddress(0x6BD0) }; ProcessUnoccupiedSync_hook.before.connect(ProcessUnoccupiedSync);
-        static kthook::kthook_t<decltype(&EnterVehicleAsPassenger)> EnterVehicleAsPassenger_hook{ GetAddress(0x6DA0) }; EnterVehicleAsPassenger_hook.before.connect(EnterVehicleAsPassenger);
-        static kthook::kthook_t<decltype(&SendIncarData)> SendIncarData_hook{ GetAddress(0x6E40) }; SendIncarData_hook.before.connect(SendIncarData);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0x7270) }; Process_hook.before.connect(Process);
+        ReversibleHooks::Install("LocalPlayer", "GetPed", GetAddress(0x2D50), &LocalPlayer::GetPed);
+        ReversibleHooks::Install("LocalPlayer", "ResetData", GetAddress(0x2E70), &LocalPlayer::ResetData);
+        ReversibleHooks::Install("LocalPlayer", "ProcessHead", GetAddress(0x2F80), &LocalPlayer::ProcessHead);
+        ReversibleHooks::Install("LocalPlayer", "SetSpecialAction", GetAddress(0x30C0), &LocalPlayer::SetSpecialAction);
+        ReversibleHooks::Install("LocalPlayer", "GetSpecialAction", GetAddress(0x3340), &LocalPlayer::GetSpecialAction);
+        ReversibleHooks::Install("LocalPlayer", "UpdateSurfing", GetAddress(0x3460), &LocalPlayer::UpdateSurfing);
+        ReversibleHooks::Install("LocalPlayer", "SetSurfing", GetAddress(0x35E0), &LocalPlayer::SetSurfing);
+        ReversibleHooks::Install("LocalPlayer", "ProcessSurfing", GetAddress(0x3600), &LocalPlayer::ProcessSurfing);
+        ReversibleHooks::Install("LocalPlayer", "NeedsToUpdate", GetAddress(0x3920), &LocalPlayer::NeedsToUpdate);
+        ReversibleHooks::Install("LocalPlayer", "GetIncarSendRate", GetAddress(0x3970), &LocalPlayer::GetIncarSendRate);
+        ReversibleHooks::Install("LocalPlayer", "GetOnfootSendRate", GetAddress(0x39B0), &LocalPlayer::GetOnfootSendRate);
+        ReversibleHooks::Install("LocalPlayer", "GetUnoccupiedSendRate", GetAddress(0x39F0), &LocalPlayer::GetUnoccupiedSendRate);
+        ReversibleHooks::Install("LocalPlayer", "SetSpawnInfo", GetAddress(0x3AA0), &LocalPlayer::SetSpawnInfo);
+        ReversibleHooks::Install("LocalPlayer", "Spawn", GetAddress(0x3AD0), &LocalPlayer::Spawn);
+        ReversibleHooks::Install("LocalPlayer", "GetColorAsRGBA", GetAddress(0x3D80), &LocalPlayer::GetColorAsRGBA);
+        ReversibleHooks::Install("LocalPlayer", "GetColorAsARGB", GetAddress(0x3DA0), &LocalPlayer::GetColorAsARGB);
+        ReversibleHooks::Install("LocalPlayer", "ProcessOnfootWorldBounds", GetAddress(0x3DD0), &LocalPlayer::ProcessOnfootWorldBounds);
+        ReversibleHooks::Install("LocalPlayer", "ProcessIncarWorldBounds", GetAddress(0x3E30), &LocalPlayer::ProcessIncarWorldBounds);
+        ReversibleHooks::Install("LocalPlayer", "RequestSpawn", GetAddress(0x3ED0), &LocalPlayer::RequestSpawn);
+        ReversibleHooks::Install("LocalPlayer", "PrepareForClassSelection", GetAddress(0x3EF0), &LocalPlayer::PrepareForClassSelection);
+        ReversibleHooks::Install("LocalPlayer", "PrepareForClassSelection_Outcome", GetAddress(0x3F40), &LocalPlayer::PrepareForClassSelection_Outcome);
+        ReversibleHooks::Install("LocalPlayer", "EnableSpectating", GetAddress(0x4010), &LocalPlayer::EnableSpectating);
+        ReversibleHooks::Install("LocalPlayer", "SpectateForVehicle", GetAddress(0x4080), &LocalPlayer::SpectateForVehicle);
+        ReversibleHooks::Install("LocalPlayer", "SpectateForPlayer", GetAddress(0x40D0), &LocalPlayer::SpectateForPlayer);
+        ReversibleHooks::Install("LocalPlayer", "NeedsToSendOnfootData", GetAddress(0x4150), &LocalPlayer::NeedsToSendOnfootData);
+        ReversibleHooks::Install("LocalPlayer", "NeedsToSendIncarData", GetAddress(0x4190), &LocalPlayer::NeedsToSendIncarData);
+        ReversibleHooks::Install("LocalPlayer", "DefineCameraTarget", GetAddress(0x4290), &LocalPlayer::DefineCameraTarget);
+        ReversibleHooks::Install("LocalPlayer", "UpdateCameraTarget", GetAddress(0x4550), &LocalPlayer::UpdateCameraTarget);
+        ReversibleHooks::Install("LocalPlayer", "DrawCameraTargetLabel", GetAddress(0x46A0), &LocalPlayer::DrawCameraTargetLabel);
+        ReversibleHooks::Install("LocalPlayer", "SendOnfootData", GetAddress(0x4D40), &LocalPlayer::SendOnfootData);
+        ReversibleHooks::Install("LocalPlayer", "SendAimData", GetAddress(0x5040), &LocalPlayer::SendAimData);
+        ReversibleHooks::Install("LocalPlayer", "SendTrailerData", GetAddress(0x51F0), &LocalPlayer::SendTrailerData);
+        ReversibleHooks::Install("LocalPlayer", "SendPassengerData", GetAddress(0x53B0), &LocalPlayer::SendPassengerData);
+        ReversibleHooks::Install("LocalPlayer", "WastedNotification", GetAddress(0x5620), &LocalPlayer::WastedNotification);
+        ReversibleHooks::Install("LocalPlayer", "RequestClass", GetAddress(0x56E0), &LocalPlayer::RequestClass);
+        ReversibleHooks::Install("LocalPlayer", "ChangeInterior", GetAddress(0x5780), &LocalPlayer::ChangeInterior);
+        ReversibleHooks::Install("LocalPlayer", "Chat", GetAddress(0x5820), &LocalPlayer::Chat);
+        ReversibleHooks::Install("LocalPlayer", "EnterVehicle", GetAddress(0x58E0), &LocalPlayer::EnterVehicle);
+        ReversibleHooks::Install("LocalPlayer", "ExitVehicle", GetAddress(0x5A00), &LocalPlayer::ExitVehicle);
+        ReversibleHooks::Install("LocalPlayer", "SendStats", GetAddress(0x5B10), &LocalPlayer::SendStats);
+        ReversibleHooks::Install("LocalPlayer", "UpdateVehicleDamage", GetAddress(0x5BE0), &LocalPlayer::UpdateVehicleDamage);
+        ReversibleHooks::Install("LocalPlayer", "NextClass", GetAddress(0x5DF0), &LocalPlayer::NextClass);
+        ReversibleHooks::Install("LocalPlayer", "PrevClass", GetAddress(0x5E80), &LocalPlayer::PrevClass);
+        ReversibleHooks::Install("LocalPlayer", "ProcessClassSelection", GetAddress(0x5F00), &LocalPlayer::ProcessClassSelection);
+        ReversibleHooks::Install("LocalPlayer", "UpdateWeapons", GetAddress(0x6090), &LocalPlayer::UpdateWeapons);
+        ReversibleHooks::Install("LocalPlayer", "ProcessSpectating", GetAddress(0x6320), &LocalPlayer::ProcessSpectating);
+        ReversibleHooks::Install("LocalPlayer", "SendTakeDamage", GetAddress(0x6670), &LocalPlayer::SendTakeDamage);
+        ReversibleHooks::Install("LocalPlayer", "SendGiveDamage", GetAddress(0x6780), &LocalPlayer::SendGiveDamage);
+        ReversibleHooks::Install("LocalPlayer", "ProcessUnoccupiedSync", GetAddress(0x6BD0), &LocalPlayer::ProcessUnoccupiedSync);
+        ReversibleHooks::Install("LocalPlayer", "EnterVehicleAsPassenger", GetAddress(0x6DA0), &LocalPlayer::EnterVehicleAsPassenger);
+        ReversibleHooks::Install("LocalPlayer", "SendIncarData", GetAddress(0x6E40), &LocalPlayer::SendIncarData);
+        ReversibleHooks::Install("LocalPlayer", "Process", GetAddress(0x7270), &LocalPlayer::Process);
     }
 
 
+    Ped* m_pPed;
 
+    Synchronization::IncarData     m_incarData;
+    Synchronization::AimData       m_aimData;
+    Synchronization::TrailerData   m_trailerData;
+    Synchronization::OnfootData    m_onfootData;
+    Synchronization::PassengerData m_passengerData;
+
+    BOOL      m_bIsActive;
+    BOOL      m_bIsWasted;
+    ID        m_nCurrentVehicle;
+    ID        m_nLastVehicle;
+    Animation m_animation;
+    int       field_1;
+    BOOL      m_bDoesSpectating;
+    NUMBER    m_nTeam;
+    short     field_10d;
+    TICK      m_lastUpdate;
+    TICK      m_lastSpecUpdate;
+    TICK      m_lastAimUpdate;
+    TICK      m_lastStatsUpdate;
+
+    struct CameraTarget {
+        ID m_nObject;
+        ID m_nVehicle;
+        ID m_nPlayer;
+        ID m_nActor;
+    } m_cameraTarget;
+
+    TICK m_lastCameraTargetUpdate;
+
+    struct {
+        Vector m_direction;
+        TICK    m_lastUpdate;
+        TICK    m_lastLook;
+    } m_head;
+
+    TICK m_lastAnyUpdate;
+    BOOL m_bClearedToSpawn;
+    TICK m_lastSelectionTick;
+    TICK m_initialSelectionTick;
+
+    struct SpawnInfo {
+        NUMBER  m_nTeam;
+        int     m_nSkin;
+        char    field_c;
+        Vector m_position;
+        float   m_fRotation;
+        int     m_aWeapon[3];
+        int     m_aAmmo[3];
+    } m_spawnInfo;
+
+    BOOL m_bHasSpawnInfo;
+    TICK m_lastWeaponsUpdate;
+
+    struct {
+        ID     m_nAimedPlayer;
+        ID     m_nAimedActor;
+        NUMBER m_nCurrentWeapon;
+        NUMBER m_aLastWeapon[13];
+        int    m_aLastWeaponAmmo[13];
+    } m_weaponsData;
+
+    BOOL m_bPassengerDriveBy;
+    char m_nCurrentInterior;
+    BOOL m_bInRCMode;
+    char m_szName[256];
+
+    struct {
+        ID   m_nEntityId; // vehicle 0 =< id < 2000; object 2000 <= id < 3000
+        TICK m_lastUpdate;
+
+        union {
+            Vehicle* m_pVehicle;
+            CObject*  m_pObject;
+        };
+
+        BOOL    m_bStuck;
+        BOOL    m_bIsActive;
+        Vector m_position;
+        int     field_;
+        int     m_nMode;
+    } m_surfing;
+
+    struct {
+        BOOL m_bEnableAfterDeath;
+        int  m_nSelected;
+        BOOL m_bWaitingForSpawnRequestReply;
+        BOOL m_bIsActive;
+    } m_classSelection;
+
+    TICK m_zoneDisplayingEnd;
+
+    struct {
+        char m_nMode;
+        char m_nType;
+        int  m_nObject;
+        BOOL m_bProcessed;
+    } m_spectating;
+
+    struct {
+        ID   m_nVehicleUpdating;
+        int  m_nBumper;
+        int  m_nDoor;
+        bool m_bLight;
+        bool m_bWheel;
+    } m_damage;
+
+    
+    LocalPlayer();
     ~LocalPlayer();
 
-    MAKE_RET(CPed*) GetPed();
-    MAKE_RET(void) ResetData();
-    MAKE_RET(void) ProcessHead();
-    MAKE_RET(void) SetSpecialAction(char nId);
-    MAKE_RET(char) GetSpecialAction();
-    MAKE_RET(void) UpdateSurfing();
-    MAKE_RET(void) SetSurfing(CVehicle* pVehicle, BOOL bStuck);
-    MAKE_RET(void) ProcessSurfing();
-    MAKE_RET(BOOL) NeedsToUpdate(const void* pOld, const void* pNew, unsigned int nLen);
-    MAKE_RET(int) GetIncarSendRate();
-    MAKE_RET(int) GetOnfootSendRate();
-    MAKE_RET(int) GetUnoccupiedSendRate();
-    MAKE_RET(void) SetSpawnInfo(const SpawnInfo* pInfo);
-    MAKE_RET(BOOL) Spawn();
-    MAKE_RET(D3DCOLOR) GetColorAsRGBA();
-    MAKE_RET(D3DCOLOR) GetColorAsARGB();
-    MAKE_RET(void) ProcessOnfootWorldBounds();
-    MAKE_RET(void) ProcessIncarWorldBounds();
-    MAKE_RET(void) RequestSpawn();
-    MAKE_RET(void) PrepareForClassSelection();
-    MAKE_RET(void) PrepareForClassSelection_Outcome(BOOL bOutcome);
-    MAKE_RET(void) EnableSpectating(BOOL bEnable);
-    MAKE_RET(void) SpectateForVehicle(ID nId);
-    MAKE_RET(void) SpectateForPlayer(ID nId);
-    MAKE_RET(BOOL) NeedsToSendOnfootData(short controllerState, short sLeftStickX, short sLeftStickY);
-    MAKE_RET(BOOL) NeedsToSendIncarData(short controllerState, short sLeftStickX, short sLeftStickY);
-    MAKE_RET(bool) DefineCameraTarget(CameraTarget* pInfo);
-    MAKE_RET(void) UpdateCameraTarget();
-    MAKE_RET(void) DrawCameraTargetLabel();
-    MAKE_RET(void) SendOnfootData();
-    MAKE_RET(void) SendAimData();
-    MAKE_RET(void) SendTrailerData(ID nTrailer);
-    MAKE_RET(void) SendPassengerData();
-    MAKE_RET(void) WastedNotification();
-    MAKE_RET(void) RequestClass(int nId);
-    MAKE_RET(void) ChangeInterior(char nId);
-    MAKE_RET(void) Chat(const char* szText);
-    MAKE_RET(void) EnterVehicle(int nVehicle, BOOL bPassenger);
-    MAKE_RET(void) ExitVehicle(int nVehicle);
-    MAKE_RET(void) SendStats();
-    MAKE_RET(void) UpdateVehicleDamage(ID nVehicle);
-    MAKE_RET(void) NextClass();
-    MAKE_RET(void) PrevClass();
-    MAKE_RET(void) ProcessClassSelection();
-    MAKE_RET(void) UpdateWeapons();
-    MAKE_RET(void) ProcessSpectating();
-    MAKE_RET(void) SendTakeDamage(int nId, float fDamage, int nWeapon, int nBodyPart);
-    MAKE_RET(void) SendGiveDamage(int nId, float fDamage, int nWeapon, int nBodyPart);
-    MAKE_RET(bool) ProcessUnoccupiedSync(ID nVehicle, CVehicle* pVehicle);
-    MAKE_RET(void) EnterVehicleAsPassenger();
-    MAKE_RET(void) SendIncarData();
-    MAKE_RET(void) Process();
+    Ped* GetPed();
+    void ResetData();
+    void ProcessHead();
+    void SetSpecialAction(char nId);
+    char GetSpecialAction();
+    void UpdateSurfing();
+    void SetSurfing(Vehicle* pVehicle, BOOL bStuck);
+    void ProcessSurfing();
+    BOOL NeedsToUpdate(const void* pOld, const void* pNew, unsigned int nLen);
+    int GetIncarSendRate();
+    int GetOnfootSendRate();
+    int GetUnoccupiedSendRate();
+    void SetSpawnInfo(const SpawnInfo* pInfo);
+    BOOL Spawn();
+    D3DCOLOR GetColorAsRGBA();
+    D3DCOLOR GetColorAsARGB();
+    void ProcessOnfootWorldBounds();
+    void ProcessIncarWorldBounds();
+    void RequestSpawn();
+    void PrepareForClassSelection();
+    void PrepareForClassSelection_Outcome(BOOL bOutcome);
+    void EnableSpectating(BOOL bEnable);
+    void SpectateForVehicle(ID nId);
+    void SpectateForPlayer(ID nId);
+    BOOL NeedsToSendOnfootData(short controllerState, short sLeftStickX, short sLeftStickY);
+    BOOL NeedsToSendIncarData(short controllerState, short sLeftStickX, short sLeftStickY);
+    bool DefineCameraTarget(CameraTarget* pInfo);
+    void UpdateCameraTarget();
+    void DrawCameraTargetLabel();
+    void SendOnfootData();
+    void SendAimData();
+    void SendTrailerData(ID nTrailer);
+    void SendPassengerData();
+    void WastedNotification();
+    void RequestClass(int nId);
+    void ChangeInterior(char nId);
+    void Chat(const char* szText);
+    void EnterVehicle(int nVehicle, BOOL bPassenger);
+    void ExitVehicle(int nVehicle);
+    void SendStats();
+    void UpdateVehicleDamage(ID nVehicle);
+    void NextClass();
+    void PrevClass();
+    void ProcessClassSelection();
+    void UpdateWeapons();
+    void ProcessSpectating();
+    void SendTakeDamage(int nId, float fDamage, int nWeapon, int nBodyPart);
+    void SendGiveDamage(int nId, float fDamage, int nWeapon, int nBodyPart);
+    bool ProcessUnoccupiedSync(ID nVehicle, Vehicle* pVehicle);
+    void EnterVehicleAsPassenger();
+    void SendIncarData();
+    void Process();
 };
 
 END_PACK

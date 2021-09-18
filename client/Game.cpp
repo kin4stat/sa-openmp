@@ -1,332 +1,335 @@
 #include "Game.hpp"
 
-MAKE_RET(CPed*) Game::GetPlayerPed() {
+Game::Game() {
 
-    return kthook::return_value<CPed*>::make_true();
 }
+CPed* Game::GetPlayerPed() {
 
-MAKE_RET(float) Game::FindGroundZ(CVector vPoint) {
+    return CPed*{};
+}
+
+float Game::FindGroundZ(CVector vPoint) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Game::SetCursorMode(int nMode, BOOL bImmediatelyHideCursor) {
+void Game::SetCursorMode(int nMode, BOOL bImmediatelyHideCursor) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::InitGame() {
+void Game::InitGame() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::StartGame() {
+void Game::StartGame() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Game::IsMenuVisible() {
+BOOL Game::IsMenuVisible() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) Game::IsStarted() {
+BOOL Game::IsStarted() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Game::LoadRequestedModels() {
+void Game::LoadRequestedModels() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Game::IsModelAvailable(int nModel) {
+BOOL Game::IsModelAvailable(int nModel) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Game::SetWorldTime(char nHour, char nMinute) {
+void Game::SetWorldTime(char nHour, char nMinute) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::GetWorldTime(char* nHour, char* nMinute) {
+void Game::GetWorldTime(char* nHour, char* nMinute) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::LetTimeGo(bool blet) {
+void Game::LetTimeGo(bool blet) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetWorldWeather(char nWeather) {
+void Game::SetWorldWeather(char nWeather) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetFrameLimiter(int nValue) {
+void Game::SetFrameLimiter(int nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetMaxStats() {
+void Game::SetMaxStats() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::DisableTrainTraffic() {
+void Game::DisableTrainTraffic() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::RefreshRenderer(float fX, float fY) {
+void Game::RefreshRenderer(float fX, float fY) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::RequestAnimation(const char* szFile) {
+void Game::RequestAnimation(const char* szFile) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Game::IsAnimationLoaded(const char* szFile) {
+BOOL Game::IsAnimationLoaded(const char* szFile) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Game::ReleaseAnimation(const char* szFile) {
+void Game::ReleaseAnimation(const char* szFile) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::DisplayGameText(const char* szText, int nType, int nSize) {
+void Game::DisplayGameText(const char* szText, int nType, int nSize) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::DeleteRacingCheckpoint() {
+void Game::DeleteRacingCheckpoint() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(GTAREF) Game::CreateMarker(int nIcon, CVector vPosition, int nColor, int nType) {
+GTAREF Game::CreateMarker(int nIcon, CVector vPosition, int nColor, int nType) {
 
-    return kthook::return_value<GTAREF>::make_true();
+    return GTAREF{};
 }
 
-MAKE_RET(void) Game::DeleteMarker(GTAREF handle) {
+void Game::DeleteMarker(GTAREF handle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(char) Game::GetCurrentInterior() {
+char Game::GetCurrentInterior() {
 
-    return kthook::return_value<char>::make_true();
+    return char{};
 }
 
-MAKE_RET(void) Game::UpdateFarClippingPlane() {
+void Game::UpdateFarClippingPlane() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::IncreasePlayerMoney(int nInc) {
+void Game::IncreasePlayerMoney(int nInc) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Game::GetPlayerMoney() {
+int Game::GetPlayerMoney() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Game::CreatePickup(int nModel, int nType, CVector vPosition, GTAREF* handle) {
+void Game::CreatePickup(int nModel, int nType, CVector vPosition, GTAREF* handle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(GTAREF) Game::CreateWeaponPickup(int nModel, int nAmmo, CVector vPosition) {
+GTAREF Game::CreateWeaponPickup(int nModel, int nAmmo, CVector vPosition) {
 
-    return kthook::return_value<GTAREF>::make_true();
+    return GTAREF{};
 }
 
-MAKE_RET(IDirect3DDevice9*) Game::GetDevice() {
+IDirect3DDevice9* Game::GetDevice() {
 
-    return kthook::return_value<IDirect3DDevice9*>::make_true();
+    return IDirect3DDevice9*{};
 }
 
-MAKE_RET(void) Game::Restart() {
+void Game::Restart() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(::CWeaponInfo*) Game::GetWeaponInfo(int nWeapon, int nSkill) {
+::CWeaponInfo* Game::GetWeaponInfo(int nWeapon, int nSkill) {
 
-    return kthook::return_value<::CWeaponInfo*>::make_true();
+    return ::CWeaponInfo*{};
 }
 
-MAKE_RET(void) Game::SetWorldGravity(float fValue) {
+void Game::SetWorldGravity(float fValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetWantedLevel(char nLevel) {
+void Game::SetWantedLevel(char nLevel) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetNumberOfIntroTextLinesThisFrame(unsigned short nValue) {
+void Game::SetNumberOfIntroTextLinesThisFrame(unsigned short nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::DrawGangZone(float* pPos, char nColor) {
+void Game::DrawGangZone(float* pPos, char nColor) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::EnableZoneDisplaying(bool bEnable) {
+void Game::EnableZoneDisplaying(bool bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::EnableStuntBonus(bool bEnable) {
+void Game::EnableStuntBonus(bool bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::LoadScene(const char* szFile) {
+void Game::LoadScene(const char* szFile) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Game::GetUsedMemory() {
+int Game::GetUsedMemory() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(int) Game::GetStreamingMemory() {
+int Game::GetStreamingMemory() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Game::SetRequiredVehicleModels(unsigned char* pModelCount) {
+void Game::SetRequiredVehicleModels(unsigned char* pModelCount) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Game::GetTimer() {
+int Game::GetTimer() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Game::LoadAnimationsAndModels() {
+void Game::LoadAnimationsAndModels() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::LoadCollisionFile(const char* szFile) {
+void Game::LoadCollisionFile(const char* szFile) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::LoadCullZone(const char* szLine) {
+void Game::LoadCullZone(const char* szLine) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Game::UsingGamepad() {
+BOOL Game::UsingGamepad() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Game::DisableAutoAiming() {
+void Game::DisableAutoAiming() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::EnableHUD(BOOL bEnable) {
+void Game::EnableHUD(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetCheckpoint(CVector* pPos, CVector* pSize) {
+void Game::SetCheckpoint(CVector* pPos, CVector* pSize) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::CreateRacingCheckpoint() {
+void Game::CreateRacingCheckpoint() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::ProcessCheckpoints() {
+void Game::ProcessCheckpoints() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::ResetMoney() {
+void Game::ResetMoney() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::SetRacingCheckpoint(int nType, CVector* pCurrentPos, CVector* pNextPos, float fSize) {
+void Game::SetRacingCheckpoint(int nType, CVector* pCurrentPos, CVector* pNextPos, float fSize) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::EnableRadar(BOOL bEnable) {
+void Game::EnableRadar(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void*) Game::GetWindowHandle() {
+void* Game::GetWindowHandle() {
 
-    return kthook::return_value<void*>::make_true();
+    return void*{};
 }
 
-MAKE_RET(CAudio*) Game::GetAudio() {
+CAudio* Game::GetAudio() {
 
-    return kthook::return_value<CAudio*>::make_true();
+    return CAudio*{};
 }
 
-MAKE_RET(CCamera*) Game::GetCamera() {
+CCamera* Game::GetCamera() {
 
-    return kthook::return_value<CCamera*>::make_true();
+    return CCamera*{};
 }
 
-MAKE_RET(BOOL) Game::DoesHeadMoves() {
+BOOL Game::DoesHeadMoves() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Game::EnableClock(bool bEnable) {
+void Game::EnableClock(bool bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::Sleep(int elapsed, int fpsLimit) {
+void Game::Sleep(int elapsed, int fpsLimit) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Game::RemovePed(CPed* pPed) {
+BOOL Game::RemovePed(CPed* pPed) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(CVehicle*) Game::CreateVehicle(int nModel, CVector position, float fRotation, BOOL bHasSiren) {
+CVehicle* Game::CreateVehicle(int nModel, CVector position, float fRotation, BOOL bHasSiren) {
 
-    return kthook::return_value<CVehicle*>::make_true();
+    return CVehicle*{};
 }
 
-MAKE_RET(void) Game::ProcessInputEnabling() {
+void Game::ProcessInputEnabling() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Game::ProcessFrameLimiter() {
+void Game::ProcessFrameLimiter() {
 
-    return true;
+    return;
 }
 

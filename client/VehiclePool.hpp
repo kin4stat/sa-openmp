@@ -2,50 +2,93 @@
 #define VEHICLEPOOL_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
+#include "Vehicle.hpp"
 
 BEGIN_PACK
 
 class VehiclePool {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&UpdateCount)> UpdateCount_hook{ GetAddress(0x1E260) }; UpdateCount_hook.before.connect(UpdateCount);
-        static kthook::kthook_t<decltype(&Delete)> Delete_hook{ GetAddress(0x1E330) }; Delete_hook.before.connect(Delete);
-        static kthook::kthook_t<decltype(&ChangeInterior)> ChangeInterior_hook{ GetAddress(0x1E3B0) }; ChangeInterior_hook.before.connect(ChangeInterior);
-        static kthook::kthook_t<decltype(&SetParams)> SetParams_hook{ GetAddress(0x1E3E0) }; SetParams_hook.before.connect(SetParams);
-        static kthook::kthook_t<decltype(&GetRef)> GetRef_hook{ GetAddress(0x1E490) }; GetRef_hook.before.connect(GetRef);
-        static kthook::kthook_t<decltype(&GetNearest)> GetNearest_hook{ GetAddress(0x1E520) }; GetNearest_hook.before.connect(GetNearest);
-        static kthook::kthook_t<decltype(&GetNearest)> GetNearest_hook{ GetAddress(0x1E520) }; GetNearest_hook.before.connect(GetNearest);
-        static kthook::kthook_t<decltype(&AddToWaitingList)> AddToWaitingList_hook{ GetAddress(0x1E5C0) }; AddToWaitingList_hook.before.connect(AddToWaitingList);
-        static kthook::kthook_t<decltype(&ConstructLicensePlates)> ConstructLicensePlates_hook{ GetAddress(0x1E620) }; ConstructLicensePlates_hook.before.connect(ConstructLicensePlates);
-        static kthook::kthook_t<decltype(&ShutdownLicensePlates)> ShutdownLicensePlates_hook{ GetAddress(0x1E690) }; ShutdownLicensePlates_hook.before.connect(ShutdownLicensePlates);
-        static kthook::kthook_t<decltype(&Create)> Create_hook{ GetAddress(0x1E930) }; Create_hook.before.connect(Create);
-        static kthook::kthook_t<decltype(&SendDestroyNotification)> SendDestroyNotification_hook{ GetAddress(0x1EAE0) }; SendDestroyNotification_hook.before.connect(SendDestroyNotification);
-        static kthook::kthook_t<decltype(&ProcessWaitingList)> ProcessWaitingList_hook{ GetAddress(0x1EBC0) }; ProcessWaitingList_hook.before.connect(ProcessWaitingList);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0x1EC80) }; Process_hook.before.connect(Process);
-        static kthook::kthook_t<decltype(&Get)> Get_hook{ GetAddress(0x1110) }; Get_hook.before.connect(Get);
-        static kthook::kthook_t<decltype(&DoesExist)> DoesExist_hook{ GetAddress(0x1140) }; DoesExist_hook.before.connect(DoesExist);
+        ReversibleHooks::Install("VehiclePool", "UpdateCount", GetAddress(0x1E260), &VehiclePool::UpdateCount);
+        ReversibleHooks::Install("VehiclePool", "Delete", GetAddress(0x1E330), &VehiclePool::Delete);
+        ReversibleHooks::Install("VehiclePool", "ChangeInterior", GetAddress(0x1E3B0), &VehiclePool::ChangeInterior);
+        ReversibleHooks::Install("VehiclePool", "SetParams", GetAddress(0x1E3E0), &VehiclePool::SetParams);
+        ReversibleHooks::Install("VehiclePool", "GetRef", GetAddress(0x1E490), &VehiclePool::GetRef);
+        ReversibleHooks::Install("VehiclePool", "GetNearest", GetAddress(0x1E520), static_cast<ID(VehiclePool::*)()>(&VehiclePool::GetNearest));
+        ReversibleHooks::Install("VehiclePool", "GetNearest", GetAddress(0x1E520), static_cast<ID(VehiclePool::*)(Vector)>(&VehiclePool::GetNearest));
+        ReversibleHooks::Install("VehiclePool", "AddToWaitingList", GetAddress(0x1E5C0), &VehiclePool::AddToWaitingList);
+        ReversibleHooks::Install("VehiclePool", "ConstructLicensePlates", GetAddress(0x1E620), &VehiclePool::ConstructLicensePlates);
+        ReversibleHooks::Install("VehiclePool", "ShutdownLicensePlates", GetAddress(0x1E690), &VehiclePool::ShutdownLicensePlates);
+        ReversibleHooks::Install("VehiclePool", "Create", GetAddress(0x1E930), &VehiclePool::Create);
+        ReversibleHooks::Install("VehiclePool", "SendDestroyNotification", GetAddress(0x1EAE0), &VehiclePool::SendDestroyNotification);
+        ReversibleHooks::Install("VehiclePool", "ProcessWaitingList", GetAddress(0x1EBC0), &VehiclePool::ProcessWaitingList);
+        ReversibleHooks::Install("VehiclePool", "Process", GetAddress(0x1EC80), &VehiclePool::Process);
+        ReversibleHooks::Install("VehiclePool", "Get", GetAddress(0x1110), &VehiclePool::Get);
+        ReversibleHooks::Install("VehiclePool", "DoesExist", GetAddress(0x1140), &VehiclePool::DoesExist);
     }
 
 
+    enum {
+        MAX_VEHICLES = 2000,
+        WAITING_LIST_SIZE = 100,
+    };
+    struct VehicleInfo {
+        ID      m_nId;
+        int     m_nType;
+        Vector m_position;
+        float   m_fRotation;
+        NUMBER  m_nPrimaryColor;
+        NUMBER  m_nSecondaryColor;
+        float   m_fHealth;
+        char    m_nInterior;
+        int     m_nDoorDamageStatus;
+        int     m_nPanelDamageStatus;
+        char    m_nLightDamageStatus;
+        bool    m_bDoorsLocked;
+        bool    m_bHasSiren;
+    };
 
+    int m_nCount;
+
+    // vehicles that will be created after loading the model
+    struct {
+        VehicleInfo m_entry[WAITING_LIST_SIZE];
+        BOOL        m_bNotEmpty[WAITING_LIST_SIZE];
+    } m_waitingList;
+
+    Vehicle*    m_pObject[MAX_VEHICLES];
+    BOOL         m_bNotEmpty[MAX_VEHICLES];
+    ::CVehicle*  m_pGameObject[MAX_VEHICLES];
+    unsigned int pad_6ef4[MAX_VEHICLES];
+    ID           m_nLastUndrivenId[MAX_VEHICLES]; // a player who send unoccupied sync data
+    TICK         m_lastUndrivenProcessTick[MAX_VEHICLES];
+    BOOL         m_bIsActive[MAX_VEHICLES];
+    BOOL         m_bIsDestroyed[MAX_VEHICLES];
+    TICK         m_tickWhenDestroyed[MAX_VEHICLES];
+    Vector      m_spawnedAt[MAX_VEHICLES];
+    BOOL         m_bNeedsToInitializeLicensePlates;
+
+    
+    VehiclePool();
     ~VehiclePool();
 
-    MAKE_RET(void) UpdateCount();
-    MAKE_RET(BOOL) Delete(ID nId);
-    MAKE_RET(void) ChangeInterior(ID nId, int nInteriorId);
-    MAKE_RET(void) SetParams(ID nId, bool bIsObjective, bool bIsLocked);
-    MAKE_RET(GTAREF) GetRef(int nId);
-    MAKE_RET(ID) GetNearest();
-    MAKE_RET(ID) GetNearest(CVector point);
-    MAKE_RET(void) AddToWaitingList(const VehicleInfo* pInfo);
-    MAKE_RET(void) ConstructLicensePlates();
-    MAKE_RET(void) ShutdownLicensePlates();
-    MAKE_RET(BOOL) Create(VehicleInfo* pInfo);
-    MAKE_RET(void) SendDestroyNotification(ID nId);
-    MAKE_RET(void) ProcessWaitingList();
-    MAKE_RET(void) Process();
-    MAKE_RET(CVehicle*) Get(ID nId);
-    MAKE_RET(BOOL) DoesExist(ID nId);
+    void UpdateCount();
+    BOOL Delete(ID nId);
+    void ChangeInterior(ID nId, int nInteriorId);
+    void SetParams(ID nId, bool bIsObjective, bool bIsLocked);
+    GTAREF GetRef(int nId);
+    ID GetNearest();
+    ID GetNearest(Vector point);
+    void AddToWaitingList(const VehicleInfo* pInfo);
+    void ConstructLicensePlates();
+    void ShutdownLicensePlates();
+    BOOL Create(VehicleInfo* pInfo);
+    void SendDestroyNotification(ID nId);
+    void ProcessWaitingList();
+    void Process();
+    Vehicle* Get(ID nId);
+    BOOL DoesExist(ID nId);
 };
 
 END_PACK

@@ -1,82 +1,85 @@
 #include "VehiclePool.hpp"
 
-MAKE_RET(void) VehiclePool::UpdateCount() {
+VehiclePool::VehiclePool() {
 
-    return true;
+}
+void VehiclePool::UpdateCount() {
+
+    return;
 }
 
-MAKE_RET(BOOL) VehiclePool::Delete(ID nId) {
+BOOL VehiclePool::Delete(ID nId) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) VehiclePool::ChangeInterior(ID nId, int nInteriorId) {
+void VehiclePool::ChangeInterior(ID nId, int nInteriorId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) VehiclePool::SetParams(ID nId, bool bIsObjective, bool bIsLocked) {
+void VehiclePool::SetParams(ID nId, bool bIsObjective, bool bIsLocked) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(GTAREF) VehiclePool::GetRef(int nId) {
+GTAREF VehiclePool::GetRef(int nId) {
 
-    return kthook::return_value<GTAREF>::make_true();
+    return GTAREF{};
 }
 
-MAKE_RET(ID) VehiclePool::GetNearest() {
+ID VehiclePool::GetNearest() {
 
-    return kthook::return_value<ID>::make_true();
+    return ID{};
 }
 
-MAKE_RET(ID) VehiclePool::GetNearest(CVector point) {
+ID VehiclePool::GetNearest(CVector point) {
 
-    return kthook::return_value<ID>::make_true();
+    return ID{};
 }
 
-MAKE_RET(void) VehiclePool::AddToWaitingList(const VehicleInfo* pInfo) {
+void VehiclePool::AddToWaitingList(const VehicleInfo* pInfo) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) VehiclePool::ConstructLicensePlates() {
+void VehiclePool::ConstructLicensePlates() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) VehiclePool::ShutdownLicensePlates() {
+void VehiclePool::ShutdownLicensePlates() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) VehiclePool::Create(VehicleInfo* pInfo) {
+BOOL VehiclePool::Create(VehicleInfo* pInfo) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) VehiclePool::SendDestroyNotification(ID nId) {
+void VehiclePool::SendDestroyNotification(ID nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) VehiclePool::ProcessWaitingList() {
+void VehiclePool::ProcessWaitingList() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) VehiclePool::Process() {
+void VehiclePool::Process() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(CVehicle*) VehiclePool::Get(ID nId) {
+CVehicle* VehiclePool::Get(ID nId) {
 
-    return kthook::return_value<CVehicle*>::make_true();
+    return CVehicle*{};
 }
 
-MAKE_RET(BOOL) VehiclePool::DoesExist(ID nId) {
+BOOL VehiclePool::DoesExist(ID nId) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 

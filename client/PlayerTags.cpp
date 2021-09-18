@@ -3,38 +3,38 @@
 PlayerTags::PlayerTags(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) PlayerTags::EndHealthBar() {
+void PlayerTags::EndHealthBar() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) PlayerTags::BeginLabel() {
+void PlayerTags::BeginLabel() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) PlayerTags::EndLabel() {
+void PlayerTags::EndLabel() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) PlayerTags::DrawHealthBar(CVector* pPosition, float fHealth, float fArmour, float fDistanceToCamera) {
+void PlayerTags::DrawHealthBar(CVector* pPosition, float fHealth, float fArmour, float fDistanceToCamera) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) PlayerTags::OnLostDevice() {
+void PlayerTags::OnLostDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) PlayerTags::OnResetDevice() {
+void PlayerTags::OnResetDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) PlayerTags::BeginHealthBar() {
+void PlayerTags::BeginHealthBar() {
 
-    return true;
+    return;
 }
 

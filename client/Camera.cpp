@@ -1,62 +1,65 @@
 #include "Camera.hpp"
 
-MAKE_RET(void) Camera::Fade(BOOL bin) {
+Camera::Camera() {
 
-    return true;
+}
+void Camera::Fade(BOOL bin) {
+
+    return;
 }
 
-MAKE_RET(void) Camera::GetMatrix(CMatrix* pMatrix) {
+void Camera::GetMatrix(CMatrix* pMatrix) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::SetMatrix(CMatrix matrix) {
+void Camera::SetMatrix(CMatrix matrix) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::SetMoveVector(CVector* pCamera, CVector* pPosition, int nTime, bool bSmoothTransmition) {
+void Camera::SetMoveVector(CVector* pCamera, CVector* pPosition, int nTime, bool bSmoothTransmition) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::SetTrackVector(CVector* pPointAt, CVector* pTransverseTo, int nTime, bool bSmooth) {
+void Camera::SetTrackVector(CVector* pPointAt, CVector* pTransverseTo, int nTime, bool bSmooth) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::Attach(CEntity* pOwner) {
+void Camera::Attach(CEntity* pOwner) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::SetToOwner() {
+void Camera::SetToOwner() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Camera::GetDistanceToPoint(CVector* pPoint) {
+float Camera::GetDistanceToPoint(CVector* pPoint) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Camera::Restore() {
+void Camera::Restore() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::Set(CVector position, CVector rotation) {
+void Camera::Set(CVector position, CVector rotation) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::PointAt(CVector point, int nSwitchStyle) {
+void Camera::PointAt(CVector point, int nSwitchStyle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Camera::Detach() {
+void Camera::Detach() {
 
-    return true;
+    return;
 }
 

@@ -8,7 +8,7 @@ BEGIN_PACK
 class NetStats {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0x605F0) }; Draw_hook.before.connect(Draw);
+        ReversibleHooks::Install("NetStats", "Draw", GetAddress(0x605F0), &NetStats::Draw);
     }
 
 
@@ -23,7 +23,7 @@ public:
     NetStats(IDirect3DDevice9* pDevice);
     ~NetStats();
 
-    MAKE_RET(void) Draw();
+    void Draw();
 };
 
 END_PACK

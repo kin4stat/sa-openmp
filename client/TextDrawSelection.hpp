@@ -8,24 +8,24 @@ BEGIN_PACK
 class TextDrawSelection {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&ResetTextDraws)> ResetTextDraws_hook{ GetAddress(0x70BC0) }; ResetTextDraws_hook.before.connect(ResetTextDraws);
-        static kthook::kthook_t<decltype(&RawProcess)> RawProcess_hook{ GetAddress(0x70C20) }; RawProcess_hook.before.connect(RawProcess);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0x70D20) }; Process_hook.before.connect(Process);
-        static kthook::kthook_t<decltype(&SendNotification)> SendNotification_hook{ GetAddress(0x70D90) }; SendNotification_hook.before.connect(SendNotification);
-        static kthook::kthook_t<decltype(&Disable)> Disable_hook{ GetAddress(0x70E30) }; Disable_hook.before.connect(Disable);
-        static kthook::kthook_t<decltype(&MsgProc)> MsgProc_hook{ GetAddress(0x70E80) }; MsgProc_hook.before.connect(MsgProc);
+        ReversibleHooks::Install("TextDrawSelection", "ResetTextDraws", GetAddress(0x70BC0), &TextDrawSelection::ResetTextDraws);
+        ReversibleHooks::Install("TextDrawSelection", "RawProcess", GetAddress(0x70C20), &TextDrawSelection::RawProcess);
+        ReversibleHooks::Install("TextDrawSelection", "Process", GetAddress(0x70D20), &TextDrawSelection::Process);
+        ReversibleHooks::Install("TextDrawSelection", "SendNotification", GetAddress(0x70D90), &TextDrawSelection::SendNotification);
+        ReversibleHooks::Install("TextDrawSelection", "Disable", GetAddress(0x70E30), &TextDrawSelection::Disable);
+        ReversibleHooks::Install("TextDrawSelection", "MsgProc", GetAddress(0x70E80), &TextDrawSelection::MsgProc);
     }
 
 
 
     ~TextDrawSelection();
 
-    MAKE_RET(void) ResetTextDraws();
-    MAKE_RET(void) RawProcess();
-    MAKE_RET(void) Process();
-    MAKE_RET(void) SendNotification();
-    MAKE_RET(void) Disable();
-    MAKE_RET(BOOL) MsgProc(int uMsg, int wParam, int lParam);
+    void ResetTextDraws();
+    void RawProcess();
+    void Process();
+    void SendNotification();
+    void Disable();
+    BOOL MsgProc(int uMsg, int wParam, int lParam);
 };
 
 END_PACK

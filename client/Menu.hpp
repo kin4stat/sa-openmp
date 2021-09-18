@@ -8,14 +8,14 @@ BEGIN_PACK
 class Menu {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&AddItem)> AddItem_hook{ GetAddress(0xA6D80) }; AddItem_hook.before.connect(AddItem);
-        static kthook::kthook_t<decltype(&SetColumnTitle)> SetColumnTitle_hook{ GetAddress(0xA6DB0) }; SetColumnTitle_hook.before.connect(SetColumnTitle);
-        static kthook::kthook_t<decltype(&Hide)> Hide_hook{ GetAddress(0xA6DE0) }; Hide_hook.before.connect(Hide);
-        static kthook::kthook_t<decltype(&GetItem)> GetItem_hook{ GetAddress(0xA6E00) }; GetItem_hook.before.connect(GetItem);
-        static kthook::kthook_t<decltype(&GetTitle)> GetTitle_hook{ GetAddress(0xA6E20) }; GetTitle_hook.before.connect(GetTitle);
-        static kthook::kthook_t<decltype(&MS)> MS_hook{ GetAddress(0xA6E50) }; MS_hook.before.connect(MS);
-        static kthook::kthook_t<decltype(&GetActiveRow)> GetActiveRow_hook{ GetAddress(0xA6E80) }; GetActiveRow_hook.before.connect(GetActiveRow);
-        static kthook::kthook_t<decltype(&Show)> Show_hook{ GetAddress(0xA6EB0) }; Show_hook.before.connect(Show);
+        ReversibleHooks::Install("Menu", "AddItem", GetAddress(0xA6D80), &Menu::AddItem);
+        ReversibleHooks::Install("Menu", "SetColumnTitle", GetAddress(0xA6DB0), &Menu::SetColumnTitle);
+        ReversibleHooks::Install("Menu", "Hide", GetAddress(0xA6DE0), &Menu::Hide);
+        ReversibleHooks::Install("Menu", "GetItem", GetAddress(0xA6E00), &Menu::GetItem);
+        ReversibleHooks::Install("Menu", "GetTitle", GetAddress(0xA6E20), &Menu::GetTitle);
+        ReversibleHooks::Install("Menu", "MS", GetAddress(0xA6E50), &Menu::MS);
+        ReversibleHooks::Install("Menu", "GetActiveRow", GetAddress(0xA6E80), &Menu::GetActiveRow);
+        ReversibleHooks::Install("Menu", "Show", GetAddress(0xA6EB0), &Menu::Show);
     }
 
 
@@ -48,14 +48,14 @@ public:
     Menu(const char* szTitle, float fX, float fY, char nColumns, float fFirstColumnWidth, float fSecondColumnWidth, const Interaction* pInteraction);
     ~Menu();
 
-    MAKE_RET(void) AddItem(NUMBER nColumn, NUMBER nRow, const char* szText);
-    MAKE_RET(void) SetColumnTitle(NUMBER nColumn, const char* szText);
-    MAKE_RET(void) Hide();
-    MAKE_RET(char*) GetItem(NUMBER nColumn, NUMBER nRow);
-    MAKE_RET(char*) GetTitle();
-    MAKE_RET(char*) MS(NUMBER nColumn, NUMBER nRow);
-    MAKE_RET(char) GetActiveRow();
-    MAKE_RET(void) Show();
+    void AddItem(NUMBER nColumn, NUMBER nRow, const char* szText);
+    void SetColumnTitle(NUMBER nColumn, const char* szText);
+    void Hide();
+    char* GetItem(NUMBER nColumn, NUMBER nRow);
+    char* GetTitle();
+    char* MS(NUMBER nColumn, NUMBER nRow);
+    char GetActiveRow();
+    void Show();
 };
 
 END_PACK

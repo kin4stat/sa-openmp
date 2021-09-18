@@ -8,8 +8,8 @@ BEGIN_PACK
 class ObjectMaterialText {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&OnResetDevice)> OnResetDevice_hook{ GetAddress(0x70170) }; OnResetDevice_hook.before.connect(OnResetDevice);
-        static kthook::kthook_t<decltype(&OnLostDevice)> OnLostDevice_hook{ GetAddress(0x70140) }; OnLostDevice_hook.before.connect(OnLostDevice);
+        ReversibleHooks::Install("ObjectMaterialText", "OnResetDevice", GetAddress(0x70170), &ObjectMaterialText::OnResetDevice);
+        ReversibleHooks::Install("ObjectMaterialText", "OnLostDevice", GetAddress(0x70140), &ObjectMaterialText::OnLostDevice);
     }
 
 
@@ -21,8 +21,8 @@ public:
     ObjectMaterialText(IDirect3DDevice9* pDevice);
     ~ObjectMaterialText();
 
-    MAKE_RET(void) OnResetDevice();
-    MAKE_RET(void) OnLostDevice();
+    void OnResetDevice();
+    void OnLostDevice();
 };
 
 END_PACK

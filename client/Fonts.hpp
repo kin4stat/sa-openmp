@@ -2,25 +2,27 @@
 #define FONTS_HPP_
 
 #include "common.hpp"
+#include "Rect.hpp"
+#include "Font.hpp"
 
 BEGIN_PACK
 
 class Fonts {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&OnLostDevice)> OnLostDevice_hook{ GetAddress(0x6AA10) }; OnLostDevice_hook.before.connect(OnLostDevice);
-        static kthook::kthook_t<decltype(&OnResetDevice)> OnResetDevice_hook{ GetAddress(0x6AA50) }; OnResetDevice_hook.before.connect(OnResetDevice);
-        static kthook::kthook_t<decltype(&GetTextScreenSize)> GetTextScreenSize_hook{ GetAddress(0x6AA90) }; GetTextScreenSize_hook.before.connect(GetTextScreenSize);
-        static kthook::kthook_t<decltype(&GetLittleTextScreenSize)> GetLittleTextScreenSize_hook{ GetAddress(0x6AB40) }; GetLittleTextScreenSize_hook.before.connect(GetLittleTextScreenSize);
-        static kthook::kthook_t<decltype(&Reset)> Reset_hook{ GetAddress(0x6B170) }; Reset_hook.before.connect(Reset);
+        ReversibleHooks::Install("Fonts", "OnLostDevice", GetAddress(0x6AA10), &Fonts::OnLostDevice);
+        ReversibleHooks::Install("Fonts", "OnResetDevice", GetAddress(0x6AA50), &Fonts::OnResetDevice);
+        ReversibleHooks::Install("Fonts", "GetTextScreenSize", GetAddress(0x6AA90), &Fonts::GetTextScreenSize);
+        ReversibleHooks::Install("Fonts", "GetLittleTextScreenSize", GetAddress(0x6AB40), &Fonts::GetLittleTextScreenSize);
+        ReversibleHooks::Install("Fonts", "Reset", GetAddress(0x6B170), &Fonts::Reset);
     }
 
 
-    CFont*            m_pFont;
-    CFont*            m_pLittleFont;
-    CFont*            m_pShadow;
-    CFont*            m_pLittleShadow;
-    CFont*            m_pLicensePlateFont;
+    Font*            m_pFont;
+    Font*            m_pLittleFont;
+    Font*            m_pShadow;
+    Font*            m_pLittleShadow;
+    Font*            m_pLicensePlateFont;
     ID3DXSprite*      m_pDefaultSprite;
     IDirect3DDevice9* m_pDevice;
     char*             m_szTempBuffer;
@@ -31,11 +33,11 @@ public:
     Fonts(IDirect3DDevice9* pDevice);
     ~Fonts();
 
-    MAKE_RET(void) OnLostDevice();
-    MAKE_RET(void) OnResetDevice();
-    MAKE_RET(void) GetTextScreenSize(void* pSize, const char* szText, int nFormat);
-    MAKE_RET(void) GetLittleTextScreenSize(void* pSize, const char* szText, int nFormat);
-    MAKE_RET(void) Reset();
+    void OnLostDevice();
+    void OnResetDevice();
+    void GetTextScreenSize(void* pSize, const char* szText, int nFormat);
+    void GetLittleTextScreenSize(void* pSize, const char* szText, int nFormat);
+    void Reset();
 };
 
 END_PACK

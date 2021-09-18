@@ -1,12 +1,15 @@
 #include "LabelPool.hpp"
 
-MAKE_RET(BOOL) LabelPool::Delete(ID nId) {
+LabelPool::LabelPool() {
 
-    return kthook::return_value<BOOL>::make_true();
+}
+BOOL LabelPool::Delete(ID nId) {
+
+    return BOOL{};
 }
 
-MAKE_RET(void) LabelPool::Draw() {
+void LabelPool::Draw() {
 
-    return true;
+    return;
 }
 

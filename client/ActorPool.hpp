@@ -2,28 +2,40 @@
 #define ACTORPOOL_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
+#include "Actor.hpp"
 
 BEGIN_PACK
 
 class ActorPool {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&Get)> Get_hook{ GetAddress(0x1600) }; Get_hook.before.connect(Get);
-        static kthook::kthook_t<decltype(&DoesExist)> DoesExist_hook{ GetAddress(0x1630) }; DoesExist_hook.before.connect(DoesExist);
-        static kthook::kthook_t<decltype(&UpdateLargestId)> UpdateLargestId_hook{ GetAddress(0x1650) }; UpdateLargestId_hook.before.connect(UpdateLargestId);
-        static kthook::kthook_t<decltype(&Delete)> Delete_hook{ GetAddress(0x16E0) }; Delete_hook.before.connect(Delete);
-        static kthook::kthook_t<decltype(&Create)> Create_hook{ GetAddress(0x18F0) }; Create_hook.before.connect(Create);
+        ReversibleHooks::Install("ActorPool", "Get", GetAddress(0x1600), &ActorPool::Get);
+        ReversibleHooks::Install("ActorPool", "DoesExist", GetAddress(0x1630), &ActorPool::DoesExist);
+        ReversibleHooks::Install("ActorPool", "UpdateLargestId", GetAddress(0x1650), &ActorPool::UpdateLargestId);
+        ReversibleHooks::Install("ActorPool", "Delete", GetAddress(0x16E0), &ActorPool::Delete);
+        ReversibleHooks::Install("ActorPool", "Create", GetAddress(0x18F0), &ActorPool::Create);
     }
 
 
+    enum { MAX_ACTORS = 1000 };
 
+    int     m_nLargestId;
+    Actor* m_pObject[MAX_ACTORS];
+    BOOL    m_bNotEmpty[MAX_ACTORS];
+    ::CPed* m_pGameObject[MAX_ACTORS];
+    int     pad_2ee4[MAX_ACTORS];
+    int     pad_3e84[MAX_ACTORS];
+
+    
+    ActorPool();
     ~ActorPool();
 
-    MAKE_RET(CActor*) Get(ID nId);
-    MAKE_RET(BOOL) DoesExist(ID nId);
-    MAKE_RET(void) UpdateLargestId();
-    MAKE_RET(BOOL) Delete(ID nId);
-    MAKE_RET(BOOL) Create(ActorInfo* pInfo);
+    Actor* Get(ID nId);
+    BOOL DoesExist(ID nId);
+    void UpdateLargestId();
+    BOOL Delete(ID nId);
+    BOOL Create(ActorInfo* pInfo);
 };
 
 END_PACK

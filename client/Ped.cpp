@@ -1,495 +1,495 @@
 #include "Ped.hpp"
 
-Ped::Ped(int nPlayerNumber, int nModel, CVector position, float fRotation) {
+Ped::Ped() {
 
 }
-MAKE_RET(void) Ped::ResetPointers() {
+void Ped::ResetPointers() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetInitialState() {
+void Ped::SetInitialState() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(AimStuff::Aim*) Ped::GetAim() {
+AimStuff::Aim* Ped::GetAim() {
 
-    return kthook::return_value<AimStuff::Aim*>::make_true();
+    return AimStuff::Aim*{};
 }
 
-MAKE_RET(char) Ped::GetCurrentWeapon() {
+char Ped::GetCurrentWeapon() {
 
-    return kthook::return_value<char>::make_true();
+    return char{};
 }
 
-MAKE_RET(GTAREF) Ped::GetVehicleRef() {
+GTAREF Ped::GetVehicleRef() {
 
-    return kthook::return_value<GTAREF>::make_true();
+    return GTAREF{};
 }
 
-MAKE_RET(void) Ped::DeleteArrow() {
+void Ped::DeleteArrow() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::IsOnScreen() {
+BOOL Ped::IsOnScreen() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::SetImmunities(BOOL BP, BOOL FP, BOOL EP, BOOL CP, BOOL MP) {
+void Ped::SetImmunities(BOOL BP, BOOL FP, BOOL EP, BOOL CP, BOOL MP) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Ped::GetHealth() {
+float Ped::GetHealth() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Ped::SetHealth(float fValue) {
+void Ped::SetHealth(float fValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Ped::GetArmour() {
+float Ped::GetArmour() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Ped::SetArmour(float fValue) {
+void Ped::SetArmour(float fValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Ped::GetFlags() {
+int Ped::GetFlags() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Ped::SetFlags(int nValue) {
+void Ped::SetFlags(int nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::IsDead() {
+BOOL Ped::IsDead() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(char) Ped::GetState() {
+char Ped::GetState() {
 
-    return kthook::return_value<char>::make_true();
+    return char{};
 }
 
-MAKE_RET(void) Ped::SetState(char nValue) {
+void Ped::SetState(char nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Ped::GetRotation() {
+float Ped::GetRotation() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Ped::ForceRotation(float fValue) {
+void Ped::ForceRotation(float fValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetRotation(float fValue) {
+void Ped::SetRotation(float fValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::IsPassenger() {
+BOOL Ped::IsPassenger() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(::CVehicle*) Ped::GetVehicle() {
+::CVehicle* Ped::GetVehicle() {
 
-    return kthook::return_value<::CVehicle*>::make_true();
+    return ::CVehicle*{};
 }
 
-MAKE_RET(void) Ped::ClearWeapons() {
+void Ped::ClearWeapons() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::RemoveWeaponWhenEnteringVehicle() {
+void Ped::RemoveWeaponWhenEnteringVehicle() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(::CWeapon*) Ped::GetCurrentWeaponSlot() {
+::CWeapon* Ped::GetCurrentWeaponSlot() {
 
-    return kthook::return_value<::CWeapon*>::make_true();
+    return ::CWeapon*{};
 }
 
-MAKE_RET(BOOL) Ped::CurrentWeaponHasAmmo() {
+BOOL Ped::CurrentWeaponHasAmmo() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(float) Ped::GetDistanceToEntity(const CEntity* pEntity) {
+float Ped::GetDistanceToEntity(const CEntity* pEntity) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(int) Ped::GetVehicleSeatIndex() {
+int Ped::GetVehicleSeatIndex() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Ped::PutIntoVehicle(GTAREF vehicle, int nSeat) {
+void Ped::PutIntoVehicle(GTAREF vehicle, int nSeat) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::EnterVehicle(GTAREF vehicle, BOOL bAsPassenger) {
+void Ped::EnterVehicle(GTAREF vehicle, BOOL bAsPassenger) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::ExitVehicle() {
+void Ped::ExitVehicle() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::WarpFromVehicle(CVector putAt) {
+void Ped::WarpFromVehicle(CVector putAt) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetSpawnInfo(const CVector* pPosition, float fRotation) {
+void Ped::SetSpawnInfo(const CVector* pPosition, float fRotation) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetControllable(BOOL bEnable) {
+void Ped::SetControllable(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(char) Ped::GetDeathInfo(ID* pKiller) {
+char Ped::GetDeathInfo(ID* pKiller) {
 
-    return kthook::return_value<char>::make_true();
+    return char{};
 }
 
-MAKE_RET(::CEntity*) Ped::GetFloor() {
+::CEntity* Ped::GetFloor() {
 
-    return kthook::return_value<::CEntity*>::make_true();
+    return ::CEntity*{};
 }
 
-MAKE_RET(::CWeaponInfo*) Ped::GetCurrentWeaponInfo() {
+::CWeaponInfo* Ped::GetCurrentWeaponInfo() {
 
-    return kthook::return_value<::CWeaponInfo*>::make_true();
+    return ::CWeaponInfo*{};
 }
 
-MAKE_RET(void) Ped::HandsUp() {
+void Ped::HandsUp() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::DoesHandsUp() {
+BOOL Ped::DoesHandsUp() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::HoldObject(int nModel) {
+void Ped::HoldObject(int nModel) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::EnableJetpack() {
+void Ped::EnableJetpack() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::DisableJetpack() {
+void Ped::DisableJetpack() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::HasJetpack() {
+BOOL Ped::HasJetpack() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) Ped::EnablePassengerDrivebyMode() {
+BOOL Ped::EnablePassengerDrivebyMode() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::Extinguish() {
+void Ped::Extinguish() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(::CWeapon*) Ped::GetWeaponSlot(int nWeapon) {
+::CWeapon* Ped::GetWeaponSlot(int nWeapon) {
 
-    return kthook::return_value<::CWeapon*>::make_true();
+    return ::CWeapon*{};
 }
 
-MAKE_RET(void) Ped::SetWalkStyle(const char* szName) {
+void Ped::SetWalkStyle(const char* szName) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::PerformAnimation(const char* szName, const char* szFile, float fFramedelta, int loopa, int nLockX, int nLockY, int nLockF, int nTime) {
+void Ped::PerformAnimation(const char* szName, const char* szFile, float fFramedelta, int loopa, int nLockX, int nLockY, int nLockF, int nTime) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::LinkToInterior(char nId, BOOL bRefresh) {
+void Ped::LinkToInterior(char nId, BOOL bRefresh) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::DestroyParachute() {
+void Ped::DestroyParachute() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::OpenParachute() {
+BOOL Ped::OpenParachute() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::ProcessParachuteEvent(const char* szName) {
+void Ped::ProcessParachuteEvent(const char* szName) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::IsOnGround() {
+BOOL Ped::IsOnGround() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::ResetDamageEntity() {
+void Ped::ResetDamageEntity() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::RemoveWeaponModel(int nWeapon) {
+void Ped::RemoveWeaponModel(int nWeapon) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Ped::GetAimZ() {
+float Ped::GetAimZ() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Ped::SetAimZ(float fValue) {
+void Ped::SetAimZ(float fValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(::CEntity*) Ped::GetContactEntity() {
+::CEntity* Ped::GetContactEntity() {
 
-    return kthook::return_value<::CEntity*>::make_true();
+    return ::CEntity*{};
 }
 
-MAKE_RET(::CVehicle*) Ped::GetContactVehicle() {
+::CVehicle* Ped::GetContactVehicle() {
 
-    return kthook::return_value<::CVehicle*>::make_true();
+    return ::CVehicle*{};
 }
 
-MAKE_RET(int) Ped::GetStat() {
+int Ped::GetStat() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(BOOL) Ped::PerformingCustomAnimation() {
+BOOL Ped::PerformingCustomAnimation() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::StartDancing(int nStyle) {
+void Ped::StartDancing(int nStyle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::StopDancing() {
+void Ped::StopDancing() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::DoesDancing() {
+BOOL Ped::DoesDancing() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::DropStuff() {
+void Ped::DropStuff() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Ped::GetStuff() {
+int Ped::GetStuff() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(BOOL) Ped::ApplyStuff() {
+BOOL Ped::ApplyStuff() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::ProcessDrunk() {
+void Ped::ProcessDrunk() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Ped::GetDrunkLevel() {
+int Ped::GetDrunkLevel() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Ped::SetDrunkLevel(int nValue) {
+void Ped::SetDrunkLevel(int nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::DestroyCommandTask() {
+void Ped::DestroyCommandTask() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::EnableCellphone(BOOL bEnable) {
+void Ped::EnableCellphone(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::UsingCellphone() {
+BOOL Ped::UsingCellphone() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::SetFightingStyle(int nStyle) {
+void Ped::SetFightingStyle(int nStyle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::StartUrinating() {
+void Ped::StartUrinating() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::StopUrinating() {
+void Ped::StopUrinating() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::DoesUrinating() {
+BOOL Ped::DoesUrinating() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::LoadShoppingDataSubsection(const char* szName) {
+void Ped::LoadShoppingDataSubsection(const char* szName) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(::CPed*) Ped::GetAimedPed() {
+::CPed* Ped::GetAimedPed() {
 
-    return kthook::return_value<::CPed*>::make_true();
+    return ::CPed*{};
 }
 
-MAKE_RET(void) Ped::SetKeys(short controllerState, short sLeftStickX, short sLeftStickY) {
+void Ped::SetKeys(short controllerState, short sLeftStickX, short sLeftStickY) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(short) Ped::GetKeys(short* pLeftStickX, short* pLeftStickY) {
+short Ped::GetKeys(short* pLeftStickX, short* pLeftStickY) {
 
-    return kthook::return_value<short>::make_true();
+    return short{};
 }
 
-MAKE_RET(void) Ped::CreateArrow(int nColor) {
+void Ped::CreateArrow(int nColor) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetModelIndex(int nModel) {
+void Ped::SetModelIndex(int nModel) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::Kill() {
+void Ped::Kill() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetWeaponAmmo(unsigned char nWeapon, unsigned short nAmmo) {
+void Ped::SetWeaponAmmo(unsigned char nWeapon, unsigned short nAmmo) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::ProcessDancing() {
+void Ped::ProcessDancing() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::GiveStuff(int nType) {
+void Ped::GiveStuff(int nType) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::Destroy() {
+void Ped::Destroy() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetCameraMode(char nMode) {
+void Ped::SetCameraMode(char nMode) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::SetCameraExtZoomAndAspectRatio(float fExtZoom, float fAspectRatio) {
+void Ped::SetCameraExtZoomAndAspectRatio(float fExtZoom, float fAspectRatio) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::HasAccessory() {
+BOOL Ped::HasAccessory() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::DeleteAccessory(int nSlot) {
+void Ped::DeleteAccessory(int nSlot) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Ped::GetAccessoryState(int nSlot) {
+BOOL Ped::GetAccessoryState(int nSlot) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Ped::DeleteAllAccessories() {
+void Ped::DeleteAllAccessories() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Ped::AddAccessory(int nSlot, const Accessory* pInfo) {
+void Ped::AddAccessory(int nSlot, const Accessory* pInfo) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(CObject*) Ped::GetAccessory(int nSlot) {
+CObject* Ped::GetAccessory(int nSlot) {
 
-    return kthook::return_value<CObject*>::make_true();
+    return CObject*{};
 }
 
-MAKE_RET(char) Ped::GetCameraMode() {
+char Ped::GetCameraMode() {
 
-    return kthook::return_value<char>::make_true();
+    return char{};
 }
 
-MAKE_RET(void) Ped::GetBonePosition(unsigned int boneId, CVector* outPosition) {
+void Ped::GetBonePosition(unsigned int boneId, CVector* outPosition) {
 
-    return true;
+    return;
 }
 

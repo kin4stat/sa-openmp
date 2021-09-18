@@ -1,27 +1,30 @@
 #include "MenuPool.hpp"
 
-MAKE_RET(BOOL) MenuPool::Delete(NUMBER nId) {
+MenuPool::MenuPool() {
 
-    return kthook::return_value<BOOL>::make_true();
+}
+BOOL MenuPool::Delete(NUMBER nId) {
+
+    return BOOL{};
 }
 
-MAKE_RET(void) MenuPool::Show(NUMBER nId) {
+void MenuPool::Show(NUMBER nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) MenuPool::Hide(NUMBER nId) {
+void MenuPool::Hide(NUMBER nId) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(char*) MenuPool::GetTextPointer(const char* szName) {
+char* MenuPool::GetTextPointer(const char* szName) {
 
-    return kthook::return_value<char*>::make_true();
+    return char*{};
 }
 
-MAKE_RET(void) MenuPool::Process() {
+void MenuPool::Process() {
 
-    return true;
+    return;
 }
 

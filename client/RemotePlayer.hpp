@@ -2,78 +2,155 @@
 #define REMOTEPLAYER_HPP_
 
 #include "common.hpp"
+#include "Ped.hpp"
+#include "Matrix.hpp"
+#include "Vector.hpp"
+#include "Synchronization.hpp"
+#include "Vehicle.hpp"
+#include "Animation.hpp"
 
 BEGIN_PACK
 
 class RemotePlayer {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&ProcessHead)> ProcessHead_hook{ GetAddress(0x13FD0) }; ProcessHead_hook.before.connect(ProcessHead);
-        static kthook::kthook_t<decltype(&SetMarkerState)> SetMarkerState_hook{ GetAddress(0x14120) }; SetMarkerState_hook.before.connect(SetMarkerState);
-        static kthook::kthook_t<decltype(&SetMarkerPosition)> SetMarkerPosition_hook{ GetAddress(0x14160) }; SetMarkerPosition_hook.before.connect(SetMarkerPosition);
-        static kthook::kthook_t<decltype(&SurfingOnVehicle)> SurfingOnVehicle_hook{ GetAddress(0x14200) }; SurfingOnVehicle_hook.before.connect(SurfingOnVehicle);
-        static kthook::kthook_t<decltype(&SurfingOnObject)> SurfingOnObject_hook{ GetAddress(0x14230) }; SurfingOnObject_hook.before.connect(SurfingOnObject);
-        static kthook::kthook_t<decltype(&ProcessSurfing)> ProcessSurfing_hook{ GetAddress(0x14260) }; ProcessSurfing_hook.before.connect(ProcessSurfing);
-        static kthook::kthook_t<decltype(&OnEnterVehicle)> OnEnterVehicle_hook{ GetAddress(0x14410) }; OnEnterVehicle_hook.before.connect(OnEnterVehicle);
-        static kthook::kthook_t<decltype(&OnExitVehicle)> OnExitVehicle_hook{ GetAddress(0x144E0) }; OnExitVehicle_hook.before.connect(OnExitVehicle);
-        static kthook::kthook_t<decltype(&ProcessSpecialAction)> ProcessSpecialAction_hook{ GetAddress(0x14530) }; ProcessSpecialAction_hook.before.connect(ProcessSpecialAction);
-        static kthook::kthook_t<decltype(&UpdateOnfootSpeedAndPosition)> UpdateOnfootSpeedAndPosition_hook{ GetAddress(0x14780) }; UpdateOnfootSpeedAndPosition_hook.before.connect(UpdateOnfootSpeedAndPosition);
-        static kthook::kthook_t<decltype(&UpdateOnfootRotation)> UpdateOnfootRotation_hook{ GetAddress(0x14B10) }; UpdateOnfootRotation_hook.before.connect(UpdateOnfootRotation);
-        static kthook::kthook_t<decltype(&SetOnfootTargetSpeedAndPosition)> SetOnfootTargetSpeedAndPosition_hook{ GetAddress(0x14BE0) }; SetOnfootTargetSpeedAndPosition_hook.before.connect(SetOnfootTargetSpeedAndPosition);
-        static kthook::kthook_t<decltype(&UpdateIncarSpeedAndPosition)> UpdateIncarSpeedAndPosition_hook{ GetAddress(0x14C50) }; UpdateIncarSpeedAndPosition_hook.before.connect(UpdateIncarSpeedAndPosition);
-        static kthook::kthook_t<decltype(&UpdateIncarRotation)> UpdateIncarRotation_hook{ GetAddress(0x14F50) }; UpdateIncarRotation_hook.before.connect(UpdateIncarRotation);
-        static kthook::kthook_t<decltype(&SetIncarTargetSpeedAndPosition)> SetIncarTargetSpeedAndPosition_hook{ GetAddress(0x150C0) }; SetIncarTargetSpeedAndPosition_hook.before.connect(SetIncarTargetSpeedAndPosition);
-        static kthook::kthook_t<decltype(&UpdateTrain)> UpdateTrain_hook{ GetAddress(0x15130) }; UpdateTrain_hook.before.connect(UpdateTrain);
-        static kthook::kthook_t<decltype(&ResetData)> ResetData_hook{ GetAddress(0x15A50) }; ResetData_hook.before.connect(ResetData);
-        static kthook::kthook_t<decltype(&GetDistanceToPlayer)> GetDistanceToPlayer_hook{ GetAddress(0x15B40) }; GetDistanceToPlayer_hook.before.connect(GetDistanceToPlayer);
-        static kthook::kthook_t<decltype(&GetDistanceToLocalPlayer)> GetDistanceToLocalPlayer_hook{ GetAddress(0x15BB0) }; GetDistanceToLocalPlayer_hook.before.connect(GetDistanceToLocalPlayer);
-        static kthook::kthook_t<decltype(&GetColorAsRGBA)> GetColorAsRGBA_hook{ GetAddress(0x15C00) }; GetColorAsRGBA_hook.before.connect(GetColorAsRGBA);
-        static kthook::kthook_t<decltype(&GetColorAsARGB)> GetColorAsARGB_hook{ GetAddress(0x15C10) }; GetColorAsARGB_hook.before.connect(GetColorAsARGB);
-        static kthook::kthook_t<decltype(&EnterVehicle)> EnterVehicle_hook{ GetAddress(0x15C30) }; EnterVehicle_hook.before.connect(EnterVehicle);
-        static kthook::kthook_t<decltype(&ExitVehicle)> ExitVehicle_hook{ GetAddress(0x15CC0) }; ExitVehicle_hook.before.connect(ExitVehicle);
-        static kthook::kthook_t<decltype(&ChangeState)> ChangeState_hook{ GetAddress(0x15CF0) }; ChangeState_hook.before.connect(ChangeState);
-        static kthook::kthook_t<decltype(&GetStatus)> GetStatus_hook{ GetAddress(0x15DB0) }; GetStatus_hook.before.connect(GetStatus);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0x16110) }; Process_hook.before.connect(Process);
-        static kthook::kthook_t<decltype(&Remove)> Remove_hook{ GetAddress(0x16E70) }; Remove_hook.before.connect(Remove);
-        static kthook::kthook_t<decltype(&Kill)> Kill_hook{ GetAddress(0x16EB0) }; Kill_hook.before.connect(Kill);
-        static kthook::kthook_t<decltype(&Chat)> Chat_hook{ GetAddress(0x16F60) }; Chat_hook.before.connect(Chat);
-        static kthook::kthook_t<decltype(&DoesExist)> DoesExist_hook{ GetAddress(0x1080) }; DoesExist_hook.before.connect(DoesExist);
+        ReversibleHooks::Install("RemotePlayer", "ProcessHead", GetAddress(0x13FD0), &RemotePlayer::ProcessHead);
+        ReversibleHooks::Install("RemotePlayer", "SetMarkerState", GetAddress(0x14120), &RemotePlayer::SetMarkerState);
+        ReversibleHooks::Install("RemotePlayer", "SetMarkerPosition", GetAddress(0x14160), &RemotePlayer::SetMarkerPosition);
+        ReversibleHooks::Install("RemotePlayer", "SurfingOnVehicle", GetAddress(0x14200), &RemotePlayer::SurfingOnVehicle);
+        ReversibleHooks::Install("RemotePlayer", "SurfingOnObject", GetAddress(0x14230), &RemotePlayer::SurfingOnObject);
+        ReversibleHooks::Install("RemotePlayer", "ProcessSurfing", GetAddress(0x14260), &RemotePlayer::ProcessSurfing);
+        ReversibleHooks::Install("RemotePlayer", "OnEnterVehicle", GetAddress(0x14410), &RemotePlayer::OnEnterVehicle);
+        ReversibleHooks::Install("RemotePlayer", "OnExitVehicle", GetAddress(0x144E0), &RemotePlayer::OnExitVehicle);
+        ReversibleHooks::Install("RemotePlayer", "ProcessSpecialAction", GetAddress(0x14530), &RemotePlayer::ProcessSpecialAction);
+        ReversibleHooks::Install("RemotePlayer", "UpdateOnfootSpeedAndPosition", GetAddress(0x14780), &RemotePlayer::UpdateOnfootSpeedAndPosition);
+        ReversibleHooks::Install("RemotePlayer", "UpdateOnfootRotation", GetAddress(0x14B10), &RemotePlayer::UpdateOnfootRotation);
+        ReversibleHooks::Install("RemotePlayer", "SetOnfootTargetSpeedAndPosition", GetAddress(0x14BE0), &RemotePlayer::SetOnfootTargetSpeedAndPosition);
+        ReversibleHooks::Install("RemotePlayer", "UpdateIncarSpeedAndPosition", GetAddress(0x14C50), &RemotePlayer::UpdateIncarSpeedAndPosition);
+        ReversibleHooks::Install("RemotePlayer", "UpdateIncarRotation", GetAddress(0x14F50), &RemotePlayer::UpdateIncarRotation);
+        ReversibleHooks::Install("RemotePlayer", "SetIncarTargetSpeedAndPosition", GetAddress(0x150C0), &RemotePlayer::SetIncarTargetSpeedAndPosition);
+        ReversibleHooks::Install("RemotePlayer", "UpdateTrain", GetAddress(0x15130), &RemotePlayer::UpdateTrain);
+        ReversibleHooks::Install("RemotePlayer", "ResetData", GetAddress(0x15A50), &RemotePlayer::ResetData);
+        ReversibleHooks::Install("RemotePlayer", "GetDistanceToPlayer", GetAddress(0x15B40), &RemotePlayer::GetDistanceToPlayer);
+        ReversibleHooks::Install("RemotePlayer", "GetDistanceToLocalPlayer", GetAddress(0x15BB0), &RemotePlayer::GetDistanceToLocalPlayer);
+        ReversibleHooks::Install("RemotePlayer", "GetColorAsRGBA", GetAddress(0x15C00), &RemotePlayer::GetColorAsRGBA);
+        ReversibleHooks::Install("RemotePlayer", "GetColorAsARGB", GetAddress(0x15C10), &RemotePlayer::GetColorAsARGB);
+        ReversibleHooks::Install("RemotePlayer", "EnterVehicle", GetAddress(0x15C30), &RemotePlayer::EnterVehicle);
+        ReversibleHooks::Install("RemotePlayer", "ExitVehicle", GetAddress(0x15CC0), &RemotePlayer::ExitVehicle);
+        ReversibleHooks::Install("RemotePlayer", "ChangeState", GetAddress(0x15CF0), &RemotePlayer::ChangeState);
+        ReversibleHooks::Install("RemotePlayer", "GetStatus", GetAddress(0x15DB0), &RemotePlayer::GetStatus);
+        ReversibleHooks::Install("RemotePlayer", "Process", GetAddress(0x16110), &RemotePlayer::Process);
+        ReversibleHooks::Install("RemotePlayer", "Remove", GetAddress(0x16E70), &RemotePlayer::Remove);
+        ReversibleHooks::Install("RemotePlayer", "Kill", GetAddress(0x16EB0), &RemotePlayer::Kill);
+        ReversibleHooks::Install("RemotePlayer", "Chat", GetAddress(0x16F60), &RemotePlayer::Chat);
+        ReversibleHooks::Install("RemotePlayer", "DoesExist", GetAddress(0x1080), &RemotePlayer::DoesExist);
     }
 
 
+    enum PlayerState {
+        PLAYER_STATE_NONE,
+        PLAYER_STATE_ONFOOT = 17,
+        PLAYER_STATE_DRIVER = 19,
+        PLAYER_STATE_PASSENGER = 18,
+        PLAYER_STATE_WASTED = 32,
+        PLAYER_STATE_SPAWNED = 33,
+    };
+    enum UpdateType {
+        UPDATE_TYPE_NONE,
+        UPDATE_TYPE_ONFOOT = 16,
+        UPDATE_TYPE_INCAR = 17,
+        UPDATE_TYPE_PASSENGER = 18,
+    };
+    enum PlayerStatus { PLAYER_STATUS_TIMEOUT = 2 };
 
+    Ped*                          m_pPed;
+    Vehicle*                      m_pVehicle;
+    ID                             m_nId;
+    ID                             m_nVehicleId;
+    int                            field_1;
+    BOOL                           m_bDrawLabels;
+    BOOL                           m_bHasJetpack;
+    unsigned char                  m_nSpecialAction;
+    Synchronization::IncarData     m_incarData;
+    Synchronization::TrailerData   m_trailerData;
+    Synchronization::AimData       m_aimData;
+    Synchronization::PassengerData m_passengerData;
+    Synchronization::OnfootData    m_onfootData;
+    unsigned char                  m_nTeam;
+    unsigned char                  m_nState;
+    unsigned char                  m_nSeatId;
+    int                            field_3;
+    BOOL                           m_bPassengerDriveBy;
+    Vector                        m_onfootTargetPosition;
+    Vector                        m_onfootTargetSpeed;
+    Vector                        m_incarTargetPosition;
+    Vector                        m_incarTargetSpeed;
+    char                           pad_1[76];
+    Vector                        m_positionDifference;
+
+    struct {
+        float   real;
+        Vector imag;
+    } m_incarTargetRotation;
+
+    float         m_fReportedArmour;
+    float         m_fReportedHealth;
+    char          pad_2[12];
+    Animation     m_animation;
+    unsigned char m_nUpdateType;
+    TICK          m_lastUpdate;
+    TICK          m_lastTimestamp;
+    BOOL          m_bPerformingCustomAnimation;
+    int           m_nStatus;
+
+    struct {
+        Vector m_direction;
+        TICK    m_lastUpdate;
+        TICK    m_lastLook;
+    } m_head;
+
+    BOOL m_bMarkerState;
+
+    struct {
+        int x, y, z;
+    } m_markerPosition;
+
+    GTAREF m_marker;
+
+    
+    RemotePlayer();
     ~RemotePlayer();
 
-    MAKE_RET(void) ProcessHead();
-    MAKE_RET(void) SetMarkerState(BOOL bState);
-    MAKE_RET(void) SetMarkerPosition(int x, int y, int z);
-    MAKE_RET(BOOL) SurfingOnVehicle();
-    MAKE_RET(BOOL) SurfingOnObject();
-    MAKE_RET(void) ProcessSurfing();
-    MAKE_RET(void) OnEnterVehicle();
-    MAKE_RET(void) OnExitVehicle();
-    MAKE_RET(void) ProcessSpecialAction();
-    MAKE_RET(void) UpdateOnfootSpeedAndPosition();
-    MAKE_RET(void) UpdateOnfootRotation();
-    MAKE_RET(void) SetOnfootTargetSpeedAndPosition(CVector* pPosition, CVector* pSpeed);
-    MAKE_RET(void) UpdateIncarSpeedAndPosition();
-    MAKE_RET(void) UpdateIncarRotation();
-    MAKE_RET(void) SetIncarTargetSpeedAndPosition(CMatrix* pMatrix, CVector* pPosition, CVector* pSpeed);
-    MAKE_RET(void) UpdateTrain(CMatrix* pMatrix, CVector* pSpeed, float fSpeed);
-    MAKE_RET(void) ResetData();
-    MAKE_RET(float) GetDistanceToPlayer(CRemotePlayer* pPlayer);
-    MAKE_RET(float) GetDistanceToLocalPlayer();
-    MAKE_RET(D3DCOLOR) GetColorAsRGBA();
-    MAKE_RET(D3DCOLOR) GetColorAsARGB();
-    MAKE_RET(void) EnterVehicle(ID nId, BOOL bPassenger);
-    MAKE_RET(void) ExitVehicle();
-    MAKE_RET(void) ChangeState(char nOld, char nNew);
-    MAKE_RET(int) GetStatus();
-    MAKE_RET(void) Process();
-    MAKE_RET(void) Remove();
-    MAKE_RET(void) Kill();
-    MAKE_RET(void) Chat(const char* szText);
-    MAKE_RET(BOOL) DoesExist();
+    void ProcessHead();
+    void SetMarkerState(BOOL bState);
+    void SetMarkerPosition(int x, int y, int z);
+    BOOL SurfingOnVehicle();
+    BOOL SurfingOnObject();
+    void ProcessSurfing();
+    void OnEnterVehicle();
+    void OnExitVehicle();
+    void ProcessSpecialAction();
+    void UpdateOnfootSpeedAndPosition();
+    void UpdateOnfootRotation();
+    void SetOnfootTargetSpeedAndPosition(Vector* pPosition, Vector* pSpeed);
+    void UpdateIncarSpeedAndPosition();
+    void UpdateIncarRotation();
+    void SetIncarTargetSpeedAndPosition(Matrix* pMatrix, Vector* pPosition, Vector* pSpeed);
+    void UpdateTrain(Matrix* pMatrix, Vector* pSpeed, float fSpeed);
+    void ResetData();
+    float GetDistanceToPlayer(RemotePlayer* pPlayer);
+    float GetDistanceToLocalPlayer();
+    D3DCOLOR GetColorAsRGBA();
+    D3DCOLOR GetColorAsARGB();
+    void EnterVehicle(ID nId, BOOL bPassenger);
+    void ExitVehicle();
+    void ChangeState(char nOld, char nNew);
+    int GetStatus();
+    void Process();
+    void Remove();
+    void Kill();
+    void Chat(const char* szText);
+    BOOL DoesExist();
 };
 
 END_PACK

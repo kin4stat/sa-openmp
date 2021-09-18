@@ -3,28 +3,28 @@
 DeathWindow::DeathWindow(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) DeathWindow::InitializeAuxFonts() {
+void DeathWindow::InitializeAuxFonts() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) DeathWindow::PushBack() {
+void DeathWindow::PushBack() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) DeathWindow::GetWeaponSpriteRectSize(void* pPoint) {
+void DeathWindow::GetWeaponSpriteRectSize(void* pPoint) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) DeathWindow::ResetFonts() {
+void DeathWindow::ResetFonts() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) DeathWindow::Draw() {
+void DeathWindow::Draw() {
 
-    return true;
+    return;
 }
 

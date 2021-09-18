@@ -3,73 +3,73 @@
 Object::Object(int nModel, CVector position, CVector rotation, float fDrawDistance, int a10, char a11, char a12) {
 
 }
-MAKE_RET(float) Object::GetDistance(const CMatrix* pMatrix) {
+float Object::GetDistance(const CMatrix* pMatrix) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Object::Stop() {
+void Object::Stop() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::SetRotation(const CVector* pVector) {
+void Object::SetRotation(const CVector* pVector) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::SetAttachedToVehicle(ID nId, const CVector* pOffset, const CVector* pRotation) {
+void Object::SetAttachedToVehicle(ID nId, const CVector* pOffset, const CVector* pRotation) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::AttachToVehicle(CVehicle* pVehicle) {
+void Object::AttachToVehicle(CVehicle* pVehicle) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::AttachToObject(CObject* pObject) {
+void Object::AttachToObject(CObject* pObject) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::Rotate(CVector vector) {
+void Object::Rotate(CVector vector) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Object::AttachedToMovingEntity() {
+BOOL Object::AttachedToMovingEntity() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(bool) Object::GetMaterialSize(int nSize, int* x, int* y) {
+bool Object::GetMaterialSize(int nSize, int* x, int* y) {
 
-    return kthook::return_value<bool>::make_true();
+    return bool{};
 }
 
-MAKE_RET(void) Object::Render() {
+void Object::Render() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::Process(float fElapsedTime) {
+void Object::Process(float fElapsedTime) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::ConstructMaterialText() {
+void Object::ConstructMaterialText() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::Draw() {
+void Object::Draw() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Object::ShutdownMaterialText() {
+void Object::ShutdownMaterialText() {
 
-    return true;
+    return;
 }
 

@@ -1,152 +1,155 @@
 #include "RemotePlayer.hpp"
 
-MAKE_RET(void) RemotePlayer::ProcessHead() {
+RemotePlayer::RemotePlayer() {
 
-    return true;
+}
+void RemotePlayer::ProcessHead() {
+
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::SetMarkerState(BOOL bState) {
+void RemotePlayer::SetMarkerState(BOOL bState) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::SetMarkerPosition(int x, int y, int z) {
+void RemotePlayer::SetMarkerPosition(int x, int y, int z) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) RemotePlayer::SurfingOnVehicle() {
+BOOL RemotePlayer::SurfingOnVehicle() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) RemotePlayer::SurfingOnObject() {
+BOOL RemotePlayer::SurfingOnObject() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) RemotePlayer::ProcessSurfing() {
+void RemotePlayer::ProcessSurfing() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::OnEnterVehicle() {
+void RemotePlayer::OnEnterVehicle() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::OnExitVehicle() {
+void RemotePlayer::OnExitVehicle() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::ProcessSpecialAction() {
+void RemotePlayer::ProcessSpecialAction() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::UpdateOnfootSpeedAndPosition() {
+void RemotePlayer::UpdateOnfootSpeedAndPosition() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::UpdateOnfootRotation() {
+void RemotePlayer::UpdateOnfootRotation() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::SetOnfootTargetSpeedAndPosition(CVector* pPosition, CVector* pSpeed) {
+void RemotePlayer::SetOnfootTargetSpeedAndPosition(CVector* pPosition, CVector* pSpeed) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::UpdateIncarSpeedAndPosition() {
+void RemotePlayer::UpdateIncarSpeedAndPosition() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::UpdateIncarRotation() {
+void RemotePlayer::UpdateIncarRotation() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::SetIncarTargetSpeedAndPosition(CMatrix* pMatrix, CVector* pPosition, CVector* pSpeed) {
+void RemotePlayer::SetIncarTargetSpeedAndPosition(CMatrix* pMatrix, CVector* pPosition, CVector* pSpeed) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::UpdateTrain(CMatrix* pMatrix, CVector* pSpeed, float fSpeed) {
+void RemotePlayer::UpdateTrain(CMatrix* pMatrix, CVector* pSpeed, float fSpeed) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::ResetData() {
+void RemotePlayer::ResetData() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) RemotePlayer::GetDistanceToPlayer(CRemotePlayer* pPlayer) {
+float RemotePlayer::GetDistanceToPlayer(CRemotePlayer* pPlayer) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(float) RemotePlayer::GetDistanceToLocalPlayer() {
+float RemotePlayer::GetDistanceToLocalPlayer() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(D3DCOLOR) RemotePlayer::GetColorAsRGBA() {
+D3DCOLOR RemotePlayer::GetColorAsRGBA() {
 
-    return kthook::return_value<D3DCOLOR>::make_true();
+    return D3DCOLOR{};
 }
 
-MAKE_RET(D3DCOLOR) RemotePlayer::GetColorAsARGB() {
+D3DCOLOR RemotePlayer::GetColorAsARGB() {
 
-    return kthook::return_value<D3DCOLOR>::make_true();
+    return D3DCOLOR{};
 }
 
-MAKE_RET(void) RemotePlayer::EnterVehicle(ID nId, BOOL bPassenger) {
+void RemotePlayer::EnterVehicle(ID nId, BOOL bPassenger) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::ExitVehicle() {
+void RemotePlayer::ExitVehicle() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::ChangeState(char nOld, char nNew) {
+void RemotePlayer::ChangeState(char nOld, char nNew) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) RemotePlayer::GetStatus() {
+int RemotePlayer::GetStatus() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) RemotePlayer::Process() {
+void RemotePlayer::Process() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::Remove() {
+void RemotePlayer::Remove() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::Kill() {
+void RemotePlayer::Kill() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) RemotePlayer::Chat(const char* szText) {
+void RemotePlayer::Chat(const char* szText) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) RemotePlayer::DoesExist() {
+BOOL RemotePlayer::DoesExist() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 

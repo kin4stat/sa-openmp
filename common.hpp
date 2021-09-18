@@ -1,26 +1,36 @@
 #ifndef COMMON_HPP_
 #define COMMON_HPP_
 
-#include <type_traits>
-#include "kthook/include/kthook.hpp"
+#include <cstdint>
 
-#define MAKE_RET(type) make_ret_t<type>
-
-template<class T, class Enable = void>
-struct make_ret {
-    using type = bool;
-};
-
-template<class T>
-struct make_ret<T, typename std::enable_if<!std::is_void_v<T>>::type> {
-    using type = kthook::return_value<T>;
-};
-
-template <typename T>
-using make_ret_t = typename make_ret<T>::type;
-
+#define VALIDATE_SIZE(struc, size) static_assert(sizeof(struc) == size, "Invalid structure size of " #struc)
 #define BEGIN_PACK __pragma(pack(push, 1))
 #define END_PACK __pragma(pack(pop))
+
+VALIDATE_SIZE(bool, 1);
+VALIDATE_SIZE(char, 1);
+VALIDATE_SIZE(short, 2);
+VALIDATE_SIZE(int, 4);
+VALIDATE_SIZE(float, 4);
+VALIDATE_SIZE(long long, 8);
+
+// Basic types for structures describing
+typedef int8_t    int8;
+typedef int16_t   int16;
+typedef int32_t   int32;
+typedef int64_t   int64;
+typedef uint8_t   uint8;
+typedef uint16_t  uint16;
+typedef uint32_t  uint32;
+typedef uint64_t  uint64;
+
+typedef uint8     bool8;
+typedef uint16    bool16;
+typedef uint32    bool32;
+
+#include <Windows.h>
+#include "reversiblehooks/HookSystem.h"
+#include "reversiblehooks/ReversibleHooks.h"
 
 struct ID3DXFont;
 struct ID3DXSprite;

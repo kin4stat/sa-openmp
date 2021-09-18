@@ -3,93 +3,93 @@
 Chat::Chat(IDirect3DDevice9* pDevice, CFonts* pFontRenderer, const char* szLogPath) {
 
 }
-MAKE_RET(int) Chat::GetMode() {
+int Chat::GetMode() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Chat::SwitchMode() {
+void Chat::SwitchMode() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::RecalcFontSize() {
+void Chat::RecalcFontSize() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::OnLostDevice() {
+void Chat::OnLostDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::UpdateScrollbar() {
+void Chat::UpdateScrollbar() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::SetPageSize(int nValue) {
+void Chat::SetPageSize(int nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::PageUp() {
+void Chat::PageUp() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::PageDown() {
+void Chat::PageDown() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::ScrollToBottom() {
+void Chat::ScrollToBottom() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::Scroll(int nDelta) {
+void Chat::Scroll(int nDelta) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::FilterOutInvalidChars(char* szString) {
+void Chat::FilterOutInvalidChars(char* szString) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::PushBack() {
+void Chat::PushBack() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::Log(int nType, const char* szText, const char* szPrefix) {
+void Chat::Log(int nType, const char* szText, const char* szPrefix) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::ResetDialogControls(CDXUTDialog* pGameUi) {
+void Chat::ResetDialogControls(CDXUTDialog* pGameUi) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::Render() {
+void Chat::Render() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::Draw() {
+void Chat::Draw() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::RenderToSurface() {
+void Chat::RenderToSurface() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Chat::OnResetDevice() {
+void Chat::OnResetDevice() {
 
-    return true;
+    return;
 }
 

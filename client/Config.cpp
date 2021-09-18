@@ -3,68 +3,68 @@
 Config::Config(const char* szFile) {
 
 }
-MAKE_RET(void) Config::FindFirstFree() {
+void Config::FindFirstFree() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Config::GetIndex(const char* szEntry) {
+int Config::GetIndex(const char* szEntry) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(bool) Config::DoesExist(const char* szEntry) {
+bool Config::DoesExist(const char* szEntry) {
 
-    return kthook::return_value<bool>::make_true();
+    return bool{};
 }
 
-MAKE_RET(int) Config::CreateEntry(const char* szName) {
+int Config::CreateEntry(const char* szName) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(int) Config::GetIntValue(const char* szEntry) {
+int Config::GetIntValue(const char* szEntry) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(float) Config::GetFloatValue(const char* szEntry) {
+float Config::GetFloatValue(const char* szEntry) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(BOOL) Config::Free(const char* szEntry) {
+BOOL Config::Free(const char* szEntry) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(int) Config::GetValueType(const char* szEntry) {
+int Config::GetValueType(const char* szEntry) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(ConfigEntry*) Config::GetEntry(int nIndex) {
+ConfigEntry* Config::GetEntry(int nIndex) {
 
-    return kthook::return_value<ConfigEntry*>::make_true();
+    return ConfigEntry*{};
 }
 
-MAKE_RET(int) Config::GetType(const char* szString) {
+int Config::GetType(const char* szString) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(BOOL) Config::Save() {
+BOOL Config::Save() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Config::Write(const char* szEntry, char* szBuffer) {
+void Config::Write(const char* szEntry, char* szBuffer) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Config::Load() {
+BOOL Config::Load() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 

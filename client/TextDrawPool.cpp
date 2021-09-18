@@ -1,12 +1,15 @@
 #include "TextDrawPool.hpp"
 
-MAKE_RET(void) TextDrawPool::Delete(ID nId) {
+TextDrawPool::TextDrawPool() {
 
-    return true;
+}
+void TextDrawPool::Delete(ID nId) {
+
+    return;
 }
 
-MAKE_RET(void) TextDrawPool::Draw() {
+void TextDrawPool::Draw() {
 
-    return true;
+    return;
 }
 

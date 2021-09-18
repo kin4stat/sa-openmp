@@ -3,263 +3,263 @@
 NetGame::NetGame(const char* szHostAddress, int nPort, const char* szNick, const char* szPass) {
 
 }
-MAKE_RET(CPickupPool*) NetGame::GetPickupPool() {
+CPickupPool* NetGame::GetPickupPool() {
 
-    return kthook::return_value<CPickupPool*>::make_true();
+    return CPickupPool*{};
 }
 
-MAKE_RET(CMenuPool*) NetGame::GetMenuPool() {
+CMenuPool* NetGame::GetMenuPool() {
 
-    return kthook::return_value<CMenuPool*>::make_true();
+    return CMenuPool*{};
 }
 
-MAKE_RET(void) NetGame::SetState(int nValue) {
+void NetGame::SetState(int nValue) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::InitializePools() {
+void NetGame::InitializePools() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::InitialNotification() {
+void NetGame::InitialNotification() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::InitializeGameLogic() {
+void NetGame::InitializeGameLogic() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Connect() {
+void NetGame::Connect() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::SpawnScreen() {
+void NetGame::SpawnScreen() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_RSAPublicKeyMismatch(Packet* pPacket) {
+void NetGame::Packet_RSAPublicKeyMismatch(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_ConnectionBanned(Packet* pPacket) {
+void NetGame::Packet_ConnectionBanned(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_ConnectionRequestAcepted(Packet* pPacket) {
+void NetGame::Packet_ConnectionRequestAcepted(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_NoFreeIncomingConnections(Packet* pPacket) {
+void NetGame::Packet_NoFreeIncomingConnections(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_DisconnectionNotification(Packet* pPacket) {
+void NetGame::Packet_DisconnectionNotification(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_InvalidPassword(Packet* pPacket) {
+void NetGame::Packet_InvalidPassword(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_ConnectionAttemptFailed(Packet* pPacket) {
+void NetGame::Packet_ConnectionAttemptFailed(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::UpdatePlayers() {
+void NetGame::UpdatePlayers() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::DeleteMarker(NUMBER nIndex) {
+void NetGame::DeleteMarker(NUMBER nIndex) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetPlayerPool() {
+void NetGame::ResetPlayerPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetVehiclePool() {
+void NetGame::ResetVehiclePool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetTextDrawPool() {
+void NetGame::ResetTextDrawPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetObjectPool() {
+void NetGame::ResetObjectPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetGangZonePool() {
+void NetGame::ResetGangZonePool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetPickupPool() {
+void NetGame::ResetPickupPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetMenuPool() {
+void NetGame::ResetMenuPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetLabelPool() {
+void NetGame::ResetLabelPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetActorPool() {
+void NetGame::ResetActorPool() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_UnoccupiedSync(Packet* pPacket) {
+void NetGame::Packet_UnoccupiedSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_BulletSync(Packet* pPacket) {
+void NetGame::Packet_BulletSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_AimSync(Packet* pPacket) {
+void NetGame::Packet_AimSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_PassengerSync(Packet* pPacket) {
+void NetGame::Packet_PassengerSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_TrailerSync(Packet* pPacket) {
+void NetGame::Packet_TrailerSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_MarkersSync(Packet* pPacket) {
+void NetGame::Packet_MarkersSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_AuthKey(Packet* pPacket) {
+void NetGame::Packet_AuthKey(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetMarkers() {
+void NetGame::ResetMarkers() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::CreateMarker(NUMBER nIndex, CVector position, char nIcon, int nColor, int nType) {
+void NetGame::CreateMarker(NUMBER nIndex, CVector position, char nIcon, int nColor, int nType) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ResetPools() {
+void NetGame::ResetPools() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ShutdownForRestart() {
+void NetGame::ShutdownForRestart() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_PlayerSync(Packet* pPacket) {
+void NetGame::Packet_PlayerSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_VehicleSync(Packet* pPacket) {
+void NetGame::Packet_VehicleSync(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_ConnectionLost(Packet* pPacket) {
+void NetGame::Packet_ConnectionLost(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Packet_ConnectionSucceeded(Packet* pPacket) {
+void NetGame::Packet_ConnectionSucceeded(Packet* pPacket) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::UpdateNetwork() {
+void NetGame::UpdateNetwork() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::Process() {
+void NetGame::Process() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) NetGame::ProcessGameStuff() {
+void NetGame::ProcessGameStuff() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(CPlayerPool*) NetGame::GetPlayerPool() {
+CPlayerPool* NetGame::GetPlayerPool() {
 
-    return kthook::return_value<CPlayerPool*>::make_true();
+    return CPlayerPool*{};
 }
 
-MAKE_RET(CObjectPool*) NetGame::GetObjectPool() {
+CObjectPool* NetGame::GetObjectPool() {
 
-    return kthook::return_value<CObjectPool*>::make_true();
+    return CObjectPool*{};
 }
 
-MAKE_RET(CActorPool*) NetGame::GetActorPool() {
+CActorPool* NetGame::GetActorPool() {
 
-    return kthook::return_value<CActorPool*>::make_true();
+    return CActorPool*{};
 }
 
-MAKE_RET(int) NetGame::GetState() {
+int NetGame::GetState() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(BOOL) NetGame::LanMode() {
+BOOL NetGame::LanMode() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(CVehiclePool*) NetGame::GetVehiclePool() {
+CVehiclePool* NetGame::GetVehiclePool() {
 
-    return kthook::return_value<CVehiclePool*>::make_true();
+    return CVehiclePool*{};
 }
 
-MAKE_RET(RakClientInterface*) NetGame::GetRakClient() {
+RakClientInterface* NetGame::GetRakClient() {
 
-    return kthook::return_value<RakClientInterface*>::make_true();
+    return RakClientInterface*{};
 }
 
-MAKE_RET(__int64) NetGame::GetCounter() {
+__int64 NetGame::GetCounter() {
 
-    return kthook::return_value<__int64>::make_true();
+    return __int64{};
 }
 

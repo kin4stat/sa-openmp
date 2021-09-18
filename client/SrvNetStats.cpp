@@ -3,8 +3,8 @@
 SrvNetStats::SrvNetStats(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) SrvNetStats::Draw() {
+void SrvNetStats::Draw() {
 
-    return true;
+    return;
 }
 

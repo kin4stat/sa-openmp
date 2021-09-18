@@ -2,26 +2,27 @@
 #define INPUT_HPP_
 
 #include "common.hpp"
+#include "Rect.hpp"
 
 BEGIN_PACK
 
 class Input {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&GetRect)> GetRect_hook{ GetAddress(0x68CD0) }; GetRect_hook.before.connect(GetRect);
-        static kthook::kthook_t<decltype(&Open)> Open_hook{ GetAddress(0x68D10) }; Open_hook.before.connect(Open);
-        static kthook::kthook_t<decltype(&Close)> Close_hook{ GetAddress(0x68E10) }; Close_hook.before.connect(Close);
-        static kthook::kthook_t<decltype(&AddRecall)> AddRecall_hook{ GetAddress(0x68E60) }; AddRecall_hook.before.connect(AddRecall);
-        static kthook::kthook_t<decltype(&RecallUp)> RecallUp_hook{ GetAddress(0x68EC0) }; RecallUp_hook.before.connect(RecallUp);
-        static kthook::kthook_t<decltype(&RecallDown)> RecallDown_hook{ GetAddress(0x68F30) }; RecallDown_hook.before.connect(RecallDown);
-        static kthook::kthook_t<decltype(&EnableCursor)> EnableCursor_hook{ GetAddress(0x68F80) }; EnableCursor_hook.before.connect(EnableCursor);
-        static kthook::kthook_t<decltype(&GetCommandHandler)> GetCommandHandler_hook{ GetAddress(0x68FA0) }; GetCommandHandler_hook.before.connect(GetCommandHandler);
-        static kthook::kthook_t<decltype(&SetDefaultCommand)> SetDefaultCommand_hook{ GetAddress(0x68FF0) }; SetDefaultCommand_hook.before.connect(SetDefaultCommand);
-        static kthook::kthook_t<decltype(&AddCommand)> AddCommand_hook{ GetAddress(0x69000) }; AddCommand_hook.before.connect(AddCommand);
-        static kthook::kthook_t<decltype(&MsgProc)> MsgProc_hook{ GetAddress(0x69060) }; MsgProc_hook.before.connect(MsgProc);
-        static kthook::kthook_t<decltype(&ResetDialogControls)> ResetDialogControls_hook{ GetAddress(0x690D0) }; ResetDialogControls_hook.before.connect(ResetDialogControls);
-        static kthook::kthook_t<decltype(&Send)> Send_hook{ GetAddress(0x69190) }; Send_hook.before.connect(Send);
-        static kthook::kthook_t<decltype(&ProcessInput)> ProcessInput_hook{ GetAddress(0x69260) }; ProcessInput_hook.before.connect(ProcessInput);
+        ReversibleHooks::Install("Input", "GetRect", GetAddress(0x68CD0), &Input::GetRect);
+        ReversibleHooks::Install("Input", "Open", GetAddress(0x68D10), &Input::Open);
+        ReversibleHooks::Install("Input", "Close", GetAddress(0x68E10), &Input::Close);
+        ReversibleHooks::Install("Input", "AddRecall", GetAddress(0x68E60), &Input::AddRecall);
+        ReversibleHooks::Install("Input", "RecallUp", GetAddress(0x68EC0), &Input::RecallUp);
+        ReversibleHooks::Install("Input", "RecallDown", GetAddress(0x68F30), &Input::RecallDown);
+        ReversibleHooks::Install("Input", "EnableCursor", GetAddress(0x68F80), &Input::EnableCursor);
+        ReversibleHooks::Install("Input", "GetCommandHandler", GetAddress(0x68FA0), &Input::GetCommandHandler);
+        ReversibleHooks::Install("Input", "SetDefaultCommand", GetAddress(0x68FF0), &Input::SetDefaultCommand);
+        ReversibleHooks::Install("Input", "AddCommand", GetAddress(0x69000), &Input::AddCommand);
+        ReversibleHooks::Install("Input", "MsgProc", GetAddress(0x69060), &Input::MsgProc);
+        ReversibleHooks::Install("Input", "ResetDialogControls", GetAddress(0x690D0), &Input::ResetDialogControls);
+        ReversibleHooks::Install("Input", "Send", GetAddress(0x69190), &Input::Send);
+        ReversibleHooks::Install("Input", "ProcessInput", GetAddress(0x69260), &Input::ProcessInput);
     }
 
 
@@ -48,20 +49,20 @@ public:
     Input(IDirect3DDevice9* pDevice);
     ~Input();
 
-    MAKE_RET(void) GetRect(CRect* pRect);
-    MAKE_RET(void) Open();
-    MAKE_RET(void) Close();
-    MAKE_RET(void) AddRecall(const char* szString);
-    MAKE_RET(void) RecallUp();
-    MAKE_RET(void) RecallDown();
-    MAKE_RET(void) EnableCursor();
-    MAKE_RET(CMDPROC) GetCommandHandler(const char* szName);
-    MAKE_RET(void) SetDefaultCommand(CMDPROC handler);
-    MAKE_RET(void) AddCommand(const char* szName, CMDPROC handler);
-    MAKE_RET(BOOL) MsgProc(int uMsg, int wParam, int lParam);
-    MAKE_RET(void) ResetDialogControls(CDXUTDialog* pGameUi);
-    MAKE_RET(void) Send(const char* szString);
-    MAKE_RET(void) ProcessInput();
+    void GetRect(Rect* pRect);
+    void Open();
+    void Close();
+    void AddRecall(const char* szString);
+    void RecallUp();
+    void RecallDown();
+    void EnableCursor();
+    CMDPROC GetCommandHandler(const char* szName);
+    void SetDefaultCommand(CMDPROC handler);
+    void AddCommand(const char* szName, CMDPROC handler);
+    BOOL MsgProc(int uMsg, int wParam, int lParam);
+    void ResetDialogControls(CDXUTDialog* pGameUi);
+    void Send(const char* szString);
+    void ProcessInput();
 };
 
 END_PACK

@@ -1,32 +1,32 @@
 #include "TextDrawSelection.hpp"
 
-MAKE_RET(void) TextDrawSelection::ResetTextDraws() {
+void TextDrawSelection::ResetTextDraws() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) TextDrawSelection::RawProcess() {
+void TextDrawSelection::RawProcess() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) TextDrawSelection::Process() {
+void TextDrawSelection::Process() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) TextDrawSelection::SendNotification() {
+void TextDrawSelection::SendNotification() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) TextDrawSelection::Disable() {
+void TextDrawSelection::Disable() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) TextDrawSelection::MsgProc(int uMsg, int wParam, int lParam) {
+BOOL TextDrawSelection::MsgProc(int uMsg, int wParam, int lParam) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 

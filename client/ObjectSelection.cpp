@@ -1,32 +1,35 @@
 #include "ObjectSelection.hpp"
 
-MAKE_RET(ID) ObjectSelection::DefineObject() {
+ObjectSelection::ObjectSelection() {
 
-    return kthook::return_value<ID>::make_true();
+}
+ID ObjectSelection::DefineObject() {
+
+    return ID{};
 }
 
-MAKE_RET(void) ObjectSelection::DrawLabels() {
+void ObjectSelection::DrawLabels() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectSelection::Enable(BOOL bEnable) {
+void ObjectSelection::Enable(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectSelection::Draw() {
+void ObjectSelection::Draw() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectSelection::SendNotification() {
+void ObjectSelection::SendNotification() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) ObjectSelection::MsgProc(int uMsg, int wParam, int lParam) {
+BOOL ObjectSelection::MsgProc(int uMsg, int wParam, int lParam) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 

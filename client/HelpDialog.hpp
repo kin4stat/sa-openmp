@@ -8,7 +8,7 @@ BEGIN_PACK
 class HelpDialog {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&Show)> Show_hook{ GetAddress(0x6B3C0) }; Show_hook.before.connect(Show);
+        ReversibleHooks::Install("HelpDialog", "Show", GetAddress(0x6B3C0), &HelpDialog::Show);
     }
 
 
@@ -18,7 +18,7 @@ public:
     HelpDialog(IDirect3DDevice9* pDevice = SAMPAPI_UNUSED);
     ~HelpDialog();
 
-    MAKE_RET(void) Show();
+    void Show();
 };
 
 END_PACK

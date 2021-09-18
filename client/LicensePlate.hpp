@@ -8,9 +8,9 @@ BEGIN_PACK
 class LicensePlate {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&OnLostDevice)> OnLostDevice_hook{ GetAddress(0x6D040) }; OnLostDevice_hook.before.connect(OnLostDevice);
-        static kthook::kthook_t<decltype(&OnResetDevice)> OnResetDevice_hook{ GetAddress(0x6D090) }; OnResetDevice_hook.before.connect(OnResetDevice);
-        static kthook::kthook_t<decltype(&Create)> Create_hook{ GetAddress(0x6D110) }; Create_hook.before.connect(Create);
+        ReversibleHooks::Install("LicensePlate", "OnLostDevice", GetAddress(0x6D040), &LicensePlate::OnLostDevice);
+        ReversibleHooks::Install("LicensePlate", "OnResetDevice", GetAddress(0x6D090), &LicensePlate::OnResetDevice);
+        ReversibleHooks::Install("LicensePlate", "Create", GetAddress(0x6D110), &LicensePlate::Create);
     }
 
 
@@ -36,9 +36,9 @@ public:
     LicensePlate(IDirect3DDevice9* pDevice);
     ~LicensePlate();
 
-    MAKE_RET(void) OnLostDevice();
-    MAKE_RET(void) OnResetDevice();
-    MAKE_RET(IDirect3DTexture9*) Create(const char* szText);
+    void OnLostDevice();
+    void OnResetDevice();
+    IDirect3DTexture9* Create(const char* szText);
 };
 
 END_PACK

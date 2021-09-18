@@ -1,22 +1,22 @@
 #include "AudioStream.hpp"
 
-MAKE_RET(BOOL) AudioStream::Reset() {
+BOOL AudioStream::Reset() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) AudioStream::Stop(bool bWait) {
+BOOL AudioStream::Stop(bool bWait) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) AudioStream::ControlGameRadio() {
+void AudioStream::ControlGameRadio() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) AudioStream::DrawInfo() {
+void AudioStream::DrawInfo() {
 
-    return true;
+    return;
 }
 

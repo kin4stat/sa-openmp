@@ -8,19 +8,19 @@ BEGIN_PACK
 class Config {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&FindFirstFree)> FindFirstFree_hook{ GetAddress(0x654D0) }; FindFirstFree_hook.before.connect(FindFirstFree);
-        static kthook::kthook_t<decltype(&GetIndex)> GetIndex_hook{ GetAddress(0x65520) }; GetIndex_hook.before.connect(GetIndex);
-        static kthook::kthook_t<decltype(&DoesExist)> DoesExist_hook{ GetAddress(0x655C0) }; DoesExist_hook.before.connect(DoesExist);
-        static kthook::kthook_t<decltype(&CreateEntry)> CreateEntry_hook{ GetAddress(0x655E0) }; CreateEntry_hook.before.connect(CreateEntry);
-        static kthook::kthook_t<decltype(&GetIntValue)> GetIntValue_hook{ GetAddress(0x656A0) }; GetIntValue_hook.before.connect(GetIntValue);
-        static kthook::kthook_t<decltype(&GetFloatValue)> GetFloatValue_hook{ GetAddress(0x65700) }; GetFloatValue_hook.before.connect(GetFloatValue);
-        static kthook::kthook_t<decltype(&Free)> Free_hook{ GetAddress(0x65730) }; Free_hook.before.connect(Free);
-        static kthook::kthook_t<decltype(&GetValueType)> GetValueType_hook{ GetAddress(0x65790) }; GetValueType_hook.before.connect(GetValueType);
-        static kthook::kthook_t<decltype(&GetEntry)> GetEntry_hook{ GetAddress(0x657C0) }; GetEntry_hook.before.connect(GetEntry);
-        static kthook::kthook_t<decltype(&GetType)> GetType_hook{ GetAddress(0x657F0) }; GetType_hook.before.connect(GetType);
-        static kthook::kthook_t<decltype(&Save)> Save_hook{ GetAddress(0x65860) }; Save_hook.before.connect(Save);
-        static kthook::kthook_t<decltype(&Write)> Write_hook{ GetAddress(0x65A70) }; Write_hook.before.connect(Write);
-        static kthook::kthook_t<decltype(&Load)> Load_hook{ GetAddress(0x65B00) }; Load_hook.before.connect(Load);
+        ReversibleHooks::Install("Config", "FindFirstFree", GetAddress(0x654D0), &Config::FindFirstFree);
+        ReversibleHooks::Install("Config", "GetIndex", GetAddress(0x65520), &Config::GetIndex);
+        ReversibleHooks::Install("Config", "DoesExist", GetAddress(0x655C0), &Config::DoesExist);
+        ReversibleHooks::Install("Config", "CreateEntry", GetAddress(0x655E0), &Config::CreateEntry);
+        ReversibleHooks::Install("Config", "GetIntValue", GetAddress(0x656A0), &Config::GetIntValue);
+        ReversibleHooks::Install("Config", "GetFloatValue", GetAddress(0x65700), &Config::GetFloatValue);
+        ReversibleHooks::Install("Config", "Free", GetAddress(0x65730), &Config::Free);
+        ReversibleHooks::Install("Config", "GetValueType", GetAddress(0x65790), &Config::GetValueType);
+        ReversibleHooks::Install("Config", "GetEntry", GetAddress(0x657C0), &Config::GetEntry);
+        ReversibleHooks::Install("Config", "GetType", GetAddress(0x657F0), &Config::GetType);
+        ReversibleHooks::Install("Config", "Save", GetAddress(0x65860), &Config::Save);
+        ReversibleHooks::Install("Config", "Write", GetAddress(0x65A70), &Config::Write);
+        ReversibleHooks::Install("Config", "Load", GetAddress(0x65B00), &Config::Load);
     }
 
 
@@ -53,19 +53,19 @@ public:
     Config(const char* szFile);
     ~Config();
 
-    MAKE_RET(void) FindFirstFree();
-    MAKE_RET(int) GetIndex(const char* szEntry);
-    MAKE_RET(bool) DoesExist(const char* szEntry);
-    MAKE_RET(int) CreateEntry(const char* szName);
-    MAKE_RET(int) GetIntValue(const char* szEntry);
-    MAKE_RET(float) GetFloatValue(const char* szEntry);
-    MAKE_RET(BOOL) Free(const char* szEntry);
-    MAKE_RET(int) GetValueType(const char* szEntry);
-    MAKE_RET(ConfigEntry*) GetEntry(int nIndex);
-    MAKE_RET(int) GetType(const char* szString);
-    MAKE_RET(BOOL) Save();
-    MAKE_RET(void) Write(const char* szEntry, char* szBuffer);
-    MAKE_RET(BOOL) Load();
+    void FindFirstFree();
+    int GetIndex(const char* szEntry);
+    bool DoesExist(const char* szEntry);
+    int CreateEntry(const char* szName);
+    int GetIntValue(const char* szEntry);
+    float GetFloatValue(const char* szEntry);
+    BOOL Free(const char* szEntry);
+    int GetValueType(const char* szEntry);
+    ConfigEntry* GetEntry(int nIndex);
+    int GetType(const char* szString);
+    BOOL Save();
+    void Write(const char* szEntry, char* szBuffer);
+    BOOL Load();
 };
 
 END_PACK

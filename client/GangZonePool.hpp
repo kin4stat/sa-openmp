@@ -5,21 +5,38 @@
 
 BEGIN_PACK
 
+struct GangZone {
+    struct {
+        float left;
+        float bottom;
+        float right;
+        float top;
+    } m_rect;
+    D3DCOLOR m_color;
+    D3DCOLOR m_altColor;
+};
+
 class GangZonePool {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&StopFlashing)> StopFlashing_hook{ GetAddress(0x2200) }; StopFlashing_hook.before.connect(StopFlashing);
-        static kthook::kthook_t<decltype(&Delete)> Delete_hook{ GetAddress(0x2220) }; Delete_hook.before.connect(Delete);
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0x2250) }; Draw_hook.before.connect(Draw);
+        ReversibleHooks::Install("GangZonePool", "StopFlashing", GetAddress(0x2200), &GangZonePool::StopFlashing);
+        ReversibleHooks::Install("GangZonePool", "Delete", GetAddress(0x2220), &GangZonePool::Delete);
+        ReversibleHooks::Install("GangZonePool", "Draw", GetAddress(0x2250), &GangZonePool::Draw);
     }
 
 
+    enum { MAX_GANGZONES = 1024 };
 
+    GangZone* m_pObject[MAX_GANGZONES];
+    BOOL      m_bNotEmpty[MAX_GANGZONES];
+
+    
+    GangZonePool();
     ~GangZonePool();
 
-    MAKE_RET(void) StopFlashing(ID nId);
-    MAKE_RET(void) Delete(ID nId);
-    MAKE_RET(void) Draw();
+    void StopFlashing(ID nId);
+    void Delete(ID nId);
+    void Draw();
 };
 
 END_PACK

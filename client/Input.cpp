@@ -3,73 +3,73 @@
 Input::Input(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) Input::GetRect(CRect* pRect) {
+void Input::GetRect(CRect* pRect) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::Open() {
+void Input::Open() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::Close() {
+void Input::Close() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::AddRecall(const char* szString) {
+void Input::AddRecall(const char* szString) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::RecallUp() {
+void Input::RecallUp() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::RecallDown() {
+void Input::RecallDown() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::EnableCursor() {
+void Input::EnableCursor() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(CMDPROC) Input::GetCommandHandler(const char* szName) {
+CMDPROC Input::GetCommandHandler(const char* szName) {
 
-    return kthook::return_value<CMDPROC>::make_true();
+    return CMDPROC{};
 }
 
-MAKE_RET(void) Input::SetDefaultCommand(CMDPROC handler) {
+void Input::SetDefaultCommand(CMDPROC handler) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::AddCommand(const char* szName, CMDPROC handler) {
+void Input::AddCommand(const char* szName, CMDPROC handler) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Input::MsgProc(int uMsg, int wParam, int lParam) {
+BOOL Input::MsgProc(int uMsg, int wParam, int lParam) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Input::ResetDialogControls(CDXUTDialog* pGameUi) {
+void Input::ResetDialogControls(CDXUTDialog* pGameUi) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::Send(const char* szString) {
+void Input::Send(const char* szString) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Input::ProcessInput() {
+void Input::ProcessInput() {
 
-    return true;
+    return;
 }
 

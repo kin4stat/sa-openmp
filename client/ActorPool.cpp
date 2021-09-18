@@ -1,27 +1,30 @@
 #include "ActorPool.hpp"
 
-MAKE_RET(CActor*) ActorPool::Get(ID nId) {
+ActorPool::ActorPool() {
 
-    return kthook::return_value<CActor*>::make_true();
+}
+CActor* ActorPool::Get(ID nId) {
+
+    return CActor*{};
 }
 
-MAKE_RET(BOOL) ActorPool::DoesExist(ID nId) {
+BOOL ActorPool::DoesExist(ID nId) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) ActorPool::UpdateLargestId() {
+void ActorPool::UpdateLargestId() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) ActorPool::Delete(ID nId) {
+BOOL ActorPool::Delete(ID nId) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) ActorPool::Create(ActorInfo* pInfo) {
+BOOL ActorPool::Create(ActorInfo* pInfo) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 

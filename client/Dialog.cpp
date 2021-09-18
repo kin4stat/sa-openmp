@@ -3,38 +3,38 @@
 Dialog::Dialog(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) Dialog::GetScreenRect(CRect* pRect) {
+void Dialog::GetScreenRect(CRect* pRect) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Dialog::GetTextScreenLength(const char* szString) {
+int Dialog::GetTextScreenLength(const char* szString) {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Dialog::Hide() {
+void Dialog::Hide() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Dialog::ResetDialogControls(CDXUTDialog* pDialog) {
+void Dialog::ResetDialogControls(CDXUTDialog* pDialog) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Dialog::Show(int nId, int nType, const char* szCaption, const char* szText, const char* szLeftButton, const char* szRightButton, BOOL bServerside) {
+void Dialog::Show(int nId, int nType, const char* szCaption, const char* szText, const char* szLeftButton, const char* szRightButton, BOOL bServerside) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Dialog::Close(char nProcessButton) {
+void Dialog::Close(char nProcessButton) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Dialog::Draw() {
+void Dialog::Draw() {
 
-    return true;
+    return;
 }
 

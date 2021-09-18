@@ -3,28 +3,28 @@
 Fonts::Fonts(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) Fonts::OnLostDevice() {
+void Fonts::OnLostDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Fonts::OnResetDevice() {
+void Fonts::OnResetDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Fonts::GetTextScreenSize(void* pSize, const char* szText, int nFormat) {
+void Fonts::GetTextScreenSize(void* pSize, const char* szText, int nFormat) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Fonts::GetLittleTextScreenSize(void* pSize, const char* szText, int nFormat) {
+void Fonts::GetLittleTextScreenSize(void* pSize, const char* szText, int nFormat) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Fonts::Reset() {
+void Fonts::Reset() {
 
-    return true;
+    return;
 }
 

@@ -1,142 +1,145 @@
 #include "Entity.hpp"
 
-MAKE_RET(void) Entity::GetMatrix(CMatrix* pMatrix) {
+Entity::Entity() {
 
-    return true;
+}
+void Entity::GetMatrix(CMatrix* pMatrix) {
+
+    return;
 }
 
-MAKE_RET(void) Entity::SetMatrix(CMatrix matrix) {
+void Entity::SetMatrix(CMatrix matrix) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::GetSpeed(CVector* pVec) {
+void Entity::GetSpeed(CVector* pVec) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::SetSpeed(CVector vec) {
+void Entity::SetSpeed(CVector vec) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::GetTurnSpeed(CVector* pVec) {
+void Entity::GetTurnSpeed(CVector* pVec) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::SetTurnSpeed(CVector vec) {
+void Entity::SetTurnSpeed(CVector vec) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::ApplyTurnSpeed() {
+void Entity::ApplyTurnSpeed() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Entity::GetDistanceFromCentreOfMassToBaseOfModel() {
+float Entity::GetDistanceFromCentreOfMassToBaseOfModel() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Entity::GetBoundCentre(CVector* pVec) {
+void Entity::GetBoundCentre(CVector* pVec) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::SetModelIndex(int nModel) {
+void Entity::SetModelIndex(int nModel) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(int) Entity::GetModelIndex() {
+int Entity::GetModelIndex() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(void) Entity::Teleport(CVector position) {
+void Entity::Teleport(CVector position) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Entity::GetDistanceToLocalPlayer() {
+float Entity::GetDistanceToLocalPlayer() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(float) Entity::GetDistanceToCamera() {
+float Entity::GetDistanceToCamera() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(float) Entity::GetDistanceToPoint(CVector position) {
+float Entity::GetDistanceToPoint(CVector position) {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(BOOL) Entity::DoesExist() {
+BOOL Entity::DoesExist() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) Entity::EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY) {
+BOOL Entity::EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) Entity::HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY) {
+BOOL Entity::HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Entity::GetEulerInverted(float* x, float* y, float* z) {
+void Entity::GetEulerInverted(float* x, float* y, float* z) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Entity::IsIgnored() {
+BOOL Entity::IsIgnored() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) Entity::IsStationary() {
+BOOL Entity::IsStationary() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) Entity::GetCollisionFlag() {
+BOOL Entity::GetCollisionFlag() {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Entity::SetCollisionFlag(BOOL bEnable) {
+void Entity::SetCollisionFlag(BOOL bEnable) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(RwObject*) Entity::GetRwObject() {
+RwObject* Entity::GetRwObject() {
 
-    return kthook::return_value<RwObject*>::make_true();
+    return RwObject*{};
 }
 
-MAKE_RET(void) Entity::DeleteRwObject() {
+void Entity::DeleteRwObject() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Entity::UpdateRwFrame() {
+void Entity::UpdateRwFrame() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(float) Entity::GetDistanceToLocalPlayerNoHeight() {
+float Entity::GetDistanceToLocalPlayerNoHeight() {
 
-    return kthook::return_value<float>::make_true();
+    return float{};
 }
 
-MAKE_RET(void) Entity::SetCollisionProcessed(BOOL bProcessed) {
+void Entity::SetCollisionProcessed(BOOL bProcessed) {
 
-    return true;
+    return;
 }
 

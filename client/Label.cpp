@@ -3,28 +3,28 @@
 Label::Label(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) Label::OnLostDevice() {
+void Label::OnLostDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Label::OnResetDevice() {
+void Label::OnResetDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(BOOL) Label::HasNoObstacles(CVector position) {
+BOOL Label::HasNoObstacles(CVector position) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) Label::Begin() {
+void Label::Begin() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Label::End() {
+void Label::End() {
 
-    return true;
+    return;
 }
 

@@ -3,13 +3,13 @@
 TextDraw::TextDraw(Transmit* pData, const char* szText) {
 
 }
-MAKE_RET(void) TextDraw::SetText(const char* szText) {
+void TextDraw::SetText(const char* szText) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) TextDraw::Draw() {
+void TextDraw::Draw() {
 
-    return true;
+    return;
 }
 

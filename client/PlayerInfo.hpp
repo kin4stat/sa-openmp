@@ -2,6 +2,7 @@
 #define PLAYERINFO_HPP_
 
 #include "common.hpp"
+#include "RemotePlayer.hpp"
 
 BEGIN_PACK
 
@@ -11,7 +12,7 @@ public:
     }
 
 
-    CRemotePlayer* m_pPlayer;
+    RemotePlayer* m_pPlayer;
     int            m_nPing;
 #ifndef _DEBUG
 private:

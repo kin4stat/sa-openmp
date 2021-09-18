@@ -2,26 +2,29 @@
 #define OBJECT_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
+#include "Matrix.hpp"
+#include "Entity.hpp"
 
 BEGIN_PACK
 
 class Object {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&GetDistance)> GetDistance_hook{ GetAddress(0xA7730) }; GetDistance_hook.before.connect(GetDistance);
-        static kthook::kthook_t<decltype(&Stop)> Stop_hook{ GetAddress(0xA77A0) }; Stop_hook.before.connect(Stop);
-        static kthook::kthook_t<decltype(&SetRotation)> SetRotation_hook{ GetAddress(0xA7810) }; SetRotation_hook.before.connect(SetRotation);
-        static kthook::kthook_t<decltype(&SetAttachedToVehicle)> SetAttachedToVehicle_hook{ GetAddress(0xA7880) }; SetAttachedToVehicle_hook.before.connect(SetAttachedToVehicle);
-        static kthook::kthook_t<decltype(&AttachToVehicle)> AttachToVehicle_hook{ GetAddress(0xA79B0) }; AttachToVehicle_hook.before.connect(AttachToVehicle);
-        static kthook::kthook_t<decltype(&AttachToObject)> AttachToObject_hook{ GetAddress(0xA7A30) }; AttachToObject_hook.before.connect(AttachToObject);
-        static kthook::kthook_t<decltype(&Rotate)> Rotate_hook{ GetAddress(0xA7B30) }; Rotate_hook.before.connect(Rotate);
-        static kthook::kthook_t<decltype(&AttachedToMovingEntity)> AttachedToMovingEntity_hook{ GetAddress(0xA7C30) }; AttachedToMovingEntity_hook.before.connect(AttachedToMovingEntity);
-        static kthook::kthook_t<decltype(&GetMaterialSize)> GetMaterialSize_hook{ GetAddress(0xA83F0) }; GetMaterialSize_hook.before.connect(GetMaterialSize);
-        static kthook::kthook_t<decltype(&Render)> Render_hook{ GetAddress(0xA86D0) }; Render_hook.before.connect(Render);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0xA8DC0) }; Process_hook.before.connect(Process);
-        static kthook::kthook_t<decltype(&ConstructMaterialText)> ConstructMaterialText_hook{ GetAddress(0xA9650) }; ConstructMaterialText_hook.before.connect(ConstructMaterialText);
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0xA9700) }; Draw_hook.before.connect(Draw);
-        static kthook::kthook_t<decltype(&ShutdownMaterialText)> ShutdownMaterialText_hook{ GetAddress(0xA8640) }; ShutdownMaterialText_hook.before.connect(ShutdownMaterialText);
+        ReversibleHooks::Install("Object", "GetDistance", GetAddress(0xA7730), &Object::GetDistance);
+        ReversibleHooks::Install("Object", "Stop", GetAddress(0xA77A0), &Object::Stop);
+        ReversibleHooks::Install("Object", "SetRotation", GetAddress(0xA7810), &Object::SetRotation);
+        ReversibleHooks::Install("Object", "SetAttachedToVehicle", GetAddress(0xA7880), &Object::SetAttachedToVehicle);
+        ReversibleHooks::Install("Object", "AttachToVehicle", GetAddress(0xA79B0), &Object::AttachToVehicle);
+        ReversibleHooks::Install("Object", "AttachToObject", GetAddress(0xA7A30), &Object::AttachToObject);
+        ReversibleHooks::Install("Object", "Rotate", GetAddress(0xA7B30), &Object::Rotate);
+        ReversibleHooks::Install("Object", "AttachedToMovingEntity", GetAddress(0xA7C30), &Object::AttachedToMovingEntity);
+        ReversibleHooks::Install("Object", "GetMaterialSize", GetAddress(0xA83F0), &Object::GetMaterialSize);
+        ReversibleHooks::Install("Object", "Render", GetAddress(0xA86D0), &Object::Render);
+        ReversibleHooks::Install("Object", "Process", GetAddress(0xA8DC0), &Object::Process);
+        ReversibleHooks::Install("Object", "ConstructMaterialText", GetAddress(0xA9650), &Object::ConstructMaterialText);
+        ReversibleHooks::Install("Object", "Draw", GetAddress(0xA9700), &Object::Draw);
+        ReversibleHooks::Install("Object", "ShutdownMaterialText", GetAddress(0xA8640), &Object::ShutdownMaterialText);
     }
 
 
@@ -32,18 +35,18 @@ public:
     bool    m_bDontCollideWithCamera;
     float   m_fDrawDistance;
     float   field_0;
-    CVector m_position;
+    Vector m_position;
     float   m_fDistanceToCamera;
     bool    m_bDrawLast;
     char    pad_2[64];
-    CVector m_rotation;
+    Vector m_rotation;
     char    pad_3[5];
     ID      m_nAttachedToVehicle;
     ID      m_nAttachedToObject;
-    CVector m_attachOffset;
-    CVector m_attachRotation;
+    Vector m_attachOffset;
+    Vector m_attachRotation;
     char    field_1;
-    CMatrix m_targetMatrix;
+    Matrix m_targetMatrix;
     char    pad_4[148];
     char    m_bMoving;
     float   m_fSpeed;
@@ -107,23 +110,23 @@ public:
     char pad_9[13];
 
     
-    Object(int nModel, CVector position, CVector rotation, float fDrawDistance, int a10, char a11, char a12);
+    Object(int nModel, Vector position, Vector rotation, float fDrawDistance, int a10, char a11, char a12);
     ~Object();
 
-    MAKE_RET(float) GetDistance(const CMatrix* pMatrix);
-    MAKE_RET(void) Stop();
-    MAKE_RET(void) SetRotation(const CVector* pVector);
-    MAKE_RET(void) SetAttachedToVehicle(ID nId, const CVector* pOffset, const CVector* pRotation);
-    MAKE_RET(void) AttachToVehicle(CVehicle* pVehicle);
-    MAKE_RET(void) AttachToObject(CObject* pObject);
-    MAKE_RET(void) Rotate(CVector vector);
-    MAKE_RET(BOOL) AttachedToMovingEntity();
-    MAKE_RET(bool) GetMaterialSize(int nSize, int* x, int* y);
-    MAKE_RET(void) Render();
-    MAKE_RET(void) Process(float fElapsedTime);
-    MAKE_RET(void) ConstructMaterialText();
-    MAKE_RET(void) Draw();
-    MAKE_RET(void) ShutdownMaterialText();
+    float GetDistance(const Matrix* pMatrix);
+    void Stop();
+    void SetRotation(const Vector* pVector);
+    void SetAttachedToVehicle(ID nId, const Vector* pOffset, const Vector* pRotation);
+    void AttachToVehicle(Vehicle* pVehicle);
+    void AttachToObject(Object* pObject);
+    void Rotate(Vector vector);
+    BOOL AttachedToMovingEntity();
+    bool GetMaterialSize(int nSize, int* x, int* y);
+    void Render();
+    void Process(float fElapsedTime);
+    void ConstructMaterialText();
+    void Draw();
+    void ShutdownMaterialText();
 };
 
 END_PACK

@@ -2,17 +2,18 @@
 #define DEATHWINDOW_HPP_
 
 #include "common.hpp"
+#include "Rect.hpp"
 
 BEGIN_PACK
 
 class DeathWindow {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&InitializeAuxFonts)> InitializeAuxFonts_hook{ GetAddress(0x69440) }; InitializeAuxFonts_hook.before.connect(InitializeAuxFonts);
-        static kthook::kthook_t<decltype(&PushBack)> PushBack_hook{ GetAddress(0x694B0) }; PushBack_hook.before.connect(PushBack);
-        static kthook::kthook_t<decltype(&GetWeaponSpriteRectSize)> GetWeaponSpriteRectSize_hook{ GetAddress(0x69660) }; GetWeaponSpriteRectSize_hook.before.connect(GetWeaponSpriteRectSize);
-        static kthook::kthook_t<decltype(&ResetFonts)> ResetFonts_hook{ GetAddress(0x699E0) }; ResetFonts_hook.before.connect(ResetFonts);
-        static kthook::kthook_t<decltype(&Draw)> Draw_hook{ GetAddress(0x69B70) }; Draw_hook.before.connect(Draw);
+        ReversibleHooks::Install("DeathWindow", "InitializeAuxFonts", GetAddress(0x69440), &DeathWindow::InitializeAuxFonts);
+        ReversibleHooks::Install("DeathWindow", "PushBack", GetAddress(0x694B0), &DeathWindow::PushBack);
+        ReversibleHooks::Install("DeathWindow", "GetWeaponSpriteRectSize", GetAddress(0x69660), &DeathWindow::GetWeaponSpriteRectSize);
+        ReversibleHooks::Install("DeathWindow", "ResetFonts", GetAddress(0x699E0), &DeathWindow::ResetFonts);
+        ReversibleHooks::Install("DeathWindow", "Draw", GetAddress(0x69B70), &DeathWindow::Draw);
     }
 
 
@@ -43,11 +44,11 @@ public:
     DeathWindow(IDirect3DDevice9* pDevice);
     ~DeathWindow();
 
-    MAKE_RET(void) InitializeAuxFonts();
-    MAKE_RET(void) PushBack();
-    MAKE_RET(void) GetWeaponSpriteRectSize(void* pPoint);
-    MAKE_RET(void) ResetFonts();
-    MAKE_RET(void) Draw();
+    void InitializeAuxFonts();
+    void PushBack();
+    void GetWeaponSpriteRectSize(void* pPoint);
+    void ResetFonts();
+    void Draw();
 };
 
 END_PACK

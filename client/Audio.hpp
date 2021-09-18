@@ -2,32 +2,33 @@
 #define AUDIO_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
 
 BEGIN_PACK
 
 class Audio {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&GetRadioStation)> GetRadioStation_hook{ GetAddress(0xA1AE0) }; GetRadioStation_hook.before.connect(GetRadioStation);
-        static kthook::kthook_t<decltype(&StartRadio)> StartRadio_hook{ GetAddress(0xA1B10) }; StartRadio_hook.before.connect(StartRadio);
-        static kthook::kthook_t<decltype(&StopRadio)> StopRadio_hook{ GetAddress(0xA1B30) }; StopRadio_hook.before.connect(StopRadio);
-        static kthook::kthook_t<decltype(&GetRadioVolume)> GetRadioVolume_hook{ GetAddress(0xA1B50) }; GetRadioVolume_hook.before.connect(GetRadioVolume);
-        static kthook::kthook_t<decltype(&StopOutdoorAmbienceTrack)> StopOutdoorAmbienceTrack_hook{ GetAddress(0xA1B60) }; StopOutdoorAmbienceTrack_hook.before.connect(StopOutdoorAmbienceTrack);
-        static kthook::kthook_t<decltype(&SetOutdoorAmbienceTrack)> SetOutdoorAmbienceTrack_hook{ GetAddress(0xA1B70) }; SetOutdoorAmbienceTrack_hook.before.connect(SetOutdoorAmbienceTrack);
-        static kthook::kthook_t<decltype(&IsOutdoorAmbienceTrackDisabled)> IsOutdoorAmbienceTrackDisabled_hook{ GetAddress(0xA1C70) }; IsOutdoorAmbienceTrackDisabled_hook.before.connect(IsOutdoorAmbienceTrackDisabled);
+        ReversibleHooks::Install("Audio", "GetRadioStation", GetAddress(0xA1AE0), &Audio::GetRadioStation);
+        ReversibleHooks::Install("Audio", "StartRadio", GetAddress(0xA1B10), &Audio::StartRadio);
+        ReversibleHooks::Install("Audio", "StopRadio", GetAddress(0xA1B30), &Audio::StopRadio);
+        ReversibleHooks::Install("Audio", "GetRadioVolume", GetAddress(0xA1B50), &Audio::GetRadioVolume);
+        ReversibleHooks::Install("Audio", "StopOutdoorAmbienceTrack", GetAddress(0xA1B60), &Audio::StopOutdoorAmbienceTrack);
+        ReversibleHooks::Install("Audio", "SetOutdoorAmbienceTrack", GetAddress(0xA1B70), &Audio::SetOutdoorAmbienceTrack);
+        ReversibleHooks::Install("Audio", "IsOutdoorAmbienceTrackDisabled", GetAddress(0xA1C70), &Audio::IsOutdoorAmbienceTrackDisabled);
     }
 
 
 
     ~Audio();
 
-    MAKE_RET(int) GetRadioStation();
-    MAKE_RET(void) StartRadio(int nStation);
-    MAKE_RET(void) StopRadio();
-    MAKE_RET(float) GetRadioVolume();
-    MAKE_RET(void) StopOutdoorAmbienceTrack();
-    MAKE_RET(void) SetOutdoorAmbienceTrack(int nSound);
-    MAKE_RET(bool) IsOutdoorAmbienceTrackDisabled();
+    int GetRadioStation();
+    void StartRadio(int nStation);
+    void StopRadio();
+    float GetRadioVolume();
+    void StopOutdoorAmbienceTrack();
+    void SetOutdoorAmbienceTrack(int nSound);
+    bool IsOutdoorAmbienceTrackDisabled();
 };
 
 END_PACK

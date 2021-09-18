@@ -3,43 +3,43 @@
 Scoreboard::Scoreboard(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) Scoreboard::Recalc() {
+void Scoreboard::Recalc() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::GetRect(CRect* pRect) {
+void Scoreboard::GetRect(CRect* pRect) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::Close(bool bHideCursor) {
+void Scoreboard::Close(bool bHideCursor) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::ResetDialogControls(CDXUTDialog* pDialog) {
+void Scoreboard::ResetDialogControls(CDXUTDialog* pDialog) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::SendNotification() {
+void Scoreboard::SendNotification() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::UpdateList() {
+void Scoreboard::UpdateList() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::Draw() {
+void Scoreboard::Draw() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) Scoreboard::Enable() {
+void Scoreboard::Enable() {
 
-    return true;
+    return;
 }
 

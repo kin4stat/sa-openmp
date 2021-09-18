@@ -3,13 +3,13 @@
 ObjectMaterialText::ObjectMaterialText(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) ObjectMaterialText::OnResetDevice() {
+void ObjectMaterialText::OnResetDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectMaterialText::OnLostDevice() {
+void ObjectMaterialText::OnLostDevice() {
 
-    return true;
+    return;
 }
 

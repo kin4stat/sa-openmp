@@ -2,28 +2,37 @@
 #define MENUPOOL_HPP_
 
 #include "common.hpp"
+#include "Menu.hpp"
 
 BEGIN_PACK
 
 class MenuPool {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&Delete)> Delete_hook{ GetAddress(0x7C00) }; Delete_hook.before.connect(Delete);
-        static kthook::kthook_t<decltype(&Show)> Show_hook{ GetAddress(0x7C50) }; Show_hook.before.connect(Show);
-        static kthook::kthook_t<decltype(&Hide)> Hide_hook{ GetAddress(0x7CB0) }; Hide_hook.before.connect(Hide);
-        static kthook::kthook_t<decltype(&GetTextPointer)> GetTextPointer_hook{ GetAddress(0x7CF0) }; GetTextPointer_hook.before.connect(GetTextPointer);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0x7E90) }; Process_hook.before.connect(Process);
+        ReversibleHooks::Install("MenuPool", "Delete", GetAddress(0x7C00), &MenuPool::Delete);
+        ReversibleHooks::Install("MenuPool", "Show", GetAddress(0x7C50), &MenuPool::Show);
+        ReversibleHooks::Install("MenuPool", "Hide", GetAddress(0x7CB0), &MenuPool::Hide);
+        ReversibleHooks::Install("MenuPool", "GetTextPointer", GetAddress(0x7CF0), &MenuPool::GetTextPointer);
+        ReversibleHooks::Install("MenuPool", "Process", GetAddress(0x7E90), &MenuPool::Process);
     }
 
 
+    enum { MAX_MENUS = 128 };
 
+    Menu* m_pObject[MAX_MENUS];
+    BOOL   m_bNotEmpty[MAX_MENUS];
+    NUMBER m_nCurrent;
+    bool   m_bCanceled;
+
+    
+    MenuPool();
     ~MenuPool();
 
-    MAKE_RET(BOOL) Delete(NUMBER nId);
-    MAKE_RET(void) Show(NUMBER nId);
-    MAKE_RET(void) Hide(NUMBER nId);
-    MAKE_RET(char*) GetTextPointer(const char* szName);
-    MAKE_RET(void) Process();
+    BOOL Delete(NUMBER nId);
+    void Show(NUMBER nId);
+    void Hide(NUMBER nId);
+    char* GetTextPointer(const char* szName);
+    void Process();
 };
 
 END_PACK

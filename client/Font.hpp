@@ -14,9 +14,8 @@ public:
     // void **m_lpVtbl = 0xEA3B8;
     ID3DXFont* m_pFont;
 
-    CFont();
     
-    Font(ID3DXFont* pFont);
+    Font();
     ~Font();
 
 };

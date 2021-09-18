@@ -3,23 +3,23 @@
 SpawnScreen::SpawnScreen(IDirect3DDevice9* pDevice) {
 
 }
-MAKE_RET(void) SpawnScreen::SetText(const char* szString) {
+void SpawnScreen::SetText(const char* szString) {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) SpawnScreen::OnResetDevice() {
+void SpawnScreen::OnResetDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) SpawnScreen::OnLostDevice() {
+void SpawnScreen::OnLostDevice() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) SpawnScreen::Draw() {
+void SpawnScreen::Draw() {
 
-    return true;
+    return;
 }
 

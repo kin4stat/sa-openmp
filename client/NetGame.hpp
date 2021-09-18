@@ -2,64 +2,84 @@
 #define NETGAME_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
+#include "PlayerPool.hpp"
+#include "VehiclePool.hpp"
+#include "GangZonePool.hpp"
+#include "PickupPool.hpp"
+#include "LabelPool.hpp"
+#include "MenuPool.hpp"
+#include "TextDrawPool.hpp"
+#include "ActorPool.hpp"
+#include "ObjectPool.hpp"
+
+struct Packet;
+struct NetworkID;
+class RakClientInterface;
 
 BEGIN_PACK
+
+enum MarkersMode {
+    MARKERS_MODE_OFF,
+    MARKERS_MODE_GLOBAL,
+    MARKERS_MODE_STREAMED
+};
 
 class NetGame {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&GetPickupPool)> GetPickupPool_hook{ GetAddress(0x8170) }; GetPickupPool_hook.before.connect(GetPickupPool);
-        static kthook::kthook_t<decltype(&GetMenuPool)> GetMenuPool_hook{ GetAddress(0x8180) }; GetMenuPool_hook.before.connect(GetMenuPool);
-        static kthook::kthook_t<decltype(&SetState)> SetState_hook{ GetAddress(0x8190) }; SetState_hook.before.connect(SetState);
-        static kthook::kthook_t<decltype(&InitializePools)> InitializePools_hook{ GetAddress(0x81D0) }; InitializePools_hook.before.connect(InitializePools);
-        static kthook::kthook_t<decltype(&InitialNotification)> InitialNotification_hook{ GetAddress(0x83F0) }; InitialNotification_hook.before.connect(InitialNotification);
-        static kthook::kthook_t<decltype(&InitializeGameLogic)> InitializeGameLogic_hook{ GetAddress(0x8580) }; InitializeGameLogic_hook.before.connect(InitializeGameLogic);
-        static kthook::kthook_t<decltype(&Connect)> Connect_hook{ GetAddress(0x85D0) }; Connect_hook.before.connect(Connect);
-        static kthook::kthook_t<decltype(&SpawnScreen)> SpawnScreen_hook{ GetAddress(0x8640) }; SpawnScreen_hook.before.connect(SpawnScreen);
-        static kthook::kthook_t<decltype(&Packet_RSAPublicKeyMismatch)> Packet_RSAPublicKeyMismatch_hook{ GetAddress(0x89E0) }; Packet_RSAPublicKeyMismatch_hook.before.connect(Packet_RSAPublicKeyMismatch);
-        static kthook::kthook_t<decltype(&Packet_ConnectionBanned)> Packet_ConnectionBanned_hook{ GetAddress(0x8A00) }; Packet_ConnectionBanned_hook.before.connect(Packet_ConnectionBanned);
-        static kthook::kthook_t<decltype(&Packet_ConnectionRequestAcepted)> Packet_ConnectionRequestAcepted_hook{ GetAddress(0x8A20) }; Packet_ConnectionRequestAcepted_hook.before.connect(Packet_ConnectionRequestAcepted);
-        static kthook::kthook_t<decltype(&Packet_NoFreeIncomingConnections)> Packet_NoFreeIncomingConnections_hook{ GetAddress(0x8A40) }; Packet_NoFreeIncomingConnections_hook.before.connect(Packet_NoFreeIncomingConnections);
-        static kthook::kthook_t<decltype(&Packet_DisconnectionNotification)> Packet_DisconnectionNotification_hook{ GetAddress(0x8A70) }; Packet_DisconnectionNotification_hook.before.connect(Packet_DisconnectionNotification);
-        static kthook::kthook_t<decltype(&Packet_InvalidPassword)> Packet_InvalidPassword_hook{ GetAddress(0x8AB0) }; Packet_InvalidPassword_hook.before.connect(Packet_InvalidPassword);
-        static kthook::kthook_t<decltype(&Packet_ConnectionAttemptFailed)> Packet_ConnectionAttemptFailed_hook{ GetAddress(0x8AF0) }; Packet_ConnectionAttemptFailed_hook.before.connect(Packet_ConnectionAttemptFailed);
-        static kthook::kthook_t<decltype(&UpdatePlayers)> UpdatePlayers_hook{ GetAddress(0x8BA0) }; UpdatePlayers_hook.before.connect(UpdatePlayers);
-        static kthook::kthook_t<decltype(&DeleteMarker)> DeleteMarker_hook{ GetAddress(0x8C40) }; DeleteMarker_hook.before.connect(DeleteMarker);
-        static kthook::kthook_t<decltype(&ResetPlayerPool)> ResetPlayerPool_hook{ GetAddress(0x8C70) }; ResetPlayerPool_hook.before.connect(ResetPlayerPool);
-        static kthook::kthook_t<decltype(&ResetVehiclePool)> ResetVehiclePool_hook{ GetAddress(0x8D10) }; ResetVehiclePool_hook.before.connect(ResetVehiclePool);
-        static kthook::kthook_t<decltype(&ResetTextDrawPool)> ResetTextDrawPool_hook{ GetAddress(0x8DB0) }; ResetTextDrawPool_hook.before.connect(ResetTextDrawPool);
-        static kthook::kthook_t<decltype(&ResetObjectPool)> ResetObjectPool_hook{ GetAddress(0x8E50) }; ResetObjectPool_hook.before.connect(ResetObjectPool);
-        static kthook::kthook_t<decltype(&ResetGangZonePool)> ResetGangZonePool_hook{ GetAddress(0x8EF0) }; ResetGangZonePool_hook.before.connect(ResetGangZonePool);
-        static kthook::kthook_t<decltype(&ResetPickupPool)> ResetPickupPool_hook{ GetAddress(0x8F90) }; ResetPickupPool_hook.before.connect(ResetPickupPool);
-        static kthook::kthook_t<decltype(&ResetMenuPool)> ResetMenuPool_hook{ GetAddress(0x8FF0) }; ResetMenuPool_hook.before.connect(ResetMenuPool);
-        static kthook::kthook_t<decltype(&ResetLabelPool)> ResetLabelPool_hook{ GetAddress(0x9080) }; ResetLabelPool_hook.before.connect(ResetLabelPool);
-        static kthook::kthook_t<decltype(&ResetActorPool)> ResetActorPool_hook{ GetAddress(0x9120) }; ResetActorPool_hook.before.connect(ResetActorPool);
-        static kthook::kthook_t<decltype(&Packet_UnoccupiedSync)> Packet_UnoccupiedSync_hook{ GetAddress(0x96D0) }; Packet_UnoccupiedSync_hook.before.connect(Packet_UnoccupiedSync);
-        static kthook::kthook_t<decltype(&Packet_BulletSync)> Packet_BulletSync_hook{ GetAddress(0x97D0) }; Packet_BulletSync_hook.before.connect(Packet_BulletSync);
-        static kthook::kthook_t<decltype(&Packet_AimSync)> Packet_AimSync_hook{ GetAddress(0x98D0) }; Packet_AimSync_hook.before.connect(Packet_AimSync);
-        static kthook::kthook_t<decltype(&Packet_PassengerSync)> Packet_PassengerSync_hook{ GetAddress(0x99C0) }; Packet_PassengerSync_hook.before.connect(Packet_PassengerSync);
-        static kthook::kthook_t<decltype(&Packet_TrailerSync)> Packet_TrailerSync_hook{ GetAddress(0x9AB0) }; Packet_TrailerSync_hook.before.connect(Packet_TrailerSync);
-        static kthook::kthook_t<decltype(&Packet_MarkersSync)> Packet_MarkersSync_hook{ GetAddress(0x9BA0) }; Packet_MarkersSync_hook.before.connect(Packet_MarkersSync);
-        static kthook::kthook_t<decltype(&Packet_AuthKey)> Packet_AuthKey_hook{ GetAddress(0x9D90) }; Packet_AuthKey_hook.before.connect(Packet_AuthKey);
-        static kthook::kthook_t<decltype(&ResetMarkers)> ResetMarkers_hook{ GetAddress(0x9F50) }; ResetMarkers_hook.before.connect(ResetMarkers);
-        static kthook::kthook_t<decltype(&CreateMarker)> CreateMarker_hook{ GetAddress(0x9F90) }; CreateMarker_hook.before.connect(CreateMarker);
-        static kthook::kthook_t<decltype(&ResetPools)> ResetPools_hook{ GetAddress(0xA190) }; ResetPools_hook.before.connect(ResetPools);
-        static kthook::kthook_t<decltype(&ShutdownForRestart)> ShutdownForRestart_hook{ GetAddress(0xA1E0) }; ShutdownForRestart_hook.before.connect(ShutdownForRestart);
-        static kthook::kthook_t<decltype(&Packet_PlayerSync)> Packet_PlayerSync_hook{ GetAddress(0xA3E0) }; Packet_PlayerSync_hook.before.connect(Packet_PlayerSync);
-        static kthook::kthook_t<decltype(&Packet_VehicleSync)> Packet_VehicleSync_hook{ GetAddress(0xA6B0) }; Packet_VehicleSync_hook.before.connect(Packet_VehicleSync);
-        static kthook::kthook_t<decltype(&Packet_ConnectionLost)> Packet_ConnectionLost_hook{ GetAddress(0xA990) }; Packet_ConnectionLost_hook.before.connect(Packet_ConnectionLost);
-        static kthook::kthook_t<decltype(&Packet_ConnectionSucceeded)> Packet_ConnectionSucceeded_hook{ GetAddress(0xAA20) }; Packet_ConnectionSucceeded_hook.before.connect(Packet_ConnectionSucceeded);
-        static kthook::kthook_t<decltype(&UpdateNetwork)> UpdateNetwork_hook{ GetAddress(0xAF20) }; UpdateNetwork_hook.before.connect(UpdateNetwork);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0xB270) }; Process_hook.before.connect(Process);
-        static kthook::kthook_t<decltype(&ProcessGameStuff)> ProcessGameStuff_hook{ GetAddress(0x87B0) }; ProcessGameStuff_hook.before.connect(ProcessGameStuff);
-        static kthook::kthook_t<decltype(&GetPlayerPool)> GetPlayerPool_hook{ GetAddress(0x1160) }; GetPlayerPool_hook.before.connect(GetPlayerPool);
-        static kthook::kthook_t<decltype(&GetObjectPool)> GetObjectPool_hook{ GetAddress(0x2DF0) }; GetObjectPool_hook.before.connect(GetObjectPool);
-        static kthook::kthook_t<decltype(&GetActorPool)> GetActorPool_hook{ GetAddress(0x2E00) }; GetActorPool_hook.before.connect(GetActorPool);
-        static kthook::kthook_t<decltype(&GetState)> GetState_hook{ GetAddress(0x2E10) }; GetState_hook.before.connect(GetState);
-        static kthook::kthook_t<decltype(&LanMode)> LanMode_hook{ GetAddress(0x2E20) }; LanMode_hook.before.connect(LanMode);
-        static kthook::kthook_t<decltype(&GetVehiclePool)> GetVehiclePool_hook{ GetAddress(0x1170) }; GetVehiclePool_hook.before.connect(GetVehiclePool);
-        static kthook::kthook_t<decltype(&GetRakClient)> GetRakClient_hook{ GetAddress(0x1A40) }; GetRakClient_hook.before.connect(GetRakClient);
-        static kthook::kthook_t<decltype(&GetCounter)> GetCounter_hook{ GetAddress(0x8570) }; GetCounter_hook.before.connect(GetCounter);
+        ReversibleHooks::Install("NetGame", "GetPickupPool", GetAddress(0x8170), &NetGame::GetPickupPool);
+        ReversibleHooks::Install("NetGame", "GetMenuPool", GetAddress(0x8180), &NetGame::GetMenuPool);
+        ReversibleHooks::Install("NetGame", "SetState", GetAddress(0x8190), &NetGame::SetState);
+        ReversibleHooks::Install("NetGame", "InitializePools", GetAddress(0x81D0), &NetGame::InitializePools);
+        ReversibleHooks::Install("NetGame", "InitialNotification", GetAddress(0x83F0), &NetGame::InitialNotification);
+        ReversibleHooks::Install("NetGame", "InitializeGameLogic", GetAddress(0x8580), &NetGame::InitializeGameLogic);
+        ReversibleHooks::Install("NetGame", "Connect", GetAddress(0x85D0), &NetGame::Connect);
+        ReversibleHooks::Install("NetGame", "SpawnScreen", GetAddress(0x8640), &NetGame::SpawnScreen);
+        ReversibleHooks::Install("NetGame", "Packet_RSAPublicKeyMismatch", GetAddress(0x89E0), &NetGame::Packet_RSAPublicKeyMismatch);
+        ReversibleHooks::Install("NetGame", "Packet_ConnectionBanned", GetAddress(0x8A00), &NetGame::Packet_ConnectionBanned);
+        ReversibleHooks::Install("NetGame", "Packet_ConnectionRequestAcepted", GetAddress(0x8A20), &NetGame::Packet_ConnectionRequestAcepted);
+        ReversibleHooks::Install("NetGame", "Packet_NoFreeIncomingConnections", GetAddress(0x8A40), &NetGame::Packet_NoFreeIncomingConnections);
+        ReversibleHooks::Install("NetGame", "Packet_DisconnectionNotification", GetAddress(0x8A70), &NetGame::Packet_DisconnectionNotification);
+        ReversibleHooks::Install("NetGame", "Packet_InvalidPassword", GetAddress(0x8AB0), &NetGame::Packet_InvalidPassword);
+        ReversibleHooks::Install("NetGame", "Packet_ConnectionAttemptFailed", GetAddress(0x8AF0), &NetGame::Packet_ConnectionAttemptFailed);
+        ReversibleHooks::Install("NetGame", "UpdatePlayers", GetAddress(0x8BA0), &NetGame::UpdatePlayers);
+        ReversibleHooks::Install("NetGame", "DeleteMarker", GetAddress(0x8C40), &NetGame::DeleteMarker);
+        ReversibleHooks::Install("NetGame", "ResetPlayerPool", GetAddress(0x8C70), &NetGame::ResetPlayerPool);
+        ReversibleHooks::Install("NetGame", "ResetVehiclePool", GetAddress(0x8D10), &NetGame::ResetVehiclePool);
+        ReversibleHooks::Install("NetGame", "ResetTextDrawPool", GetAddress(0x8DB0), &NetGame::ResetTextDrawPool);
+        ReversibleHooks::Install("NetGame", "ResetObjectPool", GetAddress(0x8E50), &NetGame::ResetObjectPool);
+        ReversibleHooks::Install("NetGame", "ResetGangZonePool", GetAddress(0x8EF0), &NetGame::ResetGangZonePool);
+        ReversibleHooks::Install("NetGame", "ResetPickupPool", GetAddress(0x8F90), &NetGame::ResetPickupPool);
+        ReversibleHooks::Install("NetGame", "ResetMenuPool", GetAddress(0x8FF0), &NetGame::ResetMenuPool);
+        ReversibleHooks::Install("NetGame", "ResetLabelPool", GetAddress(0x9080), &NetGame::ResetLabelPool);
+        ReversibleHooks::Install("NetGame", "ResetActorPool", GetAddress(0x9120), &NetGame::ResetActorPool);
+        ReversibleHooks::Install("NetGame", "Packet_UnoccupiedSync", GetAddress(0x96D0), &NetGame::Packet_UnoccupiedSync);
+        ReversibleHooks::Install("NetGame", "Packet_BulletSync", GetAddress(0x97D0), &NetGame::Packet_BulletSync);
+        ReversibleHooks::Install("NetGame", "Packet_AimSync", GetAddress(0x98D0), &NetGame::Packet_AimSync);
+        ReversibleHooks::Install("NetGame", "Packet_PassengerSync", GetAddress(0x99C0), &NetGame::Packet_PassengerSync);
+        ReversibleHooks::Install("NetGame", "Packet_TrailerSync", GetAddress(0x9AB0), &NetGame::Packet_TrailerSync);
+        ReversibleHooks::Install("NetGame", "Packet_MarkersSync", GetAddress(0x9BA0), &NetGame::Packet_MarkersSync);
+        ReversibleHooks::Install("NetGame", "Packet_AuthKey", GetAddress(0x9D90), &NetGame::Packet_AuthKey);
+        ReversibleHooks::Install("NetGame", "ResetMarkers", GetAddress(0x9F50), &NetGame::ResetMarkers);
+        ReversibleHooks::Install("NetGame", "CreateMarker", GetAddress(0x9F90), &NetGame::CreateMarker);
+        ReversibleHooks::Install("NetGame", "ResetPools", GetAddress(0xA190), &NetGame::ResetPools);
+        ReversibleHooks::Install("NetGame", "ShutdownForRestart", GetAddress(0xA1E0), &NetGame::ShutdownForRestart);
+        ReversibleHooks::Install("NetGame", "Packet_PlayerSync", GetAddress(0xA3E0), &NetGame::Packet_PlayerSync);
+        ReversibleHooks::Install("NetGame", "Packet_VehicleSync", GetAddress(0xA6B0), &NetGame::Packet_VehicleSync);
+        ReversibleHooks::Install("NetGame", "Packet_ConnectionLost", GetAddress(0xA990), &NetGame::Packet_ConnectionLost);
+        ReversibleHooks::Install("NetGame", "Packet_ConnectionSucceeded", GetAddress(0xAA20), &NetGame::Packet_ConnectionSucceeded);
+        ReversibleHooks::Install("NetGame", "UpdateNetwork", GetAddress(0xAF20), &NetGame::UpdateNetwork);
+        ReversibleHooks::Install("NetGame", "Process", GetAddress(0xB270), &NetGame::Process);
+        ReversibleHooks::Install("NetGame", "ProcessGameStuff", GetAddress(0x87B0), &NetGame::ProcessGameStuff);
+        ReversibleHooks::Install("NetGame", "GetPlayerPool", GetAddress(0x1160), &NetGame::GetPlayerPool);
+        ReversibleHooks::Install("NetGame", "GetObjectPool", GetAddress(0x2DF0), &NetGame::GetObjectPool);
+        ReversibleHooks::Install("NetGame", "GetActorPool", GetAddress(0x2E00), &NetGame::GetActorPool);
+        ReversibleHooks::Install("NetGame", "GetState", GetAddress(0x2E10), &NetGame::GetState);
+        ReversibleHooks::Install("NetGame", "LanMode", GetAddress(0x2E20), &NetGame::LanMode);
+        ReversibleHooks::Install("NetGame", "GetVehiclePool", GetAddress(0x1170), &NetGame::GetVehiclePool);
+        ReversibleHooks::Install("NetGame", "GetRakClient", GetAddress(0x1A40), &NetGame::GetRakClient);
+        ReversibleHooks::Install("NetGame", "GetCounter", GetAddress(0x8570), &NetGame::GetCounter);
     }
 
 
@@ -85,15 +105,15 @@ public:
     };
 
     struct Pools {
-        CMenuPool*     m_pMenu;
-        CActorPool*    m_pActor;
-        CPlayerPool*   m_pPlayer;
-        CVehiclePool*  m_pVehicle;
-        CPickupPool*   m_pPickup;
-        CObjectPool*   m_pObject;
-        CGangZonePool* m_pGangZone;
-        CLabelPool*    m_pLabel;
-        CTextDrawPool* m_pTextDraw;
+        MenuPool*     m_pMenu;
+        ActorPool*    m_pActor;
+        PlayerPool*   m_pPlayer;
+        VehiclePool*  m_pVehicle;
+        PickupPool*   m_pPickup;
+        ObjectPool*   m_pObject;
+        GangZonePool* m_pGangZone;
+        LabelPool*    m_pLabel;
+        TextDrawPool* m_pTextDraw;
     };
 
     struct Settings {
@@ -137,64 +157,64 @@ public:
     char                pad_2[5];
     Pools*              m_pPools;
 
-    static SAMPAPI_VAR TICK& RefLastPlayersUpdateRequest();
+    static TICK& RefLastPlayersUpdateRequest();
 
     
     NetGame(const char* szHostAddress, int nPort, const char* szNick, const char* szPass);
     ~NetGame();
 
-    MAKE_RET(CPickupPool*) GetPickupPool();
-    MAKE_RET(CMenuPool*) GetMenuPool();
-    MAKE_RET(void) SetState(int nValue);
-    MAKE_RET(void) InitializePools();
-    MAKE_RET(void) InitialNotification();
-    MAKE_RET(void) InitializeGameLogic();
-    MAKE_RET(void) Connect();
-    MAKE_RET(void) SpawnScreen();
-    MAKE_RET(void) Packet_RSAPublicKeyMismatch(Packet* pPacket);
-    MAKE_RET(void) Packet_ConnectionBanned(Packet* pPacket);
-    MAKE_RET(void) Packet_ConnectionRequestAcepted(Packet* pPacket);
-    MAKE_RET(void) Packet_NoFreeIncomingConnections(Packet* pPacket);
-    MAKE_RET(void) Packet_DisconnectionNotification(Packet* pPacket);
-    MAKE_RET(void) Packet_InvalidPassword(Packet* pPacket);
-    MAKE_RET(void) Packet_ConnectionAttemptFailed(Packet* pPacket);
-    MAKE_RET(void) UpdatePlayers();
-    MAKE_RET(void) DeleteMarker(NUMBER nIndex);
-    MAKE_RET(void) ResetPlayerPool();
-    MAKE_RET(void) ResetVehiclePool();
-    MAKE_RET(void) ResetTextDrawPool();
-    MAKE_RET(void) ResetObjectPool();
-    MAKE_RET(void) ResetGangZonePool();
-    MAKE_RET(void) ResetPickupPool();
-    MAKE_RET(void) ResetMenuPool();
-    MAKE_RET(void) ResetLabelPool();
-    MAKE_RET(void) ResetActorPool();
-    MAKE_RET(void) Packet_UnoccupiedSync(Packet* pPacket);
-    MAKE_RET(void) Packet_BulletSync(Packet* pPacket);
-    MAKE_RET(void) Packet_AimSync(Packet* pPacket);
-    MAKE_RET(void) Packet_PassengerSync(Packet* pPacket);
-    MAKE_RET(void) Packet_TrailerSync(Packet* pPacket);
-    MAKE_RET(void) Packet_MarkersSync(Packet* pPacket);
-    MAKE_RET(void) Packet_AuthKey(Packet* pPacket);
-    MAKE_RET(void) ResetMarkers();
-    MAKE_RET(void) CreateMarker(NUMBER nIndex, CVector position, char nIcon, int nColor, int nType);
-    MAKE_RET(void) ResetPools();
-    MAKE_RET(void) ShutdownForRestart();
-    MAKE_RET(void) Packet_PlayerSync(Packet* pPacket);
-    MAKE_RET(void) Packet_VehicleSync(Packet* pPacket);
-    MAKE_RET(void) Packet_ConnectionLost(Packet* pPacket);
-    MAKE_RET(void) Packet_ConnectionSucceeded(Packet* pPacket);
-    MAKE_RET(void) UpdateNetwork();
-    MAKE_RET(void) Process();
-    MAKE_RET(void) ProcessGameStuff();
-    MAKE_RET(CPlayerPool*) GetPlayerPool();
-    MAKE_RET(CObjectPool*) GetObjectPool();
-    MAKE_RET(CActorPool*) GetActorPool();
-    MAKE_RET(int) GetState();
-    MAKE_RET(BOOL) LanMode();
-    MAKE_RET(CVehiclePool*) GetVehiclePool();
-    MAKE_RET(RakClientInterface*) GetRakClient();
-    MAKE_RET(__int64) GetCounter();
+    PickupPool* GetPickupPool();
+    MenuPool* GetMenuPool();
+    void SetState(int nValue);
+    void InitializePools();
+    void InitialNotification();
+    void InitializeGameLogic();
+    void Connect();
+    void SpawnScreen();
+    void Packet_RSAPublicKeyMismatch(Packet* pPacket);
+    void Packet_ConnectionBanned(Packet* pPacket);
+    void Packet_ConnectionRequestAcepted(Packet* pPacket);
+    void Packet_NoFreeIncomingConnections(Packet* pPacket);
+    void Packet_DisconnectionNotification(Packet* pPacket);
+    void Packet_InvalidPassword(Packet* pPacket);
+    void Packet_ConnectionAttemptFailed(Packet* pPacket);
+    void UpdatePlayers();
+    void DeleteMarker(NUMBER nIndex);
+    void ResetPlayerPool();
+    void ResetVehiclePool();
+    void ResetTextDrawPool();
+    void ResetObjectPool();
+    void ResetGangZonePool();
+    void ResetPickupPool();
+    void ResetMenuPool();
+    void ResetLabelPool();
+    void ResetActorPool();
+    void Packet_UnoccupiedSync(Packet* pPacket);
+    void Packet_BulletSync(Packet* pPacket);
+    void Packet_AimSync(Packet* pPacket);
+    void Packet_PassengerSync(Packet* pPacket);
+    void Packet_TrailerSync(Packet* pPacket);
+    void Packet_MarkersSync(Packet* pPacket);
+    void Packet_AuthKey(Packet* pPacket);
+    void ResetMarkers();
+    void CreateMarker(NUMBER nIndex, Vector position, char nIcon, int nColor, int nType);
+    void ResetPools();
+    void ShutdownForRestart();
+    void Packet_PlayerSync(Packet* pPacket);
+    void Packet_VehicleSync(Packet* pPacket);
+    void Packet_ConnectionLost(Packet* pPacket);
+    void Packet_ConnectionSucceeded(Packet* pPacket);
+    void UpdateNetwork();
+    void Process();
+    void ProcessGameStuff();
+    PlayerPool* GetPlayerPool();
+    ObjectPool* GetObjectPool();
+    ActorPool* GetActorPool();
+    int GetState();
+    BOOL LanMode();
+    VehiclePool* GetVehiclePool();
+    RakClientInterface* GetRakClient();
+    __int64 GetCounter();
 };
 
 END_PACK

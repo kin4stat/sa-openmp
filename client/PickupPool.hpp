@@ -2,32 +2,54 @@
 #define PICKUPPOOL_HPP_
 
 #include "common.hpp"
+#include "Vector.hpp"
 
 BEGIN_PACK
+
+struct Pickup {
+    int     m_nModel;
+    int     m_nType;
+    Vector m_position;
+};
+
+struct  WeaponPickup {
+    bool m_bExists;
+    ID   m_nExOwner;
+};
 
 class PickupPool {
 public:
     static void InjectHooks() {
-        static kthook::kthook_t<decltype(&Create)> Create_hook{ GetAddress(0x12F20) }; Create_hook.before.connect(Create);
-        static kthook::kthook_t<decltype(&CreateWeapon)> CreateWeapon_hook{ GetAddress(0x12E30) }; CreateWeapon_hook.before.connect(CreateWeapon);
-        static kthook::kthook_t<decltype(&Delete)> Delete_hook{ GetAddress(0x12FD0) }; Delete_hook.before.connect(Delete);
-        static kthook::kthook_t<decltype(&DeleteWeapon)> DeleteWeapon_hook{ GetAddress(0x13030) }; DeleteWeapon_hook.before.connect(DeleteWeapon);
-        static kthook::kthook_t<decltype(&GetIndex)> GetIndex_hook{ GetAddress(0x13090) }; GetIndex_hook.before.connect(GetIndex);
-        static kthook::kthook_t<decltype(&SendNotification)> SendNotification_hook{ GetAddress(0x130F0) }; SendNotification_hook.before.connect(SendNotification);
-        static kthook::kthook_t<decltype(&Process)> Process_hook{ GetAddress(0x131D0) }; Process_hook.before.connect(Process);
+        ReversibleHooks::Install("PickupPool", "Create", GetAddress(0x12F20), &PickupPool::Create);
+        ReversibleHooks::Install("PickupPool", "CreateWeapon", GetAddress(0x12E30), &PickupPool::CreateWeapon);
+        ReversibleHooks::Install("PickupPool", "Delete", GetAddress(0x12FD0), &PickupPool::Delete);
+        ReversibleHooks::Install("PickupPool", "DeleteWeapon", GetAddress(0x13030), &PickupPool::DeleteWeapon);
+        ReversibleHooks::Install("PickupPool", "GetIndex", GetAddress(0x13090), &PickupPool::GetIndex);
+        ReversibleHooks::Install("PickupPool", "SendNotification", GetAddress(0x130F0), &PickupPool::SendNotification);
+        ReversibleHooks::Install("PickupPool", "Process", GetAddress(0x131D0), &PickupPool::Process);
     }
 
 
+    enum { MAX_PICKUPS = 4096 };
 
+    int           m_nCount;
+    GTAREF        m_handle[MAX_PICKUPS];
+    int           m_nId[MAX_PICKUPS];
+    unsigned long m_nTimer[MAX_PICKUPS];
+    WeaponPickup  m_weapon[MAX_PICKUPS];
+    Pickup        m_object[MAX_PICKUPS];
+
+    
+    PickupPool();
     ~PickupPool();
 
-    MAKE_RET(void) Create(Pickup* pData, ID nId);
-    MAKE_RET(void) CreateWeapon(int nModel, CVector position, int nAmmo, ID nExOwner);
-    MAKE_RET(void) Delete(int nId);
-    MAKE_RET(void) DeleteWeapon(ID nExOwner);
-    MAKE_RET(int) GetIndex(int nId);
-    MAKE_RET(void) SendNotification(int nId);
-    MAKE_RET(void) Process();
+    void Create(Pickup* pData, ID nId);
+    void CreateWeapon(int nModel, Vector position, int nAmmo, ID nExOwner);
+    void Delete(int nId);
+    void DeleteWeapon(ID nExOwner);
+    int GetIndex(int nId);
+    void SendNotification(int nId);
+    void Process();
 };
 
 END_PACK

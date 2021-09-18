@@ -1,52 +1,55 @@
 #include "ObjectPool.hpp"
 
-MAKE_RET(void) ObjectPool::UpdateLargestId() {
+ObjectPool::ObjectPool() {
 
-    return true;
+}
+void ObjectPool::UpdateLargestId() {
+
+    return;
 }
 
-MAKE_RET(int) ObjectPool::GetCount() {
+int ObjectPool::GetCount() {
 
-    return kthook::return_value<int>::make_true();
+    return int{};
 }
 
-MAKE_RET(BOOL) ObjectPool::Delete(ID nId) {
+BOOL ObjectPool::Delete(ID nId) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(BOOL) ObjectPool::Create(ID nId, int nModel, CVector position, CVector rotation, float fDrawDistance) {
+BOOL ObjectPool::Create(ID nId, int nModel, CVector position, CVector rotation, float fDrawDistance) {
 
-    return kthook::return_value<BOOL>::make_true();
+    return BOOL{};
 }
 
-MAKE_RET(void) ObjectPool::Process() {
+void ObjectPool::Process() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectPool::ConstructMaterials() {
+void ObjectPool::ConstructMaterials() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectPool::ShutdownMaterials() {
+void ObjectPool::ShutdownMaterials() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectPool::Draw() {
+void ObjectPool::Draw() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(void) ObjectPool::DrawLast() {
+void ObjectPool::DrawLast() {
 
-    return true;
+    return;
 }
 
-MAKE_RET(CObject*) ObjectPool::Get(ID nId) {
+CObject* ObjectPool::Get(ID nId) {
 
-    return kthook::return_value<CObject*>::make_true();
+    return CObject*{};
 }
 
