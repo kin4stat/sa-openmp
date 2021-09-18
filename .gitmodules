@@ -1,3 +1,6 @@
 [submodule "RakNet"]
 	path = RakNet
 	url = https://github.com/openmultiplayer/RakNet.git
+[submodule "kthook"]
+	path = kthook
+	url = https://github.com/KiN4StAt/kthook.git
