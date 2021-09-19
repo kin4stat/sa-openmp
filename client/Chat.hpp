@@ -10,8 +10,8 @@ BEGIN_PACK
 class Chat {
 public:
     static void InjectHooks() {
-        ReversibleHooks::Install("Chat", "GetMode", GetAddress(0x60B40), &Chat::GetMode);
-        ReversibleHooks::Install("Chat", "SwitchMode", GetAddress(0x60B50), &Chat::SwitchMode);
+        ReversibleHooks::Install("Chat", "GetMode", GetAddress(0x60B40), &Chat::GetMode, false);
+        ReversibleHooks::Install("Chat", "SwitchMode", GetAddress(0x60B50), &Chat::SwitchMode, false);
         ReversibleHooks::Install("Chat", "RecalcFontSize", GetAddress(0x669A0), &Chat::RecalcFontSize);
         ReversibleHooks::Install("Chat", "OnLostDevice", GetAddress(0x66A20), &Chat::OnLostDevice);
         ReversibleHooks::Install("Chat", "UpdateScrollbar", GetAddress(0x66A80), &Chat::UpdateScrollbar);
@@ -22,11 +22,14 @@ public:
         ReversibleHooks::Install("Chat", "Scroll", GetAddress(0x66C40), &Chat::Scroll);
         ReversibleHooks::Install("Chat", "FilterOutInvalidChars", GetAddress(0x66CA0), &Chat::FilterOutInvalidChars);
         ReversibleHooks::Install("Chat", "PushBack", GetAddress(0x66CD0), &Chat::PushBack);
+        ReversibleHooks::Install("Chat", "RenderEntry", GetAddress(0x66CF0), &Chat::RenderEntry);
         ReversibleHooks::Install("Chat", "Log", GetAddress(0x67050), &Chat::Log);
         ReversibleHooks::Install("Chat", "ResetDialogControls", GetAddress(0x67120), &Chat::ResetDialogControls);
         ReversibleHooks::Install("Chat", "Render", GetAddress(0x671C0), &Chat::Render);
         ReversibleHooks::Install("Chat", "Draw", GetAddress(0x67680), &Chat::Draw);
         ReversibleHooks::Install("Chat", "RenderToSurface", GetAddress(0x67750), &Chat::RenderToSurface);
+        ReversibleHooks::Install("Chat", "AddChatMessage", GetAddress(0x678A0), &Chat::AddChatMessage);
+        ReversibleHooks::Install("Chat", "AddMessage", GetAddress(0x679F0), &Chat::AddMessage);
         ReversibleHooks::Install("Chat", "OnResetDevice", GetAddress(0x67A50), &Chat::OnResetDevice);
     }
 
@@ -37,22 +40,22 @@ public:
         ENTRY_TYPE_INFO = 1 << 2,
         ENTRY_TYPE_DEBUG = 1 << 3
     };
-    enum DisplayMode {
+    enum DisplayMode : int {
         DISPLAY_MODE_OFF,
         DISPLAY_MODE_NOSHADOW,
         DISPLAY_MODE_NORMAL
     };
     enum { MAX_MESSAGES = 100 };
 
-    unsigned int    m_nPageSize;
-    char*           m_szLastMessage;
-    int             m_nMode;
+    unsigned int    page_size;
+    char*           last_message;
+    int             mode;
     bool            m_bTimestamps;
     BOOL            m_bDoesLogExist;
     char            m_szLogPath[261]; // MAX_PATH(+1)
     CDXUTDialog*    m_pGameUi;
     CDXUTEditBox*   m_pEditbox;
-    CDXUTScrollBar* m_pScrollbar;
+    CDXUTScrollBar* scrollbar;
     D3DCOLOR        m_textColor;  // 0xFFFFFFFF
     D3DCOLOR        m_infoColor;  // 0xFF88AA62
     D3DCOLOR        m_debugColor; // 0xFFA9C4E4
@@ -84,9 +87,9 @@ public:
 #endif
     int  pad_[2];
     BOOL m_bRedraw;
-    long m_nScrollbarPos;
+    long scrollbar_pos;
     long m_nCharHeight; // this is the height of the "Y"
-    long m_nTimestampWidth;
+    long timestamp_width;
 
     
     Chat(IDirect3DDevice9* pDevice, Fonts* pFontRenderer, const char* szLogPath);
@@ -104,11 +107,14 @@ public:
     void Scroll(int nDelta);
     void FilterOutInvalidChars(char* szString);
     void PushBack();
+    void RenderEntry(const char* szText, Rect rect, D3DCOLOR color);
     void Log(int nType, const char* szText, const char* szPrefix);
     void ResetDialogControls(CDXUTDialog* pGameUi);
     void Render();
     void Draw();
     void RenderToSurface();
+    void AddChatMessage(const char* szPrefix, D3DCOLOR prefixColor, const char* szText);
+    void AddMessage(D3DCOLOR color, const char* szText);
     void OnResetDevice();
 };
 

@@ -1,16 +1,17 @@
 #include "Chat.hpp"
+#include "Game.hpp"
+#include "Input.hpp"
 
 Chat::Chat(IDirect3DDevice9* pDevice, Fonts* pFontRenderer, const char* szLogPath) {
 
 }
 int Chat::GetMode() {
 
-    return int{};
+    return mode;
 }
 
 void Chat::SwitchMode() {
-
-    return;
+    if (mode-- == DISPLAY_MODE_OFF) mode = DISPLAY_MODE_NORMAL;
 }
 
 void Chat::RecalcFontSize() {
@@ -28,14 +29,17 @@ void Chat::UpdateScrollbar() {
     return;
 }
 
-void Chat::SetPageSize(int nValue) {
-
+void Chat::SetPageSize(int new_page_size) {
+    if (10 <= new_page_size && new_page_size <= 100) {
+        page_size = new_page_size;
+        UpdateScrollbar();
+        timestamp_width = 1;
+    }
     return;
 }
 
 void Chat::PageUp() {
 
-    return;
 }
 
 void Chat::PageDown() {
