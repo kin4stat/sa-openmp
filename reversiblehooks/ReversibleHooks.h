@@ -74,7 +74,7 @@ namespace ReversibleHooks {
     };
 
     template <typename T>
-    static void Install(const std::string& sIdentifier, const std::string& sFuncName, DWORD installAddress, T addressToJumpTo, bool bDisableByDefault = false, int iJmpCodeSize = 5) {
+    static void Install(const std::string& sIdentifier, const std::string& sFuncName, DWORD installAddress, T addressToJumpTo, bool bDisableByDefault = true, int iJmpCodeSize = 5) {
         auto ptr = FunctionPointerToVoidP(addressToJumpTo);
         detail::HookInstall(sIdentifier, sFuncName, installAddress, ptr, iJmpCodeSize, bDisableByDefault);
     }
