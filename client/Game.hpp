@@ -14,13 +14,21 @@ BEGIN_PACK
 
 class Game {
 public:
+    enum class CursorMode : int {
+        RestoreState = 0,
+        DisableKeyboard = 1,
+        DisableKeyboardAndMouse = 2,
+        DisableMouse = 3,
+        Unknown4 = 4,
+    };
+
     static void InjectHooks() {
         ReversibleHooks::Install("Game", "GetPlayerPed", GetAddress(0x1010), &Game::GetPlayerPed);
         ReversibleHooks::Install("Game", "FindGroundZ", GetAddress(0x9FCF0), &Game::FindGroundZ);
         ReversibleHooks::Install("Game", "SetCursorMode", GetAddress(0x9FFE0), &Game::SetCursorMode);
         ReversibleHooks::Install("Game", "InitGame", GetAddress(0xA0180), &Game::InitGame);
         ReversibleHooks::Install("Game", "StartGame", GetAddress(0xA01D0), &Game::StartGame);
-        ReversibleHooks::Install("Game", "IsMenuVisible", GetAddress(0xA0210), &Game::IsMenuVisible);
+        ReversibleHooks::Install("Game", "IsMenuVisible", GetAddress(0xA0210), &Game::IsMenuVisible, false);
         ReversibleHooks::Install("Game", "IsStarted", GetAddress(0xA0220), &Game::IsStarted);
         ReversibleHooks::Install("Game", "LoadRequestedModels", GetAddress(0xA0250), &Game::LoadRequestedModels);
         ReversibleHooks::Install("Game", "IsModelAvailable", GetAddress(0xA0260), &Game::IsModelAvailable);
@@ -83,6 +91,7 @@ public:
         ReversibleHooks::Install("Game", "ProcessFrameLimiter", GetAddress(0xA14E0), &Game::ProcessFrameLimiter);
     }
 
+    static Game& Instance();
 
     Audio*  m_pAudio;
     Camera* m_pCamera;
@@ -123,10 +132,10 @@ public:
 
     CPed* GetPlayerPed();
     float FindGroundZ(CVector vPoint);
-    void SetCursorMode(int nMode, BOOL bImmediatelyHideCursor);
+    void SetCursorMode(CursorMode nMode, BOOL bImmediatelyHideCursor);
     void InitGame();
     void StartGame();
-    BOOL IsMenuVisible();
+    static BOOL IsMenuVisible();
     BOOL IsStarted();
     void LoadRequestedModels();
     BOOL IsModelAvailable(int nModel);

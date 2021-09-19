@@ -1,8 +1,13 @@
 #include "Game.hpp"
 
+Game& Game::Instance () {
+    return **reinterpret_cast<Game**>(GetAddress(0x26E8F4));
+}
+
 Game::Game() {
 
 }
+
 CPed* Game::GetPlayerPed() {
 
     return nullptr;
@@ -13,7 +18,7 @@ float Game::FindGroundZ(CVector vPoint) {
     return float{};
 }
 
-void Game::SetCursorMode(int nMode, BOOL bImmediatelyHideCursor) {
+void Game::SetCursorMode(CursorMode nMode, BOOL bImmediatelyHideCursor) {
 
     return;
 }
@@ -29,8 +34,7 @@ void Game::StartGame() {
 }
 
 BOOL Game::IsMenuVisible() {
-
-    return BOOL{};
+    return *reinterpret_cast<unsigned char*>(0x0BA67A4) != 0;
 }
 
 BOOL Game::IsStarted() {
