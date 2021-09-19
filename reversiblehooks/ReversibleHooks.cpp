@@ -1,4 +1,6 @@
-#include "StdInc.h"
+#include <cassert>
+
+#include "common.hpp"
 
 static std::map<std::string, std::vector<std::shared_ptr<SReversibleHook>>> m_HooksMap;
 

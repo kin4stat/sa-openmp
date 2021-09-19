@@ -73,12 +73,12 @@ void RemotePlayer::UpdateIncarRotation() {
     return;
 }
 
-void RemotePlayer::SetIncarTargetSpeedAndPosition(CMatrix* pMatrix, CVector* pPosition, CVector* pSpeed) {
+void RemotePlayer::SetIncarTargetSpeedAndPosition(Matrix* pMatrix, CVector* pPosition, CVector* pSpeed) {
 
     return;
 }
 
-void RemotePlayer::UpdateTrain(CMatrix* pMatrix, CVector* pSpeed, float fSpeed) {
+void RemotePlayer::UpdateTrain(Matrix* pMatrix, CVector* pSpeed, float fSpeed) {
 
     return;
 }
@@ -88,7 +88,7 @@ void RemotePlayer::ResetData() {
     return;
 }
 
-float RemotePlayer::GetDistanceToPlayer(CRemotePlayer* pPlayer) {
+float RemotePlayer::GetDistanceToPlayer(RemotePlayer* pPlayer) {
 
     return float{};
 }

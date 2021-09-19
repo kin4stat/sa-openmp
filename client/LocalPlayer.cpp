@@ -3,9 +3,9 @@
 LocalPlayer::LocalPlayer() {
 
 }
-CPed* LocalPlayer::GetPed() {
+Ped* LocalPlayer::GetPed() {
 
-    return CPed*{};
+    return nullptr;
 }
 
 void LocalPlayer::ResetData() {
@@ -33,7 +33,7 @@ void LocalPlayer::UpdateSurfing() {
     return;
 }
 
-void LocalPlayer::SetSurfing(CVehicle* pVehicle, BOOL bStuck) {
+void LocalPlayer::SetSurfing(Vehicle* pVehicle, BOOL bStuck) {
 
     return;
 }
@@ -243,7 +243,7 @@ void LocalPlayer::SendGiveDamage(int nId, float fDamage, int nWeapon, int nBodyP
     return;
 }
 
-bool LocalPlayer::ProcessUnoccupiedSync(ID nVehicle, CVehicle* pVehicle) {
+bool LocalPlayer::ProcessUnoccupiedSync(ID nVehicle, Vehicle* pVehicle) {
 
     return bool{};
 }

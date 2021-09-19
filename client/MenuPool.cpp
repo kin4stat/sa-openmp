@@ -20,7 +20,7 @@ void MenuPool::Hide(NUMBER nId) {
 
 char* MenuPool::GetTextPointer(const char* szName) {
 
-    return char*{};
+    return nullptr;
 }
 
 void MenuPool::Process() {

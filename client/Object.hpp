@@ -2,9 +2,12 @@
 #define OBJECT_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Matrix.hpp"
 #include "Entity.hpp"
+#include "Vehicle.hpp"
+
+#include "CSprite2d.h"
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -35,16 +38,16 @@ public:
     bool    m_bDontCollideWithCamera;
     float   m_fDrawDistance;
     float   field_0;
-    Vector m_position;
+    CVector m_position;
     float   m_fDistanceToCamera;
     bool    m_bDrawLast;
     char    pad_2[64];
-    Vector m_rotation;
+    CVector m_rotation;
     char    pad_3[5];
     ID      m_nAttachedToVehicle;
     ID      m_nAttachedToObject;
-    Vector m_attachOffset;
-    Vector m_attachRotation;
+    CVector m_attachOffset;
+    CVector m_attachRotation;
     char    field_1;
     Matrix m_targetMatrix;
     char    pad_4[148];
@@ -110,16 +113,16 @@ public:
     char pad_9[13];
 
     
-    Object(int nModel, Vector position, Vector rotation, float fDrawDistance, int a10, char a11, char a12);
+    Object(int nModel, CVector position, CVector rotation, float fDrawDistance, int a10, char a11, char a12);
     ~Object();
 
     float GetDistance(const Matrix* pMatrix);
     void Stop();
-    void SetRotation(const Vector* pVector);
-    void SetAttachedToVehicle(ID nId, const Vector* pOffset, const Vector* pRotation);
+    void SetRotation(const CVector* pVector);
+    void SetAttachedToVehicle(ID nId, const CVector* pOffset, const CVector* pRotation);
     void AttachToVehicle(Vehicle* pVehicle);
     void AttachToObject(Object* pObject);
-    void Rotate(Vector vector);
+    void Rotate(CVector vector);
     BOOL AttachedToMovingEntity();
     bool GetMaterialSize(int nSize, int* x, int* y);
     void Render();

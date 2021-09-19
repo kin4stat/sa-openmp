@@ -1,4 +1,6 @@
-#include "StdInc.h"
+#include <cassert>
+
+#include "common.hpp"
 
 SVirtualReversibleHook::SVirtualReversibleHook(std::string id, std::string name, void* libFuncAddress, const std::vector<uint32>& vecAddressesToHook) :
     SReversibleHook(id, name, eReversibleHookType::Virtual)

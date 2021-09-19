@@ -10,23 +10,24 @@
 #pragma once
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Animation.hpp"
 #include "ControllerState.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
 namespace Synchronization {
     struct OnfootData {
         ControllerState m_controllerState;
-        Vector         m_position;
+        CVector         m_position;
         float           m_fQuaternion[4];
         unsigned char   m_nHealth;
         unsigned char   m_nArmor;
         unsigned char   m_nCurrentWeapon;
         unsigned char   m_nSpecialAction;
-        Vector         m_speed;
-        Vector         m_surfingOffset;
+        CVector         m_speed;
+        CVector         m_surfingOffset;
         ID              m_nSurfingVehicleId;
         Animation       m_animation;
     };
@@ -35,8 +36,8 @@ namespace Synchronization {
         ID              m_nVehicle;
         ControllerState m_controllerState;
         float           m_fQuaternion[4];
-        Vector         m_position;
-        Vector         m_speed;
+        CVector         m_position;
+        CVector         m_speed;
         float           m_fHealth;
         unsigned char   m_nDriverHealth;
         unsigned char   m_nDriverArmor;
@@ -59,8 +60,8 @@ namespace Synchronization {
         };
 
         unsigned char m_nCameraMode;
-        Vector       m_aimf1;
-        Vector       m_aimPos;
+        CVector       m_aimf1;
+        CVector       m_aimPos;
         float         m_fAimZ;
         unsigned char m_nCameraExtZoom : 6;
         unsigned char m_nWeaponState : 2;
@@ -69,10 +70,10 @@ namespace Synchronization {
 
     struct TrailerData {
         ID      m_nId;
-        Vector m_position;
+        CVector m_position;
         float   m_fQuaternion[4];
-        Vector m_speed;
-        Vector m_turnSpeed;
+        CVector m_speed;
+        CVector m_turnSpeed;
     };
 
     struct PassengerData {
@@ -82,32 +83,32 @@ namespace Synchronization {
         unsigned char   m_nHealth;
         unsigned char   m_nArmor;
         ControllerState m_controllerState;
-        Vector         m_position;
+        CVector         m_position;
     };
 
     struct UnoccupiedData {
         ID            m_nVehicleId;
         unsigned char m_nSeatId;
-        Vector       m_roll;
-        Vector       m_direction;
-        Vector       m_position;
-        Vector       m_speed;
-        Vector       m_turnSpeed;
+        CVector       m_roll;
+        CVector       m_direction;
+        CVector       m_position;
+        CVector       m_speed;
+        CVector       m_turnSpeed;
         float         m_fHealth;
     };
 
     struct BulletData {
         unsigned char m_nTargetType;
         ID            m_nTargetId;
-        Vector       m_origin;
-        Vector       m_target;
-        Vector       m_center;
+        CVector       m_origin;
+        CVector       m_target;
+        CVector       m_center;
         unsigned char m_nWeapon;
     };
 
     struct SpectatorData {
         ControllerState m_controllerState;
-        Vector         m_position;
+        CVector         m_position;
     };
 
     struct StatsData {

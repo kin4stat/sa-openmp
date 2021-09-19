@@ -2,12 +2,13 @@
 #define GAME_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Camera.hpp"
 #include "Audio.hpp"
 #include "Ped.hpp"
 #include "Vehicle.hpp"
 #include "Object.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -83,9 +84,9 @@ public:
     }
 
 
-    CAudio*  m_pAudio;
-    CCamera* m_pCamera;
-    CPed*    m_pPlayerPed;
+    Audio*  m_pAudio;
+    Camera* m_pCamera;
+    Ped*    m_pPlayerPed;
 
     struct {
         CVector m_currentPosition;
@@ -113,8 +114,8 @@ public:
     char         field_6d;
     bool         m_aKeepLoadedVehicleModels[212];
 
-    static SAMPAPI_VAR char*& RefGameTextMessage();  // [256], temp buffer
-    static SAMPAPI_VAR bool* ArrayUsedPlayerSlots(); // [SAMP_MAX_PLAYER_PED_SLOTS]
+    static char*& RefGameTextMessage();  // [256], temp buffer
+    static bool* ArrayUsedPlayerSlots(); // [SAMP_MAX_PLAYER_PED_SLOTS]
 
     
     Game();
@@ -177,13 +178,13 @@ public:
     void SetRacingCheckpoint(int nType, CVector* pCurrentPos, CVector* pNextPos, float fSize);
     void EnableRadar(BOOL bEnable);
     void* GetWindowHandle();
-    CAudio* GetAudio();
-    CCamera* GetCamera();
+    Audio* GetAudio();
+    Camera* GetCamera();
     BOOL DoesHeadMoves();
     void EnableClock(bool bEnable);
     void Sleep(int elapsed, int fpsLimit);
     BOOL RemovePed(CPed* pPed);
-    CVehicle* CreateVehicle(int nModel, CVector position, float fRotation, BOOL bHasSiren);
+    Vehicle* CreateVehicle(int nModel, CVector position, float fRotation, BOOL bHasSiren);
     void ProcessInputEnabling();
     void ProcessFrameLimiter();
 };

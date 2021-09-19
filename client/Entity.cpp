@@ -3,12 +3,12 @@
 Entity::Entity() {
 
 }
-void Entity::GetMatrix(CMatrix* pMatrix) {
+void Entity::GetMatrix(Matrix* pMatrix) {
 
     return;
 }
 
-void Entity::SetMatrix(CMatrix matrix) {
+void Entity::SetMatrix(Matrix matrix) {
 
     return;
 }
@@ -120,7 +120,7 @@ void Entity::SetCollisionFlag(BOOL bEnable) {
 
 RwObject* Entity::GetRwObject() {
 
-    return RwObject*{};
+    return nullptr;
 }
 
 void Entity::DeleteRwObject() {

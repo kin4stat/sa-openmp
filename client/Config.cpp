@@ -43,9 +43,9 @@ int Config::GetValueType(const char* szEntry) {
     return int{};
 }
 
-ConfigEntry* Config::GetEntry(int nIndex) {
+Config::ConfigEntry* Config::GetEntry(int nIndex) {
 
-    return ConfigEntry*{};
+    return nullptr;
 }
 
 int Config::GetType(const char* szString) {

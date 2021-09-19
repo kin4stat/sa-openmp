@@ -2,10 +2,13 @@
 #define PED_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Entity.hpp"
+#include "Object.hpp"
 #include "AimStuff.hpp"
 #include "ControllerState.hpp"
+
+#include "CPed.h"
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -125,9 +128,9 @@ public:
     struct Accessory {
         int      m_nModel;
         int      m_nBone;
-        Vector  m_offset;
-        Vector  m_rotation;
-        Vector  m_scale;
+        CVector  m_offset;
+        CVector  m_rotation;
+        CVector  m_scale;
         D3DCOLOR m_firstMaterialColor;
         D3DCOLOR m_secondMaterialColor;
     };
@@ -198,8 +201,8 @@ public:
     void PutIntoVehicle(GTAREF vehicle, int nSeat);
     void EnterVehicle(GTAREF vehicle, BOOL bAsPassenger);
     void ExitVehicle();
-    void WarpFromVehicle(Vector putAt);
-    void SetSpawnInfo(const Vector* pPosition, float fRotation);
+    void WarpFromVehicle(CVector putAt);
+    void SetSpawnInfo(const CVector* pPosition, float fRotation);
     void SetControllable(BOOL bEnable);
     char GetDeathInfo(ID* pKiller);
     ::CEntity* GetFloor();
@@ -264,7 +267,7 @@ public:
     void AddAccessory(int nSlot, const Accessory* pInfo);
     Object* GetAccessory(int nSlot);
     char GetCameraMode();
-    void GetBonePosition(unsigned int boneId, Vector* outPosition);
+    void GetBonePosition(unsigned int boneId, CVector* outPosition);
 };
 
 END_PACK

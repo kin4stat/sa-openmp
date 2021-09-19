@@ -3,14 +3,14 @@
 NetGame::NetGame(const char* szHostAddress, int nPort, const char* szNick, const char* szPass) {
 
 }
-CPickupPool* NetGame::GetPickupPool() {
+PickupPool* NetGame::GetPickupPool() {
 
-    return CPickupPool*{};
+    return nullptr;
 }
 
-CMenuPool* NetGame::GetMenuPool() {
+MenuPool* NetGame::GetMenuPool() {
 
-    return CMenuPool*{};
+    return nullptr;
 }
 
 void NetGame::SetState(int nValue) {
@@ -223,19 +223,19 @@ void NetGame::ProcessGameStuff() {
     return;
 }
 
-CPlayerPool* NetGame::GetPlayerPool() {
+PlayerPool* NetGame::GetPlayerPool() {
 
-    return CPlayerPool*{};
+    return nullptr;
 }
 
-CObjectPool* NetGame::GetObjectPool() {
+ObjectPool* NetGame::GetObjectPool() {
 
-    return CObjectPool*{};
+    return nullptr;
 }
 
-CActorPool* NetGame::GetActorPool() {
+ActorPool* NetGame::GetActorPool() {
 
-    return CActorPool*{};
+    return nullptr;
 }
 
 int NetGame::GetState() {
@@ -248,14 +248,14 @@ BOOL NetGame::LanMode() {
     return BOOL{};
 }
 
-CVehiclePool* NetGame::GetVehiclePool() {
+VehiclePool* NetGame::GetVehiclePool() {
 
-    return CVehiclePool*{};
+    return nullptr;
 }
 
 RakClientInterface* NetGame::GetRakClient() {
 
-    return RakClientInterface*{};
+    return nullptr;
 }
 
 __int64 NetGame::GetCounter() {

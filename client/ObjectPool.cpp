@@ -48,8 +48,8 @@ void ObjectPool::DrawLast() {
     return;
 }
 
-CObject* ObjectPool::Get(ID nId) {
+Object* ObjectPool::Get(ID nId) {
 
-    return CObject*{};
+    return nullptr;
 }
 

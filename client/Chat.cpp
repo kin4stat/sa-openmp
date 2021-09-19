@@ -1,6 +1,6 @@
 #include "Chat.hpp"
 
-Chat::Chat(IDirect3DDevice9* pDevice, CFonts* pFontRenderer, const char* szLogPath) {
+Chat::Chat(IDirect3DDevice9* pDevice, Fonts* pFontRenderer, const char* szLogPath) {
 
 }
 int Chat::GetMode() {

@@ -1,17 +1,17 @@
 #ifndef MATRIX_HPP_
 #define MATRIX_HPP_
 
-#include "Vector.hpp"
+#include "CVector.h"
 
 class Matrix {
 public:
-    Vector       right;
+    CVector       right;
     unsigned long flags;
-    Vector       up;
+    CVector       up;
     float         pad_u;
-    Vector       at;
+    CVector       at;
     float         pad_a;
-    Vector       pos;
+    CVector       pos;
     float         pad_p;
 };
 

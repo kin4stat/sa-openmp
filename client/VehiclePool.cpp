@@ -73,9 +73,9 @@ void VehiclePool::Process() {
     return;
 }
 
-CVehicle* VehiclePool::Get(ID nId) {
+Vehicle* VehiclePool::Get(ID nId) {
 
-    return CVehicle*{};
+    return nullptr;
 }
 
 BOOL VehiclePool::DoesExist(ID nId) {

@@ -2,7 +2,8 @@
 #define AUDIOSTREAM_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 

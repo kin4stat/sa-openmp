@@ -3,7 +3,7 @@
 Input::Input(IDirect3DDevice9* pDevice) {
 
 }
-void Input::GetRect(CRect* pRect) {
+void Input::GetRect(Rect* pRect) {
 
     return;
 }

@@ -15,7 +15,7 @@ public:
     IDirect3DDevice9* m_pDevice;
 
     
-    HelpDialog(IDirect3DDevice9* pDevice = SAMPAPI_UNUSED);
+    HelpDialog(IDirect3DDevice9* pDevice = nullptr);
     ~HelpDialog();
 
     void Show();

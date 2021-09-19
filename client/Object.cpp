@@ -3,7 +3,7 @@
 Object::Object(int nModel, CVector position, CVector rotation, float fDrawDistance, int a10, char a11, char a12) {
 
 }
-float Object::GetDistance(const CMatrix* pMatrix) {
+float Object::GetDistance(const Matrix* pMatrix) {
 
     return float{};
 }
@@ -23,12 +23,12 @@ void Object::SetAttachedToVehicle(ID nId, const CVector* pOffset, const CVector*
     return;
 }
 
-void Object::AttachToVehicle(CVehicle* pVehicle) {
+void Object::AttachToVehicle(Vehicle* pVehicle) {
 
     return;
 }
 
-void Object::AttachToObject(CObject* pObject) {
+void Object::AttachToObject(Object* pObject) {
 
     return;
 }

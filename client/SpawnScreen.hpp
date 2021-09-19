@@ -18,7 +18,7 @@ public:
 
     BOOL                  m_bEnabled;
     char*                 m_szSpawnText;
-    CFonts*               m_pFont;
+    Fonts*               m_pFont;
     IDirect3DDevice9*     m_pDevice;
     IDirect3DTexture9*    m_pTexture;
     IDirect3DStateBlock9* m_pStateBlockSaved;

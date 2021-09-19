@@ -1,4 +1,4 @@
-#include "StdInc.h"
+#include "common.hpp"
 
 SSimpleReversibleHook::SSimpleReversibleHook(std::string id, std::string name, uint32 installAddress, void* addressToJumpTo, int iJmpCodeSize) :
     SReversibleHook(id, name, eReversibleHookType::Simple),
@@ -6,6 +6,9 @@ SSimpleReversibleHook::SSimpleReversibleHook(std::string id, std::string name, u
     m_iRealHookedAddress(installAddress),
     m_iHookedBytes(iJmpCodeSize)
 {
+#pragma push_macro("max")
+#undef max
+
     m_HookContent.jumpLocation = ReversibleHooks::GetJMPLocation(installAddress, m_iLibFunctionAddress);
     memset(m_HookContent.possibleNops, NOP_OPCODE, iJmpCodeSize - ReversibleHooks::x86JMPSize);
 
@@ -61,6 +64,8 @@ SSimpleReversibleHook::SSimpleReversibleHook(std::string id, std::string name, u
         installHook(false);
     }
     VirtualProtect((void*)installAddress, maxBytesToProtect, dwProtect[0], &dwProtect[1]);
+
+#pragma pop_macro("max")
 }
 
 // VS has this magic called `Edit and Continue`

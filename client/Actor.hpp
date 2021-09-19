@@ -4,6 +4,8 @@
 #include "common.hpp"
 #include "Entity.hpp"
 
+#include "CPed.h"
+
 BEGIN_PACK
 
 class Actor {
@@ -26,7 +28,7 @@ public:
     bool    m_bInvulnerable;
 
     
-    Actor(int nModel, Vector position, float fRotation);
+    Actor(int nModel, CVector position, float fRotation);
     ~Actor();
 
     void Destroy();

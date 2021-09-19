@@ -2,14 +2,15 @@
 #define LABELPOOL_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
 struct TextLabel {
     char*    m_pText;
     D3DCOLOR m_color;
-    Vector  m_position;
+    CVector  m_position;
     float    m_fDrawDistance;
     bool     m_bBehindWalls;
     ID       m_nAttachedToPlayer;

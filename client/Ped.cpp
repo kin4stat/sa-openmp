@@ -15,7 +15,7 @@ void Ped::SetInitialState() {
 
 AimStuff::Aim* Ped::GetAim() {
 
-    return AimStuff::Aim*{};
+    return nullptr;
 }
 
 char Ped::GetCurrentWeapon() {
@@ -110,7 +110,7 @@ BOOL Ped::IsPassenger() {
 
 ::CVehicle* Ped::GetVehicle() {
 
-    return ::CVehicle*{};
+    return nullptr;
 }
 
 void Ped::ClearWeapons() {
@@ -125,7 +125,7 @@ void Ped::RemoveWeaponWhenEnteringVehicle() {
 
 ::CWeapon* Ped::GetCurrentWeaponSlot() {
 
-    return ::CWeapon*{};
+    return nullptr;
 }
 
 BOOL Ped::CurrentWeaponHasAmmo() {
@@ -133,7 +133,7 @@ BOOL Ped::CurrentWeaponHasAmmo() {
     return BOOL{};
 }
 
-float Ped::GetDistanceToEntity(const CEntity* pEntity) {
+float Ped::GetDistanceToEntity(const Entity* pEntity) {
 
     return float{};
 }
@@ -180,12 +180,12 @@ char Ped::GetDeathInfo(ID* pKiller) {
 
 ::CEntity* Ped::GetFloor() {
 
-    return ::CEntity*{};
+    return nullptr;
 }
 
 ::CWeaponInfo* Ped::GetCurrentWeaponInfo() {
 
-    return ::CWeaponInfo*{};
+    return nullptr;
 }
 
 void Ped::HandsUp() {
@@ -230,7 +230,7 @@ void Ped::Extinguish() {
 
 ::CWeapon* Ped::GetWeaponSlot(int nWeapon) {
 
-    return ::CWeapon*{};
+    return nullptr;
 }
 
 void Ped::SetWalkStyle(const char* szName) {
@@ -290,12 +290,12 @@ void Ped::SetAimZ(float fValue) {
 
 ::CEntity* Ped::GetContactEntity() {
 
-    return ::CEntity*{};
+    return nullptr;
 }
 
 ::CVehicle* Ped::GetContactVehicle() {
 
-    return ::CVehicle*{};
+    return nullptr;
 }
 
 int Ped::GetStat() {
@@ -395,7 +395,7 @@ void Ped::LoadShoppingDataSubsection(const char* szName) {
 
 ::CPed* Ped::GetAimedPed() {
 
-    return ::CPed*{};
+    return nullptr;
 }
 
 void Ped::SetKeys(short controllerState, short sLeftStickX, short sLeftStickY) {
@@ -478,9 +478,9 @@ void Ped::AddAccessory(int nSlot, const Accessory* pInfo) {
     return;
 }
 
-CObject* Ped::GetAccessory(int nSlot) {
+Object* Ped::GetAccessory(int nSlot) {
 
-    return CObject*{};
+    return nullptr;
 }
 
 char Ped::GetCameraMode() {
