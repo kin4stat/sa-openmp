@@ -15,18 +15,18 @@ VALIDATE_SIZE(float, 4);
 VALIDATE_SIZE(long long, 8);
 
 // Basic types for structures describing
-typedef int8_t    int8;
-typedef int16_t   int16;
-typedef int32_t   int32;
-typedef int64_t   int64;
-typedef uint8_t   uint8;
-typedef uint16_t  uint16;
-typedef uint32_t  uint32;
-typedef uint64_t  uint64;
+typedef int8_t   int8;
+typedef int16_t  int16;
+typedef int32_t  int32;
+typedef int64_t  int64;
+typedef uint8_t  uint8;
+typedef uint16_t uint16;
+typedef uint32_t uint32;
+typedef uint64_t uint64;
 
-typedef uint8     bool8;
-typedef uint16    bool16;
-typedef uint32    bool32;
+typedef uint8  bool8;
+typedef uint16 bool16;
+typedef uint32 bool32;
 
 #include <Windows.h>
 #include "reversiblehooks/HookSystem.h"
@@ -48,13 +48,13 @@ class CDXUTScrollBar;
 class CDXUTIMEEditBox;
 
 using D3DCOLOR = unsigned long;
-using TICK = unsigned long ;
+using TICK = unsigned long;
 using BOOL = int;
 
-using GTAREF = int; // gta pool reference (scm handle)
-using ID = unsigned short;     // player, vehicle, object, etc
+using GTAREF = int;         // gta pool reference (scm handle)
+using ID = unsigned short;  // player, vehicle, object, etc
 using NUMBER = unsigned char;
-using CMDPROC = void(__cdecl* )(const char*);
+using CMDPROC = void(__cdecl*)(const char*);
 
 unsigned long GetBase();
 
@@ -62,4 +62,4 @@ inline unsigned long GetAddress(signed long offset) {
     return GetBase() + offset;
 }
 
-#endif // COMMON_HPP_
+#endif  // COMMON_HPP_

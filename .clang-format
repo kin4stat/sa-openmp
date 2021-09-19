@@ -1,0 +1,13 @@
+BasedOnStyle: Google
+AlignEscapedNewlines: Left
+AlwaysBreakTemplateDeclarations: Yes
+SpaceBeforeRangeBasedForLoopColon: false
+AlignConsecutiveDeclarations: true
+UseTab: Never
+SortIncludes: false
+AllowShortFunctionsOnASingleLine: Empty
+IndentWrappedFunctionNames: false
+IndentWidth: 4
+AlwaysBreakAfterDefinitionReturnType: None
+ColumnLimit: 150
+PointerAlignment: Right
