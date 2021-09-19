@@ -2,9 +2,10 @@
 #define CAMERA_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Matrix.hpp"
 #include "Entity.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 

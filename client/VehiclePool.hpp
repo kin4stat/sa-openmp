@@ -2,8 +2,9 @@
 #define VEHICLEPOOL_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Vehicle.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -16,7 +17,7 @@ public:
         ReversibleHooks::Install("VehiclePool", "SetParams", GetAddress(0x1E3E0), &VehiclePool::SetParams);
         ReversibleHooks::Install("VehiclePool", "GetRef", GetAddress(0x1E490), &VehiclePool::GetRef);
         ReversibleHooks::Install("VehiclePool", "GetNearest", GetAddress(0x1E520), static_cast<ID(VehiclePool::*)()>(&VehiclePool::GetNearest));
-        ReversibleHooks::Install("VehiclePool", "GetNearest", GetAddress(0x1E520), static_cast<ID(VehiclePool::*)(Vector)>(&VehiclePool::GetNearest));
+        ReversibleHooks::Install("VehiclePool", "GetNearest", GetAddress(0x1E520), static_cast<ID(VehiclePool::*)(CVector)>(&VehiclePool::GetNearest));
         ReversibleHooks::Install("VehiclePool", "AddToWaitingList", GetAddress(0x1E5C0), &VehiclePool::AddToWaitingList);
         ReversibleHooks::Install("VehiclePool", "ConstructLicensePlates", GetAddress(0x1E620), &VehiclePool::ConstructLicensePlates);
         ReversibleHooks::Install("VehiclePool", "ShutdownLicensePlates", GetAddress(0x1E690), &VehiclePool::ShutdownLicensePlates);
@@ -36,7 +37,7 @@ public:
     struct VehicleInfo {
         ID      m_nId;
         int     m_nType;
-        Vector m_position;
+        CVector m_position;
         float   m_fRotation;
         NUMBER  m_nPrimaryColor;
         NUMBER  m_nSecondaryColor;
@@ -66,7 +67,7 @@ public:
     BOOL         m_bIsActive[MAX_VEHICLES];
     BOOL         m_bIsDestroyed[MAX_VEHICLES];
     TICK         m_tickWhenDestroyed[MAX_VEHICLES];
-    Vector      m_spawnedAt[MAX_VEHICLES];
+    CVector      m_spawnedAt[MAX_VEHICLES];
     BOOL         m_bNeedsToInitializeLicensePlates;
 
     
@@ -79,7 +80,7 @@ public:
     void SetParams(ID nId, bool bIsObjective, bool bIsLocked);
     GTAREF GetRef(int nId);
     ID GetNearest();
-    ID GetNearest(Vector point);
+    ID GetNearest(CVector point);
     void AddToWaitingList(const VehicleInfo* pInfo);
     void ConstructLicensePlates();
     void ShutdownLicensePlates();

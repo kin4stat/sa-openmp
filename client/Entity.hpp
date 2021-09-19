@@ -2,8 +2,10 @@
 #define ENTITY_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Matrix.hpp"
+
+#include "CEntity.h"
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -48,27 +50,26 @@ public:
 
     
     Entity();
-    ~Entity();
 
-    virtual ~CEntity() = 0;
+    virtual ~Entity() = 0;
     virtual void Add() = 0;    // adds entity to the game world
     virtual void Remove() = 0; // removes entity from the game world
 
     void GetMatrix(Matrix* pMatrix);
     void SetMatrix(Matrix matrix);
-    void GetSpeed(Vector* pVec);
-    void SetSpeed(Vector vec);
-    void GetTurnSpeed(Vector* pVec);
-    void SetTurnSpeed(Vector vec);
+    void GetSpeed(CVector* pVec);
+    void SetSpeed(CVector vec);
+    void GetTurnSpeed(CVector* pVec);
+    void SetTurnSpeed(CVector vec);
     void ApplyTurnSpeed();
     float GetDistanceFromCentreOfMassToBaseOfModel();
-    void GetBoundCentre(Vector* pVec);
+    void GetBoundCentre(CVector* pVec);
     void SetModelIndex(int nModel);
     int GetModelIndex();
-    void Teleport(Vector position);
+    void Teleport(CVector position);
     float GetDistanceToLocalPlayer();
     float GetDistanceToCamera();
-    float GetDistanceToPoint(Vector position);
+    float GetDistanceToPoint(CVector position);
     BOOL DoesExist();
     BOOL EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY);
     BOOL HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY);

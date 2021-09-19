@@ -20,17 +20,17 @@ void Menu::Hide() {
 
 char* Menu::GetItem(NUMBER nColumn, NUMBER nRow) {
 
-    return char*{};
+    return nullptr;
 }
 
 char* Menu::GetTitle() {
 
-    return char*{};
+    return nullptr;
 }
 
 char* Menu::MS(NUMBER nColumn, NUMBER nRow) {
 
-    return char*{};
+    return nullptr;
 }
 
 char Menu::GetActiveRow() {

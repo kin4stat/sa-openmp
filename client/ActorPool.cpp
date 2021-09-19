@@ -3,9 +3,10 @@
 ActorPool::ActorPool() {
 
 }
-CActor* ActorPool::Get(ID nId) {
 
-    return CActor*{};
+Actor* ActorPool::Get(ID nId) {
+
+    return nullptr;
 }
 
 BOOL ActorPool::DoesExist(ID nId) {

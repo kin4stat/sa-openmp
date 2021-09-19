@@ -2,7 +2,6 @@
 #define NETGAME_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "PlayerPool.hpp"
 #include "VehiclePool.hpp"
 #include "GangZonePool.hpp"
@@ -12,6 +11,8 @@
 #include "TextDrawPool.hpp"
 #include "ActorPool.hpp"
 #include "ObjectPool.hpp"
+
+#include "CVector.h"
 
 struct Packet;
 struct NetworkID;
@@ -197,7 +198,7 @@ public:
     void Packet_MarkersSync(Packet* pPacket);
     void Packet_AuthKey(Packet* pPacket);
     void ResetMarkers();
-    void CreateMarker(NUMBER nIndex, Vector position, char nIcon, int nColor, int nType);
+    void CreateMarker(NUMBER nIndex, CVector position, char nIcon, int nColor, int nType);
     void ResetPools();
     void ShutdownForRestart();
     void Packet_PlayerSync(Packet* pPacket);

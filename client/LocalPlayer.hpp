@@ -2,10 +2,11 @@
 #define LOCALPLAYER_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Ped.hpp"
 #include "Vehicle.hpp"
 #include "Synchronization.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -99,7 +100,7 @@ public:
     TICK m_lastCameraTargetUpdate;
 
     struct {
-        Vector m_direction;
+        CVector m_direction;
         TICK    m_lastUpdate;
         TICK    m_lastLook;
     } m_head;
@@ -113,7 +114,7 @@ public:
         NUMBER  m_nTeam;
         int     m_nSkin;
         char    field_c;
-        Vector m_position;
+        CVector m_position;
         float   m_fRotation;
         int     m_aWeapon[3];
         int     m_aAmmo[3];
@@ -146,7 +147,7 @@ public:
 
         BOOL    m_bStuck;
         BOOL    m_bIsActive;
-        Vector m_position;
+        CVector m_position;
         int     field_;
         int     m_nMode;
     } m_surfing;

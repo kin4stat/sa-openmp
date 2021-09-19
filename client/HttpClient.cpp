@@ -33,7 +33,7 @@ void HttpClient::Disconnect() {
     return;
 }
 
-ErrorCode HttpClient::ProcessUrl(int nType, const char* szUrl, const char* szPostData, const char* szReferer) {
+HttpClient::ErrorCode HttpClient::ProcessUrl(int nType, const char* szUrl, const char* szPostData, const char* szReferer) {
 
     return ErrorCode{};
 }

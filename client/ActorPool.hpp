@@ -2,10 +2,20 @@
 #define ACTORPOOL_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Actor.hpp"
 
+#include "CVector.h"
+
 BEGIN_PACK
+
+struct ActorInfo {
+    ID      m_nId;
+    int     m_nModel;
+    CVector m_position;
+    float   m_fRotation;
+    float   m_fHealth;
+    bool    m_bInvulnerable;
+};
 
 class ActorPool {
 public:

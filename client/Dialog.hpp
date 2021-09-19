@@ -48,7 +48,7 @@ public:
     Dialog(IDirect3DDevice9* pDevice);
     ~Dialog();
 
-    void GetScreenRect(CRect* pRect);
+    void GetScreenRect(Rect* pRect);
     int GetTextScreenLength(const char* szString);
     void Hide();
     void ResetDialogControls(CDXUTDialog* pDialog);

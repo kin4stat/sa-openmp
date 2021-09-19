@@ -5,7 +5,7 @@ Game::Game() {
 }
 CPed* Game::GetPlayerPed() {
 
-    return CPed*{};
+    return nullptr;
 }
 
 float Game::FindGroundZ(CVector vPoint) {
@@ -155,7 +155,7 @@ GTAREF Game::CreateWeaponPickup(int nModel, int nAmmo, CVector vPosition) {
 
 IDirect3DDevice9* Game::GetDevice() {
 
-    return IDirect3DDevice9*{};
+    return nullptr;
 }
 
 void Game::Restart() {
@@ -165,7 +165,7 @@ void Game::Restart() {
 
 ::CWeaponInfo* Game::GetWeaponInfo(int nWeapon, int nSkill) {
 
-    return ::CWeaponInfo*{};
+    return nullptr;
 }
 
 void Game::SetWorldGravity(float fValue) {
@@ -285,17 +285,17 @@ void Game::EnableRadar(BOOL bEnable) {
 
 void* Game::GetWindowHandle() {
 
-    return void*{};
+    return nullptr;
 }
 
-CAudio* Game::GetAudio() {
+Audio* Game::GetAudio() {
 
-    return CAudio*{};
+    return nullptr;
 }
 
-CCamera* Game::GetCamera() {
+Camera* Game::GetCamera() {
 
-    return CCamera*{};
+    return nullptr;
 }
 
 BOOL Game::DoesHeadMoves() {
@@ -318,9 +318,9 @@ BOOL Game::RemovePed(CPed* pPed) {
     return BOOL{};
 }
 
-CVehicle* Game::CreateVehicle(int nModel, CVector position, float fRotation, BOOL bHasSiren) {
+Vehicle* Game::CreateVehicle(int nModel, CVector position, float fRotation, BOOL bHasSiren) {
 
-    return CVehicle*{};
+    return nullptr;
 }
 
 void Game::ProcessInputEnabling() {

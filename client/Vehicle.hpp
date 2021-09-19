@@ -2,8 +2,10 @@
 #define VEHICLE_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Entity.hpp"
+
+#include "CVehicle.h"
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -97,7 +99,7 @@ public:
     GTAREF             m_marker;
 
     
-    Vehicle(int nModel, Vector position, float fRotation, BOOL bKeepModelLoaded, BOOL bHasSiren);
+    Vehicle(int nModel, CVector position, float fRotation, BOOL bKeepModelLoaded, BOOL bHasSiren);
     ~Vehicle();
 
     void ChangeInterior(int nId);

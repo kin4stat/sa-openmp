@@ -3,7 +3,8 @@
 Dialog::Dialog(IDirect3DDevice9* pDevice) {
 
 }
-void Dialog::GetScreenRect(CRect* pRect) {
+
+void Dialog::GetScreenRect(Rect* pRect) {
 
     return;
 }

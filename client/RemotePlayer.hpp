@@ -4,10 +4,11 @@
 #include "common.hpp"
 #include "Ped.hpp"
 #include "Matrix.hpp"
-#include "Vector.hpp"
 #include "Synchronization.hpp"
 #include "Vehicle.hpp"
 #include "Animation.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -81,16 +82,16 @@ public:
     unsigned char                  m_nSeatId;
     int                            field_3;
     BOOL                           m_bPassengerDriveBy;
-    Vector                        m_onfootTargetPosition;
-    Vector                        m_onfootTargetSpeed;
-    Vector                        m_incarTargetPosition;
-    Vector                        m_incarTargetSpeed;
+    CVector                        m_onfootTargetPosition;
+    CVector                        m_onfootTargetSpeed;
+    CVector                        m_incarTargetPosition;
+    CVector                        m_incarTargetSpeed;
     char                           pad_1[76];
-    Vector                        m_positionDifference;
+    CVector                        m_positionDifference;
 
     struct {
         float   real;
-        Vector imag;
+        CVector imag;
     } m_incarTargetRotation;
 
     float         m_fReportedArmour;
@@ -104,7 +105,7 @@ public:
     int           m_nStatus;
 
     struct {
-        Vector m_direction;
+        CVector m_direction;
         TICK    m_lastUpdate;
         TICK    m_lastLook;
     } m_head;
@@ -132,11 +133,11 @@ public:
     void ProcessSpecialAction();
     void UpdateOnfootSpeedAndPosition();
     void UpdateOnfootRotation();
-    void SetOnfootTargetSpeedAndPosition(Vector* pPosition, Vector* pSpeed);
+    void SetOnfootTargetSpeedAndPosition(CVector* pPosition, CVector* pSpeed);
     void UpdateIncarSpeedAndPosition();
     void UpdateIncarRotation();
-    void SetIncarTargetSpeedAndPosition(Matrix* pMatrix, Vector* pPosition, Vector* pSpeed);
-    void UpdateTrain(Matrix* pMatrix, Vector* pSpeed, float fSpeed);
+    void SetIncarTargetSpeedAndPosition(Matrix* pMatrix, CVector* pPosition, CVector* pSpeed);
+    void UpdateTrain(Matrix* pMatrix, CVector* pSpeed, float fSpeed);
     void ResetData();
     float GetDistanceToPlayer(RemotePlayer* pPlayer);
     float GetDistanceToLocalPlayer();

@@ -2,7 +2,8 @@
 #define TEXTDRAW_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -39,7 +40,7 @@ public:
         float          m_fX;
         float          m_fY;
         unsigned short m_nModel;
-        Vector        m_rotation;
+        CVector        m_rotation;
         float          m_fZoom;
         unsigned short m_aColor[2];
     };
@@ -69,7 +70,7 @@ public:
         unsigned long  m_nIndex;
         unsigned char  field_9A7;
         unsigned short m_nModel;
-        Vector        m_rotation;
+        CVector        m_rotation;
         float          m_fZoom;
         unsigned short m_aColor[2];
         unsigned char  field_9BE;

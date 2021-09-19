@@ -8,7 +8,7 @@ void Scoreboard::Recalc() {
     return;
 }
 
-void Scoreboard::GetRect(CRect* pRect) {
+void Scoreboard::GetRect(Rect* pRect) {
 
     return;
 }

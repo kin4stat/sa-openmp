@@ -2,14 +2,15 @@
 #define PICKUPPOOL_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
 struct Pickup {
     int     m_nModel;
     int     m_nType;
-    Vector m_position;
+    CVector m_position;
 };
 
 struct  WeaponPickup {
@@ -44,7 +45,7 @@ public:
     ~PickupPool();
 
     void Create(Pickup* pData, ID nId);
-    void CreateWeapon(int nModel, Vector position, int nAmmo, ID nExOwner);
+    void CreateWeapon(int nModel, CVector position, int nAmmo, ID nExOwner);
     void Delete(int nId);
     void DeleteWeapon(ID nExOwner);
     int GetIndex(int nId);

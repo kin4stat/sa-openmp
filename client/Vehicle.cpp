@@ -183,19 +183,19 @@ void Vehicle::DetachTrailer() {
     return;
 }
 
-void Vehicle::SetTrailer(CVehicle* pVehicle) {
+void Vehicle::SetTrailer(Vehicle* pVehicle) {
 
     return;
 }
 
-CVehicle* Vehicle::GetTrailer() {
+Vehicle* Vehicle::GetTrailer() {
 
-    return CVehicle*{};
+    return nullptr;
 }
 
-CVehicle* Vehicle::GetTractor() {
+Vehicle* Vehicle::GetTractor() {
 
-    return CVehicle*{};
+    return nullptr;
 }
 
 BOOL Vehicle::IsTrailer() {

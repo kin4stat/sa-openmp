@@ -33,9 +33,9 @@ BOOL PlayerPool::Create(ID nId, const char* szName, BOOL bIsNPC) {
     return BOOL{};
 }
 
-CRemotePlayer* PlayerPool::GetPlayer(ID nId) {
+RemotePlayer* PlayerPool::GetPlayer(ID nId) {
 
-    return CRemotePlayer*{};
+    return nullptr;
 }
 
 BOOL PlayerPool::IsDisconnected(ID nId) {
@@ -53,7 +53,7 @@ void PlayerPool::SetLocalPlayerName(const char* szName) {
     return;
 }
 
-void PlayerPool::SetAt(ID nId, CPlayerInfo* pObject) {
+void PlayerPool::SetAt(ID nId, PlayerInfo* pObject) {
 
     return;
 }
@@ -78,8 +78,8 @@ int PlayerPool::GetLocalPlayerScore() {
     return int{};
 }
 
-CLocalPlayer* PlayerPool::GetLocalPlayer() {
+LocalPlayer* PlayerPool::GetLocalPlayer() {
 
-    return CLocalPlayer*{};
+    return nullptr;
 }
 

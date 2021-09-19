@@ -2,8 +2,9 @@
 #define OBJECTPOOL_HPP_
 
 #include "common.hpp"
-#include "Vector.hpp"
 #include "Object.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
@@ -36,7 +37,7 @@ public:
     void UpdateLargestId();
     int GetCount();
     BOOL Delete(ID nId);
-    BOOL Create(ID nId, int nModel, Vector position, Vector rotation, float fDrawDistance);
+    BOOL Create(ID nId, int nModel, CVector position, CVector rotation, float fDrawDistance);
     void Process();
     void ConstructMaterials();
     void ShutdownMaterials();

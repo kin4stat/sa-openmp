@@ -10,16 +10,17 @@
 #pragma once
 
 #include "common.hpp"
-#include "Vector.hpp"
+
+#include "CVector.h"
 
 BEGIN_PACK
 
 namespace AimStuff {
     struct Aim {
-        Vector front;
-        Vector source;
-        Vector sourceBeforeLookBehind;
-        Vector up;
+        CVector front;
+        CVector source;
+        CVector sourceBeforeLookBehind;
+        CVector up;
     };
 
     float& RefLocalPlayerCameraExtZoom();

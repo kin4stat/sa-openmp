@@ -15,6 +15,6 @@ void LicensePlate::OnResetDevice() {
 
 IDirect3DTexture9* LicensePlate::Create(const char* szText) {
 
-    return IDirect3DTexture9*{};
+    return nullptr;
 }
 

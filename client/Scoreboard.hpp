@@ -37,7 +37,7 @@ public:
     ~Scoreboard();
 
     void Recalc();
-    void GetRect(CRect* pRect);
+    void GetRect(Rect* pRect);
     void Close(bool bHideCursor);
     void ResetDialogControls(CDXUTDialog* pDialog);
     void SendNotification();
