@@ -26,7 +26,9 @@ typedef uint64_t uint64;
 
 typedef uint8  bool8;
 typedef uint16 bool16;
-typedef uint32 bool32;
+
+//TODO: 
+// typedef uint32 bool32;
 
 #include <Windows.h>
 #include "reversiblehooks/HookSystem.h"
