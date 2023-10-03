@@ -48,4 +48,4 @@ add_library(sa-omp-client SHARED
 
 target_compile_features(sa-omp-client PRIVATE cxx_std_17)
 target_include_directories(sa-omp-client PRIVATE . ..)
-target_link_libraries(sa-omp-client PRIVATE reversiblehooks pluginsdk::gtasa)
+target_link_libraries(sa-omp-client PRIVATE reversiblehooks PluginSDK::gtasa)

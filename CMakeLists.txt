@@ -8,7 +8,8 @@ option(SAOMP_CLIENT "SA Open Multiplayer client" ON)
 add_subdirectory(reversiblehooks)
 
 if (SAOMP_CLIENT)
-  find_package(plugin-sdk REQUIRED)
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
+  find_package(PluginSDK REQUIRED gtasa)
 
   add_subdirectory(client)
 endif()
